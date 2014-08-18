@@ -4,4 +4,4 @@
  * should be kept private.
  */
 
-static NSString *const kAPIKey = @"";
+static NSString *const kAPIKey = @"AIzaSyCqamrDrIcH7P7Tkb2R2LSQlNa-bzUXwMg";

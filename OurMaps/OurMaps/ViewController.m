@@ -24,11 +24,31 @@
     mapView.myLocationEnabled = YES;
     self.view = mapView;
     
+    // Show user location.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
     marker.title = @"Current Location";
     marker.snippet = @"Houston TX, USA";
     marker.map = mapView;
+    
+    // Show places around the user location
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyDjBPV3R5YT1jRV2ncL0eSfX6XMFieXGqc&radius=50000&keyword=mexican&location=40.714353,-74.005973"];
+        NSData *responseData = [NSData dataWithContentsOfURL:url];
+        NSError *error;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData
+                                                             options:kNilOptions
+                                                               error:&error];
+        NSArray *results = json[@"results"];
+        for (int i = 0; i < [results count]; i++){
+            NSDictionary *place = [results objectAtIndex:i];
+            double lat = [place[@"geometry"][@"location"][@"lat"] doubleValue];
+            double lng = [place[@"geometry"][@"location"][@"lng"] doubleValue];
+            GMSMarker *marker = [[GMSMarker alloc] init];
+            marker.position = CLLocationCoordinate2DMake(lat, lng);
+            marker.map = mapView;
+        }
+    });
     
     [GMSServices openSourceLicenseInfo];
 }
