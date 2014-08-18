@@ -31,9 +31,10 @@
     marker.snippet = @"Houston TX, USA";
     marker.map = mapView;
     
-    // Show places around the user location
+    // Show places around the user location.
     dispatch_async(dispatch_get_main_queue(), ^{
         NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyDjBPV3R5YT1jRV2ncL0eSfX6XMFieXGqc&radius=50000&keyword=mexican&location=40.714353,-74.005973"];
+        
         NSData *responseData = [NSData dataWithContentsOfURL:url];
         NSError *error;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData
@@ -48,6 +49,18 @@
             marker.position = CLLocationCoordinate2DMake(lat, lng);
             marker.map = mapView;
         }
+        
+        // Google directions: get the route.
+        NSDictionary *routes = json[@"routes"][0];
+        NSDictionary *route = routes[@"overview_polyline"];
+        NSString *encodedPath = route[@"points"];
+        
+        GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
+        GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+        polyline.strokeWidth = 4;
+        polyline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.7];
+        polyline.map = mapView;
+        
     });
     
     [GMSServices openSourceLicenseInfo];
