@@ -15,7 +15,6 @@
 		A772F67919A01F60003DA103 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F67819A01F60003DA103 /* AppDelegate.m */; };
 		A772F67C19A01F60003DA103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A772F67A19A01F60003DA103 /* Main.storyboard */; };
 		A772F67F19A01F60003DA103 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F67E19A01F60003DA103 /* ViewController.m */; };
-		A772F68119A01F60003DA103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A772F68019A01F60003DA103 /* Images.xcassets */; };
 		A772F68819A01F60003DA103 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F68719A01F60003DA103 /* XCTest.framework */; };
 		A772F68919A01F60003DA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66819A01F60003DA103 /* Foundation.framework */; };
 		A772F68A19A01F60003DA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66C19A01F60003DA103 /* UIKit.framework */; };
@@ -35,6 +34,7 @@
 		A772F6B619A023B5003DA103 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B519A023B5003DA103 /* OpenGLES.framework */; };
 		A772F6B819A023C2003DA103 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B719A023C2003DA103 /* QuartzCore.framework */; };
 		A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B919A023D2003DA103 /* SystemConfiguration.framework */; };
+		A772F6BC19A5608A003DA103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A772F6BB19A5608A003DA103 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,6 @@
 		A772F67B19A01F60003DA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A772F67D19A01F60003DA103 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A772F67E19A01F60003DA103 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		A772F68019A01F60003DA103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A772F68619A01F60003DA103 /* OurMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OurMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A772F68719A01F60003DA103 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A772F68F19A01F60003DA103 /* OurMapsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OurMapsTests-Info.plist"; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		A772F6B519A023B5003DA103 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A772F6B719A023C2003DA103 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A772F6B919A023D2003DA103 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A772F6BB19A5608A003DA103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +172,7 @@
 				A772F67A19A01F60003DA103 /* Main.storyboard */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
-				A772F68019A01F60003DA103 /* Images.xcassets */,
+				A772F6BB19A5608A003DA103 /* Images.xcassets */,
 				A772F66F19A01F60003DA103 /* Supporting Files */,
 			);
 			path = OurMaps;
@@ -283,8 +283,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A772F68119A01F60003DA103 /* Images.xcassets in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
+				A772F6BC19A5608A003DA103 /* Images.xcassets in Resources */,
 				A772F67C19A01F60003DA103 /* Main.storyboard in Resources */,
 				A772F6A219A0223D003DA103 /* GoogleMaps.bundle in Resources */,
 			);

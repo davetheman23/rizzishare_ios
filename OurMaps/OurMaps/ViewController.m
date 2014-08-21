@@ -19,8 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.714353 longitude:-74.005973 zoom:6];
-    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+	GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.714353 longitude:-74.005973 zoom:15];
+//    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     mapView.myLocationEnabled = YES;
     self.view = mapView;
     
@@ -28,12 +29,12 @@
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
     marker.title = @"Current Location";
-    marker.snippet = @"Houston TX, USA";
+    marker.snippet = @"New York City, USA";
     marker.map = mapView;
     
     // Show places around the user location.
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyDjBPV3R5YT1jRV2ncL0eSfX6XMFieXGqc&radius=50000&keyword=mexican&location=40.714353,-74.005973"];
+        NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=40.714353,-74.005973"];
         
         NSData *responseData = [NSData dataWithContentsOfURL:url];
         NSError *error;
@@ -47,6 +48,11 @@
             double lng = [place[@"geometry"][@"location"][@"lng"] doubleValue];
             GMSMarker *marker = [[GMSMarker alloc] init];
             marker.position = CLLocationCoordinate2DMake(lat, lng);
+            marker.title = @"Mexican";
+            marker.snippet = @"Customize this.";
+            marker.appearAnimation = kGMSMarkerAnimationPop;
+//            marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
             marker.map = mapView;
         }
         
