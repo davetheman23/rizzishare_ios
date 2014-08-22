@@ -24,8 +24,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.714353
-                                                            longitude:-74.005973
+//    self.mapView = [[GMSMapView alloc] init];
+//    CLLocationCoordinate2D currentCoordinate = self.mapView.myLocation.coordinate;
+    
+    CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
+//    NSLog(@"Current coordinate: %@", currentCoordinate);
+	GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentCoordinate.latitude
+                                                            longitude:currentCoordinate.longitude
                                                                  zoom:15
                                                               bearing:0
                                                          viewingAngle:0];
@@ -39,11 +44,20 @@
     self.mapView.delegate = self;
     
     /***** Show user location *****/
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
-    marker.title = @"Current Location";
-    marker.snippet = @"New York City, USA";
-    marker.map = _mapView;
+//    GMSMarker *marker = [[GMSMarker alloc] init];
+//    marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
+//    marker.title = @"Current Location";
+//    marker.snippet = @"New York City, USA";
+//    marker.map = _mapView;
+    
+//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
+//    PlaceMarker *marker = [[PlaceMarker alloc] init];
+//    marker.position = coordinate;
+//    marker.title = @"Point of interest";
+//    marker.appearAnimation = kGMSMarkerAnimationPop;
+//    marker.map = nil;
+//    self.userCreatedMarker = marker;
+    
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2*1024*1024
@@ -100,17 +114,58 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
         self.userCreatedMarker = nil;
     }
     
-    PlaceMarker *marker = [[PlaceMarker alloc] init];
-    marker.position = coordinate;
-    marker.appearAnimation = kGMSMarkerAnimationPop;
-    marker.title = @"created by user";
-    marker.map = nil;
-    self.userCreatedMarker = marker;
-    [self drawMarkers];
+    GMSGeocoder *geocoder = [GMSGeocoder geocoder];
+    [geocoder reverseGeocodeCoordinate:coordinate
+                     completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
+                         PlaceMarker *marker = [[PlaceMarker alloc] init];
+                         marker.position = coordinate;
+                         marker.appearAnimation = kGMSMarkerAnimationPop;
+                         marker.title = response.firstResult.thoroughfare;
+                         marker.snippet = response.firstResult.locality;
+                         marker.map = nil;
+                         //    PlaceMarker *marker = createUserMarkerAt:coordinate;
+                         
+                         self.userCreatedMarker = marker;
+                         [self drawMarkers];
+                     }];
+    
 }
 
 
--(void)mapView:(GMSMapView *)mapView
+- (PlaceMarker*)createUserMarkerAt:(CLLocationCoordinate2D)coordinate {
+    PlaceMarker *marker = [[PlaceMarker alloc] init];
+    marker.position = coordinate;
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.title = @"Point of interest";
+    marker.map = nil;
+    return marker;
+}
+
+
+- (void)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    if (mapView.myLocation != nil) {
+        NSString *urlString = [NSString stringWithFormat:@"%@?origin=%f,%f&destination=%f,%f&sensor=true&key=%@",
+                               @"https://maps.googleapis.com/maps/api/directions/json",
+                               mapView.myLocation.coordinate.latitude,
+                               mapView.myLocation.coordinate.longitude,
+                               marker.position.latitude,
+                               marker.position.longitude,
+                               @"AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc"];
+        NSURL *directionsURL = [NSURL URLWithString:urlString];
+        NSURLSessionDataTask *directionsTask = [self.markerSession dataTaskWithURL:directionsURL
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *e) {
+                                                    NSError *error = nil;
+                                                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                                         options:NSJSONReadingMutableContainers
+                                                                                                           error:&error];
+                                                    if (!error) {
+//                                                        self.steps = json[@"routes"][0][@"legs"][0][@"steps"];
+                                                    }
+                                                }];
+    }
+}
+
+- (void)mapView:(GMSMapView *)mapView
 didTapInfoWindowOfMarker:(GMSMarker *)marker{
     NSString *message = [NSString stringWithFormat:@"You tapped the info window for the %@ marker", marker.title];
     UIAlertView *windowTapped = [[UIAlertView alloc] initWithTitle:@"info Window Tapped!"
