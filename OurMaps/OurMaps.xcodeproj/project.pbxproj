@@ -35,6 +35,7 @@
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B219A7F541005BCF6B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A78F04B119A7F541005BCF6B /* GoogleMaps.framework */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
+		A78F04B619A7FD76005BCF6B /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B519A7FD76005BCF6B /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMarker.m; sourceTree = "<group>"; };
 		A78F04B119A7F541005BCF6B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework"; sourceTree = "<group>"; };
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A78F04B519A7FD76005BCF6B /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		A772F66719A01F60003DA103 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A78F04B519A7FD76005BCF6B /* GoogleMaps.bundle */,
 				A78F04B119A7F541005BCF6B /* GoogleMaps.framework */,
 				A772F6B919A023D2003DA103 /* SystemConfiguration.framework */,
 				A772F6B719A023C2003DA103 /* QuartzCore.framework */,
@@ -296,6 +299,7 @@
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
 				A772F67C19A01F60003DA103 /* Main.storyboard in Resources */,
+				A78F04B619A7FD76005BCF6B /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
