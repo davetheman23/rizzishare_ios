@@ -35,6 +35,7 @@
 		A772F6B819A023C2003DA103 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B719A023C2003DA103 /* QuartzCore.framework */; };
 		A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B919A023D2003DA103 /* SystemConfiguration.framework */; };
 		A772F6BC19A5608A003DA103 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A772F6BB19A5608A003DA103 /* Images.xcassets */; };
+		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		A772F6B719A023C2003DA103 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A772F6B919A023D2003DA103 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A772F6BB19A5608A003DA103 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../.Trash/Images.xcassets; sourceTree = "<group>"; };
+		A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMarker.h; sourceTree = "<group>"; };
+		A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMarker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,7 @@
 		A772F65C19A01F60003DA103 = {
 			isa = PBXGroup;
 			children = (
+				A772F6C019A6E1F3003DA103 /* Models */,
 				A772F66E19A01F60003DA103 /* OurMaps */,
 				A772F68D19A01F60003DA103 /* OurMapsTests */,
 				A772F66719A01F60003DA103 /* Frameworks */,
@@ -174,6 +178,8 @@
 				A772F67E19A01F60003DA103 /* ViewController.m */,
 				A772F6BB19A5608A003DA103 /* Images.xcassets */,
 				A772F66F19A01F60003DA103 /* Supporting Files */,
+				A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */,
+				A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */,
 			);
 			path = OurMaps;
 			sourceTree = "<group>";
@@ -205,6 +211,13 @@
 				A772F69019A01F60003DA103 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A772F6C019A6E1F3003DA103 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +321,7 @@
 				A772F67F19A01F60003DA103 /* ViewController.m in Sources */,
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
+				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

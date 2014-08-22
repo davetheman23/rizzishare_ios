@@ -7,13 +7,16 @@
 //
 
 #import "ViewController.h"
+#import "PlaceMarker.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 @interface ViewController () <GMSMapViewDelegate> {
 //    GMSMapView *mapView;
 }
 @property (strong, nonatomic) GMSMapView *mapView;
-
+@property (copy, nonatomic) NSSet *markers;
+@property (strong, nonatomic) NSURLSession *markerSession;
+@property (strong, nonatomic) PlaceMarker *userCreatedMarker;
 @end
 
 @implementation ViewController
@@ -26,7 +29,6 @@
                                                                  zoom:15
                                                               bearing:0
                                                          viewingAngle:0];
-//    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     self.mapView.mapType = kGMSTypeNormal;
     self.mapView.myLocationEnabled = YES;
@@ -35,18 +37,21 @@
     [self.mapView setMinZoom:10 maxZoom:18];
     [self.view addSubview:self.mapView];
     self.mapView.delegate = self;
-//    self.view = _mapView;
     
-    // Show user location.
+    /***** Show user location *****/
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
     marker.title = @"Current Location";
     marker.snippet = @"New York City, USA";
     marker.map = _mapView;
     
-//    [self mapView:mapView didTapInfoWindowOfMarker:marker];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2*1024*1024
+                                                    diskCapacity:10*1024*1024
+                                                        diskPath:@"MarkerData"];
+    self.markerSession = [NSURLSession sessionWithConfiguration:config];
     
-    // Show places around the user location.
+    /***** Show places around the user location *****/
     dispatch_async(dispatch_get_main_queue(), ^{
         NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=40.714353,-74.005973"];
         
@@ -70,7 +75,7 @@
             marker.map = _mapView;
         }
         
-        // Google directions: get the route.
+        /***** Google directions: get the route *****/
         NSDictionary *routes = json[@"routes"][0];
         NSDictionary *route = routes[@"overview_polyline"];
         NSString *encodedPath = route[@"points"];
@@ -86,17 +91,24 @@
     [GMSServices openSourceLicenseInfo];
 }
 
--(BOOL) prefersStatusBarHidden{
-    return YES;
+
+- (void)mapView:(GMSMapView *)mapView
+didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    
+    if(self.userCreatedMarker != nil){
+        self.userCreatedMarker.map = nil;
+        self.userCreatedMarker = nil;
+    }
+    
+    PlaceMarker *marker = [[PlaceMarker alloc] init];
+    marker.position = coordinate;
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.title = @"created by user";
+    marker.map = nil;
+    self.userCreatedMarker = marker;
+    [self drawMarkers];
 }
 
--(void) viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.mapView.padding = UIEdgeInsetsMake(self.topLayoutGuide.length + 5,
-                                            0,
-                                            self.bottomLayoutGuide.length + 5,
-                                            0);
-}
 
 -(void)mapView:(GMSMapView *)mapView
 didTapInfoWindowOfMarker:(GMSMarker *)marker{
@@ -109,6 +121,76 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
     
     [windowTapped show];
 }
+
+
+- (void)setupMarkerData{
+    GMSMarker *marker1 = [[GMSMarker alloc] init];
+    marker1.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
+    marker1.map = nil;
+    
+    self.markers = [NSSet setWithObjects:marker1, nil];
+    [self drawMarkers];
+}
+
+
+- (void)drawMarkers{
+    for(PlaceMarker *marker in self.markers){
+        if(marker.map == nil){
+            marker.map = self.mapView;
+        }
+    }
+    if(self.userCreatedMarker != nil && self.userCreatedMarker.map == nil){
+        self.userCreatedMarker.map = self.mapView;
+        self.mapView.selectedMarker = self.userCreatedMarker;
+        GMSCameraUpdate *cameraUpdate = [GMSCameraUpdate setTarget:self.userCreatedMarker.position];
+        [self.mapView animateWithCameraUpdate:cameraUpdate];
+    }
+}
+
+- (void)downloadMarkerData:(id)sender {
+    NSURL *restaurantURL = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=40.714353,-74.005973"];
+//    NSURL *restaurantURL = [NSURL URLWithString:@"https://googlemaps.codeschool.com/lakes.json"];
+    
+    
+    NSURLSessionDataTask *task = [self.markerSession dataTaskWithURL:restaurantURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSArray *json = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:0
+                                                          error:nil];
+//        NSLog(@"json: %@", json);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self createMarkerObjectsWithJson:json];
+        }];
+    }];
+    [task resume];
+}
+
+- (void)createMarkerObjectsWithJson:(NSArray *)json {
+    NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] initWithSet:self.markers];
+    for(NSDictionary *markerData in json){
+        PlaceMarker *newMarker = [[PlaceMarker alloc] init];
+        newMarker.objectID = [markerData[@"id"] stringValue];
+        newMarker.appearAnimation = [markerData[@"appearAnimation"] integerValue];
+        newMarker.position = CLLocationCoordinate2DMake([markerData[@"lat"] doubleValue], [markerData[@"lng"] doubleValue]);
+        newMarker.title = markerData[@"title"];
+        newMarker.snippet = markerData[@"snippet"];
+        newMarker.map = nil;
+        [mutableMarkerSet addObject:newMarker];
+    }
+    self.markers = [mutableMarkerSet copy];
+    [self drawMarkers];
+}
+
+-(void) viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.mapView.padding = UIEdgeInsetsMake(self.topLayoutGuide.length + 5,
+                                            0,
+                                            self.bottomLayoutGuide.length + 5,
+                                            0);
+}
+
+//-(BOOL) prefersStatusBarHidden{
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning
 {
