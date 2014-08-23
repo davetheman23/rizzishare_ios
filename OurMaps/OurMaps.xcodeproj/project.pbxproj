@@ -15,8 +15,8 @@
 		7293C29719A902180000F456 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29619A902180000F456 /* Security.framework */; };
 		7293C29919A9021F0000F456 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29819A9021F0000F456 /* Social.framework */; };
 		7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29A19A902260000F456 /* StoreKit.framework */; };
-		72EAD42219A950760036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42119A950760036FCBB /* FacebookSDK.framework */; };
 		72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */; };
+		72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42519A959500036FCBB /* FacebookSDK.framework */; };
 		72FB5C5919A8016100D4FCB7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB5C5819A8016100D4FCB7 /* GoogleMaps.framework */; };
 		72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */; };
 		72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FB5C5D19A8029D00D4FCB7 /* Constants.m */; };
@@ -68,8 +68,8 @@
 		7293C29619A902180000F456 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7293C29819A9021F0000F456 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7293C29A19A902260000F456 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		72EAD42119A950760036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.2.21/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
+		72EAD42519A959500036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72FB5C5819A8016100D4FCB7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework"; sourceTree = "<group>"; };
 		72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		72FB5C5C19A8029D00D4FCB7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				A772F6AA19A02319003DA103 /* CoreText.framework in Frameworks */,
 				7293C28B19A901460000F456 /* Parse.framework in Frameworks */,
 				A772F6A619A02300003DA103 /* CoreData.framework in Frameworks */,
-				72EAD42219A950760036FCBB /* FacebookSDK.framework in Frameworks */,
+				72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */,
 				A772F6A419A022F5003DA103 /* AVFoundation.framework in Frameworks */,
 				A772F66D19A01F60003DA103 /* UIKit.framework in Frameworks */,
 				72FB5C5919A8016100D4FCB7 /* GoogleMaps.framework in Frameworks */,
@@ -179,8 +179,8 @@
 		A772F66719A01F60003DA103 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72EAD42519A959500036FCBB /* FacebookSDK.framework */,
 				72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */,
-				72EAD42119A950760036FCBB /* FacebookSDK.framework */,
 				A772F66819A01F60003DA103 /* Foundation.framework */,
 				A772F6B919A023D2003DA103 /* SystemConfiguration.framework */,
 				7293C29A19A902260000F456 /* StoreKit.framework */,
