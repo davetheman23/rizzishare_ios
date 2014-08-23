@@ -103,7 +103,7 @@
     [GMSServices openSourceLicenseInfo];
 }
 
-
+#pragma mark - Google Maps Delegate.
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     
