@@ -10,29 +10,29 @@
 	<string>OurMaps</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E6DA567A-7F56-4D5B-9415-6A193E002A51</key>
+		<key>49120725E71DE9F9AC14F5F46BB2E33B40900B60</key>
 		<string>https://github.com/davetheman23/rizzishare_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>OurMaps/OurMaps.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E6DA567A-7F56-4D5B-9415-6A193E002A51</key>
+		<key>49120725E71DE9F9AC14F5F46BB2E33B40900B60</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/davetheman23/rizzishare_ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E6DA567A-7F56-4D5B-9415-6A193E002A51</string>
+	<string>49120725E71DE9F9AC14F5F46BB2E33B40900B60</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E6DA567A-7F56-4D5B-9415-6A193E002A51</string>
+			<string>49120725E71DE9F9AC14F5F46BB2E33B40900B60</string>
 			<key>IDESourceControlWCCName</key>
 			<string>rizzishare_ios</string>
 		</dict>
