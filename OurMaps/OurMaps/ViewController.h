@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface ViewController : UIViewController
+@class GooglePlacesAutocompleteQuery;
+
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, GMSMapViewDelegate> {
+    
+    NSArray *searchResultPlaces;
+    GooglePlacesAutocompleteQuery *searchQuery;
+    
+    BOOL shouldBeginEditing;
+
+}
 
 @end
