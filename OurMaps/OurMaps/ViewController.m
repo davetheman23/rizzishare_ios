@@ -13,7 +13,7 @@
 
 @interface ViewController () {
 }
-@property (strong, nonatomic) GMSMapView *mapView;
+//@property (strong, nonatomic) GMSMapView *mapView;
 @property (copy, nonatomic) NSSet *markers;
 @property (strong, nonatomic) NSURLSession *markerSession;
 @property (strong, nonatomic) PlaceMarker *userCreatedMarker;
@@ -21,7 +21,8 @@
 
 @implementation ViewController
 
-@synthesize searchBar, autoCompleteTableView;
+@synthesize mapView;
+//@synthesize searchBar, autoCompleteTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,21 +40,27 @@
     
     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
 //    NSLog(@"Current coordinate: %@", currentCoordinate);
-	GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentCoordinate.latitude
+	
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentCoordinate.latitude
                                                             longitude:currentCoordinate.longitude
                                                                  zoom:15
                                                               bearing:0
                                                          viewingAngle:0];
-    self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+    //self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
+    self.mapView.camera = camera;
     self.mapView.mapType = kGMSTypeNormal;
     self.mapView.myLocationEnabled = YES;
     self.mapView.settings.compassButton = YES;
 //    self.mapView.settings.myLocationButton = YES;
     [self.mapView setMinZoom:10 maxZoom:18];
-    [self.view addSubview:self.mapView];
+    //[self.view addSubview:self.mapView];
+    
+    //self.mapView.hidden=YES;
+    
     self.mapView.delegate = self;
     
     self.searchDisplayController.searchBar.placeholder = @"Search or Address";
+    self.searchDisplayController.searchBar.placeholder = @"Search or test";
 
     
     /***** Show user location *****/
@@ -115,9 +122,11 @@
 //        
 //    });
     
-    self.searchBar.delegate = self;
-    self.autoCompleteTableView.delegate = self;
-
+    //self.searchBar.delegate = self;
+    
+    
+    //self.autoCompleteTableView.delegate = self;
+    
     
     [GMSServices openSourceLicenseInfo];
 }
@@ -246,8 +255,8 @@
 #pragma mark -
 #pragma mark UISearchBar Delegate
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    if (![searchBar isFirstResponder]) {
+- (void)searchBar:(UISearchBar *)aSearchBar textDidChange:(NSString *)searchText {
+    if (![aSearchBar isFirstResponder]) {
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];

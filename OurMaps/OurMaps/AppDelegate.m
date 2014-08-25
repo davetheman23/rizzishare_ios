@@ -19,17 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [GMSServices provideAPIKey:@"AIzaSyDjBPV3R5YT1jRV2ncL0eSfX6XMFieXGqc"];
     
     [Parse setApplicationId:@"VLyOUO8KgGyqLw595rBfVyA68DXJqse4Nc02ySbS"
                   clientKey:@"Ydfor3wPs0UqccXVWFgeChzCu4MlWXot2bz4QZ7Z"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    ViewController *viewController = [[ViewController alloc] init];
-    self.window.rootViewController = viewController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    //ViewController *viewController = [[ViewController alloc] init];
+    //self.window.rootViewController = viewController;
+    //self.window.backgroundColor = [UIColor whiteColor];
+    //[self.window makeKeyAndVisible];
     
     return YES;
 }

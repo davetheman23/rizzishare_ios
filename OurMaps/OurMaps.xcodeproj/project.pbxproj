@@ -14,6 +14,7 @@
 		7293C29719A902180000F456 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29619A902180000F456 /* Security.framework */; };
 		7293C29919A9021F0000F456 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29819A9021F0000F456 /* Social.framework */; };
 		7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29A19A902260000F456 /* StoreKit.framework */; };
+		72A7233019ABDB0E00293167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A7232E19ABDB0E00293167 /* Main.storyboard */; };
 		72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */; };
 		72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42519A959500036FCBB /* FacebookSDK.framework */; };
 		72EAD42819A95FE90036FCBB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42719A95FE90036FCBB /* Parse.framework */; };
@@ -30,7 +31,6 @@
 		A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A772F67119A01F60003DA103 /* InfoPlist.strings */; };
 		A772F67519A01F60003DA103 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F67419A01F60003DA103 /* main.m */; };
 		A772F67919A01F60003DA103 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F67819A01F60003DA103 /* AppDelegate.m */; };
-		A772F67C19A01F60003DA103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A772F67A19A01F60003DA103 /* Main.storyboard */; };
 		A772F67F19A01F60003DA103 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F67E19A01F60003DA103 /* ViewController.m */; };
 		A772F68819A01F60003DA103 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F68719A01F60003DA103 /* XCTest.framework */; };
 		A772F68919A01F60003DA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66819A01F60003DA103 /* Foundation.framework */; };
@@ -71,6 +71,7 @@
 		7293C29619A902180000F456 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7293C29819A9021F0000F456 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7293C29A19A902260000F456 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		72A7232F19ABDB0E00293167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.2.21/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		72EAD42519A959500036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72EAD42719A95FE90036FCBB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.2.21/Parse.framework"; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		A772F67619A01F60003DA103 /* OurMaps-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurMaps-Prefix.pch"; sourceTree = "<group>"; };
 		A772F67719A01F60003DA103 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A772F67819A01F60003DA103 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A772F67B19A01F60003DA103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A772F67D19A01F60003DA103 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A772F67E19A01F60003DA103 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A772F68619A01F60003DA103 /* OurMapsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OurMapsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +226,7 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
+				72A7232E19ABDB0E00293167 /* Main.storyboard */,
 				A772F67719A01F60003DA103 /* AppDelegate.h */,
 				A772F67819A01F60003DA103 /* AppDelegate.m */,
 				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
@@ -236,7 +237,6 @@
 				A735E9F119AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m */,
 				A735E9F319AA371100500BF5 /* GooglePlacesAutocompletePlace.h */,
 				A735E9F419AA371100500BF5 /* GooglePlacesAutocompletePlace.m */,
-				A772F67A19A01F60003DA103 /* Main.storyboard */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
@@ -363,8 +363,8 @@
 			files = (
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
-				A772F67C19A01F60003DA103 /* Main.storyboard in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
+				72A7233019ABDB0E00293167 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,20 +414,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		72A7232E19ABDB0E00293167 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72A7232F19ABDB0E00293167 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		A772F67119A01F60003DA103 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A772F67219A01F60003DA103 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A772F67A19A01F60003DA103 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A772F67B19A01F60003DA103 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		A772F69019A01F60003DA103 /* InfoPlist.strings */ = {

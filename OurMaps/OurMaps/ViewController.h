@@ -19,7 +19,11 @@
     BOOL shouldBeginEditing;
 
 }
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UITableView *autoCompleteTableView;
+
+@property (strong, nonatomic) IBOutlet GMSMapView *mapView;
+
+
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (weak, nonatomic) IBOutlet UITableView *autoCompleteTableView;
 
 @end
