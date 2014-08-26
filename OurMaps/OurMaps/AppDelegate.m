@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
+static NSString * const kLoginViewControllerID = @"LoginVC";
+static NSString * const kMainViewControllerID = @"MainVC";
+
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "LoginViewController.h"
 #import "ViewController.h"
 #import <Parse/Parse.h>
 #import <FacebookSDK/FacebookSDK.h>
@@ -32,6 +36,17 @@
     //self.window.rootViewController = viewController;
     //self.window.backgroundColor = [UIColor whiteColor];
     //[self.window makeKeyAndVisible];
+    
+    if ([PFUser currentUser]) {
+        NSLog(@"errr");
+        // Skip right to the main VC
+        [self presentMainViewController];
+    }
+    
+    else {
+        // Prompt to the login/signup interface
+        [self presentLoginViewController];
+    }
     
     return YES;
 }
@@ -72,6 +87,25 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
+}
+
+// Present the correct main view
+- (void)presentLoginViewController {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //UIStoryboard *mainStoryboard = [[self.window rootViewController] storyboard];
+    LoginViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:kLoginViewControllerID];
+    self.window.rootViewController = loginVC;
+    [self.window makeKeyAndVisible];
+    //[self.window.rootViewController presentViewController:loginVC animated:YES completion:NULL];
+}
+
+- (void)presentMainViewController {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //UIStoryboard *mainStoryboard = [[self.window rootViewController] storyboard];
+    ViewController *mainVC = [mainStoryboard instantiateViewControllerWithIdentifier:kMainViewControllerID];
+    self.window.rootViewController = mainVC;
+    [self.window makeKeyAndVisible];
+    //[self.window.rootViewController presentViewController:mainVC animated:YES completion:NULL];
 }
 
 

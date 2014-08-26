@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;
 
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
+
 
 //@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 //@property (weak, nonatomic) IBOutlet UITableView *autoCompleteTableView;
