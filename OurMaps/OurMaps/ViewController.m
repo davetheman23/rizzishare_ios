@@ -117,7 +117,6 @@
     
     self.searchBar.delegate = self;
     self.autoCompleteTableView.delegate = self;
-
     
     [GMSServices openSourceLicenseInfo];
 }
