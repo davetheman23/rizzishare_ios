@@ -59,8 +59,8 @@
     
     self.mapView.delegate = self;
     
-    self.searchDisplayController.searchBar.placeholder = @"Search or Address";
-    self.searchDisplayController.searchBar.placeholder = @"Search or test";
+    //self.searchDisplayController.searchBar.placeholder = @"Search or Address";
+    //self.searchDisplayController.searchBar.placeholder = @"Search or test";
 
     
     /***** Show user location *****/

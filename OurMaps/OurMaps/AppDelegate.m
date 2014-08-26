@@ -26,6 +26,8 @@
                   clientKey:@"Ydfor3wPs0UqccXVWFgeChzCu4MlWXot2bz4QZ7Z"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+    [PFFacebookUtils initializeFacebook];
+    
     //ViewController *viewController = [[ViewController alloc] init];
     //self.window.rootViewController = viewController;
     //self.window.backgroundColor = [UIColor whiteColor];
@@ -61,6 +63,11 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+// Facebook oauth callback
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//
+//}
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {

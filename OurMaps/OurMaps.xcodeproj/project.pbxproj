@@ -15,6 +15,11 @@
 		7293C29919A9021F0000F456 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29819A9021F0000F456 /* Social.framework */; };
 		7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29A19A902260000F456 /* StoreKit.framework */; };
 		72A7233019ABDB0E00293167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A7232E19ABDB0E00293167 /* Main.storyboard */; };
+		72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0719AC3329004AC9A0 /* LoginViewController.m */; };
+		72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */; };
+		72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */; };
+		72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */; };
+		72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */; };
 		72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */; };
 		72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42519A959500036FCBB /* FacebookSDK.framework */; };
 		72EAD42819A95FE90036FCBB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42719A95FE90036FCBB /* Parse.framework */; };
@@ -72,6 +77,14 @@
 		7293C29819A9021F0000F456 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7293C29A19A902260000F456 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		72A7232F19ABDB0E00293167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72D5AF0619AC3329004AC9A0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		72D5AF0719AC3329004AC9A0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		72D5AF0919AC335B004AC9A0 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		72D5AF0C19AC410A004AC9A0 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rizzilogo-01.png"; path = "Assets/rizzilogo-01.png"; sourceTree = "<group>"; };
+		72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splashscreenIPHONE-01.png"; path = "Assets/splashscreenIPHONE-01.png"; sourceTree = "<group>"; };
 		72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.2.21/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		72EAD42519A959500036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72EAD42719A95FE90036FCBB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.2.21/Parse.framework"; sourceTree = "<group>"; };
@@ -168,6 +181,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		72D5AF0519AC32C0004AC9A0 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				72D5AF0C19AC410A004AC9A0 /* WelcomeViewController.h */,
+				72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */,
+				72D5AF0619AC3329004AC9A0 /* LoginViewController.h */,
+				72D5AF0719AC3329004AC9A0 /* LoginViewController.m */,
+				72D5AF0919AC335B004AC9A0 /* SignUpViewController.h */,
+				72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		72D5AF0F19AC5102004AC9A0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */,
+				72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		A772F65C19A01F60003DA103 = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				72A7232E19ABDB0E00293167 /* Main.storyboard */,
+				72D5AF0519AC32C0004AC9A0 /* View Controllers */,
 				A772F67719A01F60003DA103 /* AppDelegate.h */,
 				A772F67819A01F60003DA103 /* AppDelegate.m */,
 				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
@@ -239,6 +275,7 @@
 				A735E9F419AA371100500BF5 /* GooglePlacesAutocompletePlace.m */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
+				72D5AF0F19AC5102004AC9A0 /* Assets */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
 				A772F66F19A01F60003DA103 /* Supporting Files */,
 				A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */,
@@ -361,7 +398,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
+				72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
 				72A7233019ABDB0E00293167 /* Main.storyboard in Resources */,
@@ -387,10 +426,13 @@
 				A772F67F19A01F60003DA103 /* ViewController.m in Sources */,
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.m in Sources */,
+				72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */,
+				72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */,
 				A735E9F219AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m in Sources */,
 				A735E9F519AA371100500BF5 /* GooglePlacesAutocompletePlace.m in Sources */,
 				A735E9EC19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
+				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
