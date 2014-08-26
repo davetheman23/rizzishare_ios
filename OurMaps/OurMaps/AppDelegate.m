@@ -10,6 +10,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @implementation AppDelegate
 
@@ -17,17 +19,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [GMSServices provideAPIKey:@"AIzaSyDjBPV3R5YT1jRV2ncL0eSfX6XMFieXGqc"];
     
     [Parse setApplicationId:@"VLyOUO8KgGyqLw595rBfVyA68DXJqse4Nc02ySbS"
                   clientKey:@"Ydfor3wPs0UqccXVWFgeChzCu4MlWXot2bz4QZ7Z"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    ViewController *viewController = [[ViewController alloc] init];
-    self.window.rootViewController = viewController;
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    //ViewController *viewController = [[ViewController alloc] init];
+    //self.window.rootViewController = viewController;
+    //self.window.backgroundColor = [UIColor whiteColor];
+    //[self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -52,11 +54,18 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
+}
+
 
 @end
