@@ -25,19 +25,27 @@
 @synthesize mapView;
 //@synthesize searchBar, autoCompleteTableView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        searchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
-        searchQuery.radius = 100.0;
-        shouldBeginEditing = YES;
-    }
-    return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    NSLog(@"Entered 0");
+//    if (self) {
+//        NSLog(@"Entered 00");
+//        searchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
+//        searchQuery.radius = 100.0;
+//        shouldBeginEditing = YES;
+//    }
+//    NSLog(@"Entered 000: %@",searchQuery.description);
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    searchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
+    searchQuery.radius = 100.0;
+    shouldBeginEditing = YES;
+
     
     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
 //    NSLog(@"Current coordinate: %@", currentCoordinate);
@@ -140,9 +148,6 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Entered here 5");
-    NSLog(@"[searchResultPlaces count] %d",[searchResultPlaces count]);
-
     return [searchResultPlaces count];
 }
 
@@ -151,7 +156,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Entered here 5");
 
     static NSString *cellIdentifier = @"GooglePlacesAutocompleteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -181,8 +185,7 @@
 //}
 
 - (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
-    NSLog(@"Entered here 4");
-
+   
 //    [self.mapView removeAnnotation:selectedPlaceAnnotation];
     
 //    [selectedPlaceAnnotation release];
@@ -210,7 +213,6 @@
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
-    NSLog(@"Entered here 3");
     
     NSTimeInterval animationDuration = 0.3;
     [UIView beginAnimations:nil context:NULL];
@@ -224,9 +226,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
-    
-    NSLog(@"Entered here 2");
-
     
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
@@ -245,19 +244,16 @@
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
 //    searchQuery.location = self.mapView.userLocation.coordinate;
+  
     searchQuery.location = self.userCreatedMarker.position;
     searchQuery.input = searchString;
+    
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
 //            [searchResultPlaces release];
 //            searchResultPlaces = [places retain];
-            
-            NSLog(@"Entered here 10");
-            NSLog(@"Places count: %d", [places count]);
-
-
             
             searchResultPlaces = [places copy];
             [self.searchDisplayController.searchResultsTableView reloadData];
@@ -266,6 +262,7 @@
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+
     [self handleSearchForSearchString:searchString];
     
     // Return YES to cause the search result table view to be reloaded.
@@ -276,8 +273,7 @@
 #pragma mark UISearchBar Delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"Entered here, %@",[searchBar isFirstResponder]? @"YES" : @"NO");
-    if (![searchBar isFirstResponder]) {
+     if (![searchBar isFirstResponder]) {
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
