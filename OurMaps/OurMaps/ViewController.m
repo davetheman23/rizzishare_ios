@@ -10,6 +10,7 @@
 #import "PlaceMarker.h"
 #import "GooglePlacesAutocompleteQuery.h"
 #import "GooglePlacesAutocompletePlace.h"
+#import <Parse/Parse.h>
 
 @interface ViewController () {
 }
@@ -59,8 +60,10 @@
     
     self.mapView.delegate = self;
     
-    self.searchDisplayController.searchBar.placeholder = @"Search or Address";
-    self.searchDisplayController.searchBar.placeholder = @"Search or test";
+    self.usernameLabel.text = [[PFUser currentUser] username];
+    
+    //self.searchDisplayController.searchBar.placeholder = @"Search or Address";
+    //self.searchDisplayController.searchBar.placeholder = @"Search or test";
 
     
     /***** Show user location *****/
