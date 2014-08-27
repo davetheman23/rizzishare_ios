@@ -137,6 +137,9 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"Entered here 5");
+    NSLog(@"[searchResultPlaces count] %d",[searchResultPlaces count]);
+
     return [searchResultPlaces count];
 }
 
@@ -145,6 +148,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Entered here 5");
+
     static NSString *cellIdentifier = @"GooglePlacesAutocompleteCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
@@ -173,6 +178,8 @@
 //}
 
 - (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
+    NSLog(@"Entered here 4");
+
 //    [self.mapView removeAnnotation:selectedPlaceAnnotation];
     
 //    [selectedPlaceAnnotation release];
@@ -200,6 +207,8 @@
 
 - (void)dismissSearchControllerWhileStayingActive {
     // Animate out the table view.
+    NSLog(@"Entered here 3");
+    
     NSTimeInterval animationDuration = 0.3;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:animationDuration];
@@ -213,6 +222,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     
+    NSLog(@"Entered here 2");
+
     
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
@@ -239,6 +250,12 @@
         } else {
 //            [searchResultPlaces release];
 //            searchResultPlaces = [places retain];
+            
+            NSLog(@"Entered here 10");
+            NSLog(@"Places count: %d", [places count]);
+
+
+            
             searchResultPlaces = [places copy];
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
@@ -255,8 +272,9 @@
 #pragma mark -
 #pragma mark UISearchBar Delegate
 
-- (void)searchBar:(UISearchBar *)aSearchBar textDidChange:(NSString *)searchText {
-    if (![aSearchBar isFirstResponder]) {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"Entered here, %@",[searchBar isFirstResponder]? @"YES" : @"NO");
+    if (![searchBar isFirstResponder]) {
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
