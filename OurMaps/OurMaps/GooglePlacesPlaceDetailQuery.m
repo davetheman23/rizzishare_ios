@@ -17,7 +17,6 @@
 @synthesize reference, sensor, key, language, resultBlock;
 
 + (GooglePlacesPlaceDetailQuery *)query {
-//    return [[[self alloc] init] autorelease];
     return [[self alloc] init];
 }
 
@@ -35,18 +34,9 @@
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }
 
-//- (void)dealloc {
-//    [googleConnection release];
-//    [responseData release];
-//    [reference release];
-//    [key release];
-//    [language release];
-//    [super dealloc];
-//}
 
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@",
-                            reference, BooleanStringForBool(sensor), key];
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@", reference, BooleanStringForBool(sensor), key];
     if (language) {
         [url appendFormat:@"&language=%@", language];
     }
@@ -54,8 +44,6 @@
 }
 
 - (void)cleanup {
-//    [googleConnection release];
-//    [responseData release];
     googleConnection = nil;
     responseData = nil;
     self.resultBlock = nil;
@@ -124,6 +112,7 @@
         }
         if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
             [self succeedWithPlace:[response objectForKey:@"result"]];
+            return;
         }
         
         // Must have received a status of UNKNOWN_ERROR, ZERO_RESULTS, OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.

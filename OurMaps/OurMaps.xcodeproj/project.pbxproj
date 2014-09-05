@@ -206,7 +206,6 @@
 		A772F65C19A01F60003DA103 = {
 			isa = PBXGroup;
 			children = (
-				A772F6C019A6E1F3003DA103 /* Models */,
 				A772F66E19A01F60003DA103 /* OurMaps */,
 				A772F68D19A01F60003DA103 /* OurMapsTests */,
 				A772F66719A01F60003DA103 /* Frameworks */,
@@ -261,16 +260,11 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
+				A7EE997219B9F713001AC07E /* AutoComplete */,
 				72A7232E19ABDB0E00293167 /* Main.storyboard */,
 				72D5AF0519AC32C0004AC9A0 /* View Controllers */,
 				A772F67719A01F60003DA103 /* AppDelegate.h */,
 				A772F67819A01F60003DA103 /* AppDelegate.m */,
-				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
-				A735E9EB19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m */,
-				A735E9ED19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.h */,
-				A735E9EE19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.m */,
-				A735E9F019AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.h */,
-				A735E9F119AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m */,
 				A735E9F319AA371100500BF5 /* GooglePlacesAutocompletePlace.h */,
 				A735E9F419AA371100500BF5 /* GooglePlacesAutocompletePlace.m */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
@@ -315,11 +309,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A772F6C019A6E1F3003DA103 /* Models */ = {
+		A7EE997219B9F713001AC07E /* AutoComplete */ = {
 			isa = PBXGroup;
 			children = (
+				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
+				A735E9EB19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m */,
+				A735E9ED19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.h */,
+				A735E9EE19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.m */,
+				A735E9F019AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.h */,
+				A735E9F119AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m */,
 			);
-			name = Models;
+			name = AutoComplete;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

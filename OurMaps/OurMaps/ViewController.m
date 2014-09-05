@@ -23,20 +23,6 @@
 @implementation ViewController
 
 @synthesize mapView;
-//@synthesize searchBar, autoCompleteTableView;
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    NSLog(@"Entered 0");
-//    if (self) {
-//        NSLog(@"Entered 00");
-//        searchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
-//        searchQuery.radius = 100.0;
-//        shouldBeginEditing = YES;
-//    }
-//    NSLog(@"Entered 000: %@",searchQuery.description);
-//    return self;
-//}
 
 - (void)viewDidLoad
 {
@@ -55,7 +41,6 @@
                                                                  zoom:15
                                                               bearing:0
                                                          viewingAngle:0];
-    //self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
     self.mapView.camera = camera;
     self.mapView.mapType = kGMSTypeNormal;
     self.mapView.myLocationEnabled = YES;
@@ -171,29 +156,7 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-//- (void)recenterMapToPlacemark:(CLPlacemark *)placemark {
-//    MKCoordinateRegion region;
-//    MKCoordinateSpan span;
-//    
-//    span.latitudeDelta = 0.02;
-//    span.longitudeDelta = 0.02;
-//    
-//    region.span = span;
-//    region.center = placemark.location.coordinate;
-//    
-//    [self.mapView setRegion:region];
-//}
-
 - (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
-   
-//    [self.mapView removeAnnotation:selectedPlaceAnnotation];
-    
-//    [selectedPlaceAnnotation release];
-    
-//    selectedPlaceAnnotation = [[MKPointAnnotation alloc] init];
-//    selectedPlaceAnnotation.coordinate = placemark.location.coordinate;
-//    selectedPlaceAnnotation.title = address;
-//    [self.mapView addAnnotation:selectedPlaceAnnotation];
     
     if(self.userCreatedMarker != nil){
         self.userCreatedMarker.map = nil;
@@ -232,7 +195,6 @@
             PresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
         } else if (placemark) {
             [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
-//            [self recenterMapToPlacemark:placemark];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -243,7 +205,6 @@
 #pragma mark UISearchDisplayDelegate
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
-//    searchQuery.location = self.mapView.userLocation.coordinate;
   
     searchQuery.location = self.userCreatedMarker.position;
     searchQuery.input = searchString;
@@ -252,9 +213,6 @@
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
-//            [searchResultPlaces release];
-//            searchResultPlaces = [places retain];
-            
             searchResultPlaces = [places copy];
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
@@ -277,7 +235,6 @@
         // User tapped the 'clear' button.
         shouldBeginEditing = NO;
         [self.searchDisplayController setActive:NO];
-//        [self.mapView removeAnnotation:selectedPlaceAnnotation];
         self.userCreatedMarker.map = nil;
     }
 }
