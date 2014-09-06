@@ -31,7 +31,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
+    return [NSString stringWithFormat:@"Place Detail Query URL: %@", [self googleURLString]];
 }
 
 

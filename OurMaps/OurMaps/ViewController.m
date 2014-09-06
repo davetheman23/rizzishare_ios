@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "PlaceMarker.h"
 #import "GooglePlacesAutocompleteQuery.h"
+#import "NearbySearchQuery.h"
 #import "GooglePlacesAutocompletePlace.h"
 #import <Parse/Parse.h>
 
@@ -31,6 +32,10 @@
     autoCompleteSearchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
     autoCompleteSearchQuery.radius = 100.0;
     shouldBeginEditing = YES;
+
+
+    nearbySearchQuery = [[NearbySearchQuery alloc] init];
+    nearbySearchQuery.radius = 100.0;
 
     
     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
@@ -133,11 +138,11 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [searchResultPlaces count];
+    return [autocompleteNearbyPlaces count];
 }
 
 - (GooglePlacesAutocompletePlace *)placeAtIndexPath:(NSIndexPath *)indexPath {
-    return [searchResultPlaces objectAtIndex:indexPath.row];
+    return [autocompleteNearbyPlaces objectAtIndex:indexPath.row];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -204,16 +209,16 @@
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
 
-- (void)handleSearchForSearchString:(NSString *)searchString {
-  
+- (void)nearbySearchForSearchString:(NSString *)searchString {
+    
     autoCompleteSearchQuery.location = self.userCreatedMarker.position;
     autoCompleteSearchQuery.input = searchString;
     
     [autoCompleteSearchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
+            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch places");
         } else {
-            searchResultPlaces = [places copy];
+            autocompleteNearbyPlaces = [places copy];
             [self.searchDisplayController.searchResultsTableView reloadData];
         }
     }];
@@ -221,7 +226,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 
-    [self handleSearchForSearchString:searchString];
+    [self nearbySearchForSearchString:searchString];
     
     // Return YES to cause the search result table view to be reloaded.
     return YES;
@@ -260,6 +265,45 @@
 #pragma mark -
 #pragma mark Google Maps Delegate.
 
+- (void)nearbySearchForCoordinate:(CLLocationCoordinate2D)coordinate {
+    nearbySearchQuery.location = coordinate;
+    
+    NSLog(@"User location: (%f, %f)", nearbySearchQuery.location.latitude, nearbySearchQuery.location.longitude);
+    
+    [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
+        if (error) {
+            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
+        } else {
+            longPressNearbyPlaces = [places copy];
+        }
+        NSLog(@"Places count: %d", [longPressNearbyPlaces count]);
+    }];
+}
+
+
+- (void)createMarkersWithPlaces {
+    
+    NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] init];
+    
+    for (int i = 0; i < [longPressNearbyPlaces count]; i++){
+        GooglePlacesAutocompletePlace *place = [longPressNearbyPlaces objectAtIndex:i];
+        
+        PlaceMarker *marker = [[PlaceMarker alloc] init];
+        
+        marker.objectID = place.identifier;
+        marker.position = place.coordinate;
+        marker.title = place.name;
+        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
+        marker.appearAnimation = kGMSMarkerAnimationPop;
+        
+        marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+        marker.map = nil;
+        [mutableMarkerSet addObject:marker];
+    }
+    self.markers = [mutableMarkerSet copy];
+    [self drawPlaceMarkers];
+}
+
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     
@@ -282,6 +326,10 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
                          [self drawUserMarkers];
                      }];
     
+    [self nearbySearchForCoordinate:coordinate];
+    [self createMarkersWithPlaces];
+    
+/*
     // Show places around the user's point of interests.
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=%f,%f",coordinate.latitude,coordinate.longitude];
     NSURL *restaurantURL = [NSURL URLWithString:urlString];
@@ -295,6 +343,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
         }];
     }];
     [task resume];
+ */
 }
 
 

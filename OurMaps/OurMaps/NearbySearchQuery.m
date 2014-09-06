@@ -1,23 +1,24 @@
 //
-//  GooglePlacesAutocompleteQuery.m
+//  NearbySearchQuery.m
 //  OurMaps
 //
-//  Created by Jiangchuan Huang on 8/23/14.
+//  Created by Jiangchuan Huang on 9/6/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "GooglePlacesAutocompleteQuery.h"
+#import "NearbySearchQuery.h"
 #import "GooglePlacesAutocompletePlace.h"
 
-@interface GooglePlacesAutocompleteQuery()
-@property (nonatomic, copy, readwrite) GooglePlacesAutocompleteResultBlock resultBlock;
+@interface NearbySearchQuery()
+@property (nonatomic, copy, readwrite) NearbySearchResultBlock resultBlock;
 @end
 
-@implementation GooglePlacesAutocompleteQuery
 
-@synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
+@implementation NearbySearchQuery
 
-+ (GooglePlacesAutocompleteQuery *)query {
+@synthesize sensor, key, location, radius, language, types, resultBlock;
+
++ (NearbySearchQuery *)query {
     return [[self alloc] init];
 }
 
@@ -27,7 +28,6 @@
         // Setup default property values.
         self.sensor = YES;
         self.key = kGoogleAPIKey;
-        self.offset = NSNotFound;
         self.location = CLLocationCoordinate2DMake(-1, -1);
         self.radius = NSNotFound;
         self.types = -1;
@@ -36,17 +36,12 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Autocomplete Query URL: %@", [self googleURLString]];
+    return [NSString stringWithFormat:@"Nearby Search Query URL: %@", [self googleURLString]];
 }
 
 
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=%@&key=%@",
-                            [input stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
-                            BooleanStringForBool(sensor), key];
-    if (offset != NSNotFound) {
-        [url appendFormat:@"&offset=%u", offset];
-    }
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?sensor=%@&key=%@", BooleanStringForBool(sensor), key];
     if (location.latitude != -1) {
         [url appendFormat:@"&location=%f,%f", location.latitude, location.longitude];
     }
@@ -73,16 +68,10 @@
     [self cleanup];
 }
 
-- (void)fetchPlaces:(GooglePlacesAutocompleteResultBlock)block {
-//    if (!EnsureGoogleAPIKey()) {
-//        return;
-//    }
-    
-    if (IsEmptyString(self.input)) {
-        // Empty input string. Don't even bother hitting Google.
-        block([NSArray array], nil);
-        return;
-    }
+- (void)fetchNearbyPlaces:(NearbySearchResultBlock)block {
+    //    if (!EnsureGoogleAPIKey()) {
+    //        return;
+    //    }
     
     [self cancelOutstandingRequests];
     self.resultBlock = block;
@@ -91,6 +80,7 @@
     googleConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     responseData = [[NSMutableData alloc] init];
 }
+
 
 #pragma mark -
 #pragma mark NSURLConnection Delegate
@@ -103,15 +93,17 @@
 }
 
 - (void)succeedWithPlaces:(NSArray *)places {
-    NSMutableArray *parsedPlaces = [NSMutableArray array];
+    NSMutableArray *nearbyPlaces = [NSMutableArray array];
     for (NSDictionary *place in places) {
-        [parsedPlaces addObject:[GooglePlacesAutocompletePlace placeFromAutocompleteDictionary:place]];
+        [nearbyPlaces addObject:[GooglePlacesAutocompletePlace placeFromNearbySearchDictionary:place]];
     }
     if (self.resultBlock != nil) {
-        self.resultBlock(parsedPlaces, nil);
+        self.resultBlock(nearbyPlaces, nil);
     }
     [self cleanup];
 }
+
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (connection == googleConnection) {

@@ -23,6 +23,7 @@
  */
 - (void)fetchPlaceDetail:(GooglePlacesPlaceDetailResultBlock)block;
 
+
 #pragma mark -
 #pragma mark Required parameters
 

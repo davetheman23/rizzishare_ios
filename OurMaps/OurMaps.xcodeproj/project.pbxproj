@@ -56,6 +56,7 @@
 		A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B919A023D2003DA103 /* SystemConfiguration.framework */; };
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
+		A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMarker.h; sourceTree = "<group>"; };
 		A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMarker.m; sourceTree = "<group>"; };
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbySearchQuery.h; sourceTree = "<group>"; };
+		A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbySearchQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,7 +263,8 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
-				A7EE997219B9F713001AC07E /* AutoComplete */,
+				A7D1024C19BB4C1500F1DEB8 /* NearbySearch */,
+				A7EE997219B9F713001AC07E /* Autocomplete */,
 				72A7232E19ABDB0E00293167 /* Main.storyboard */,
 				72D5AF0519AC32C0004AC9A0 /* View Controllers */,
 				A772F67719A01F60003DA103 /* AppDelegate.h */,
@@ -309,7 +313,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A7EE997219B9F713001AC07E /* AutoComplete */ = {
+		A7D1024C19BB4C1500F1DEB8 /* NearbySearch */ = {
+			isa = PBXGroup;
+			children = (
+				A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */,
+				A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */,
+			);
+			name = NearbySearch;
+			sourceTree = "<group>";
+		};
+		A7EE997219B9F713001AC07E /* Autocomplete */ = {
 			isa = PBXGroup;
 			children = (
 				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
@@ -319,7 +332,7 @@
 				A735E9F019AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.h */,
 				A735E9F119AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m */,
 			);
-			name = AutoComplete;
+			name = Autocomplete;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +440,7 @@
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.m in Sources */,
 				72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */,
+				A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */,
 				72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */,
 				A735E9F219AA35EE00500BF5 /* GooglePlacesPlaceDetailQuery.m in Sources */,
 				A735E9F519AA371100500BF5 /* GooglePlacesAutocompletePlace.m in Sources */,

@@ -21,6 +21,9 @@ typedef void (^GooglePlacesPlacemarkResultBlock)(CLPlacemark *placemark, NSStrin
 typedef void (^GooglePlacesAutocompleteResultBlock)(NSArray *places, NSError *error);
 typedef void (^GooglePlacesPlaceDetailResultBlock)(NSDictionary *placeDictionary, NSError *error);
 
+typedef void (^NearbySearchResultBlock)(NSArray *places, NSError *error);
+
+
 extern GooglePlacesAutocompletePlaceType PlaceTypeFromDictionary(NSDictionary *placeDictionary);
 extern NSString *BooleanStringForBool(BOOL boolean);
 extern NSString *PlaceTypeStringForPlaceType(GooglePlacesAutocompletePlaceType type);

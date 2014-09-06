@@ -12,17 +12,24 @@
 
 @interface GooglePlacesAutocompletePlace()
 @property (nonatomic, retain, readwrite) NSString *name;
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property (nonatomic, retain, readwrite) NSString *place_id;
+
 @property (nonatomic, retain, readwrite) NSString *reference;
 @property (nonatomic, retain, readwrite) NSString *identifier;
 @property (nonatomic, readwrite) GooglePlacesAutocompletePlaceType type;
+
+@property (nonatomic, readwrite) NSInteger price_level;
+@property (nonatomic, readwrite) float rating;
+@property (nonatomic, readwrite) BOOL open_now;
+
 @end
 
 @implementation GooglePlacesAutocompletePlace
 
-@synthesize name, reference, identifier, type;
+@synthesize name, coordinate, place_id, reference, identifier, type, price_level, rating, open_now;
 
-+ (GooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary {
-//    GooglePlacesAutocompletePlace *place = [[[self alloc] init] autorelease];
++ (GooglePlacesAutocompletePlace *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
     GooglePlacesAutocompletePlace *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"description"];
     place.reference = [placeDictionary objectForKey:@"reference"];
@@ -30,6 +37,25 @@
     place.type = PlaceTypeFromDictionary(placeDictionary);
     return place;
 }
+
++ (GooglePlacesAutocompletePlace *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary {
+    GooglePlacesAutocompletePlace *place = [[self alloc] init];
+    place.name = [placeDictionary objectForKey:@"name"];
+    place.identifier = [placeDictionary objectForKey:@"id"];
+    place.place_id = [placeDictionary objectForKey:@"place_id"];
+    
+    double lat = [placeDictionary[@"geometry"][@"location"][@"lat"] doubleValue];
+    double lng = [placeDictionary[@"geometry"][@"location"][@"lng"] doubleValue];
+    place.coordinate = CLLocationCoordinate2DMake(lat, lng);
+
+
+    place.price_level = [placeDictionary[@"price_level"] integerValue];
+    place.rating = [placeDictionary[@"rating"] floatValue];
+    place.open_now = [placeDictionary[@"opening_hours"][@"open_now"] boolValue];
+
+    return place;
+}
+
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Name: %@, Reference: %@, Identifier: %@, Type: %@",
