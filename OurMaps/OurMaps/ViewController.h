@@ -14,7 +14,7 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, GMSMapViewDelegate> {
     
     NSArray *searchResultPlaces;
-    GooglePlacesAutocompleteQuery *searchQuery;
+    GooglePlacesAutocompleteQuery *autoCompleteSearchQuery;
     
     BOOL shouldBeginEditing;
 

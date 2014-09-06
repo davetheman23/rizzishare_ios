@@ -28,8 +28,8 @@
 {
     [super viewDidLoad];
     
-    searchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
-    searchQuery.radius = 100.0;
+    autoCompleteSearchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
+    autoCompleteSearchQuery.radius = 100.0;
     shouldBeginEditing = YES;
 
     
@@ -156,7 +156,7 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-- (void)addPlacemarkAnnotationToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
+- (void)addGMSMarkerToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
     
     if(self.userCreatedMarker != nil){
         self.userCreatedMarker.map = nil;
@@ -194,7 +194,7 @@
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
         } else if (placemark) {
-            [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
+            [self addGMSMarkerToMap:placemark addressString:addressString];
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -206,10 +206,10 @@
 
 - (void)handleSearchForSearchString:(NSString *)searchString {
   
-    searchQuery.location = self.userCreatedMarker.position;
-    searchQuery.input = searchString;
+    autoCompleteSearchQuery.location = self.userCreatedMarker.position;
+    autoCompleteSearchQuery.input = searchString;
     
-    [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
+    [autoCompleteSearchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
