@@ -326,10 +326,10 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
                          [self drawUserMarkers];
                      }];
     
-    [self nearbySearchForCoordinate:coordinate];
-    [self createMarkersWithPlaces];
+//    [self nearbySearchForCoordinate:coordinate];
+//    [self createMarkersWithPlaces];
     
-/*
+
     // Show places around the user's point of interests.
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=%f,%f",coordinate.latitude,coordinate.longitude];
     NSURL *restaurantURL = [NSURL URLWithString:urlString];
@@ -343,7 +343,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
         }];
     }];
     [task resume];
- */
+ 
 }
 
 
