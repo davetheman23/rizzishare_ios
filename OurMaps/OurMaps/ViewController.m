@@ -16,8 +16,8 @@
 @interface ViewController () {
 }
 //@property (strong, nonatomic) GMSMapView *mapView;
+//@property (strong, nonatomic) NSURLSession *markerSession;
 @property (copy, nonatomic) NSSet *markers;
-@property (strong, nonatomic) NSURLSession *markerSession;
 @property (strong, nonatomic) PlaceMarker *userCreatedMarker;
 @end
 
@@ -29,18 +29,21 @@
 {
     [super viewDidLoad];
     
-    autoCompleteSearchQuery = [[AutocompleteQuery alloc] init];
-    autoCompleteSearchQuery.radius = 100.0;
+    /***** Initialize AutocompleteQuery *****/
+    autocompleteQuery = [[AutocompleteQuery alloc] init];
+    autocompleteQuery.radius = 100.0;
     shouldBeginEditing = YES;
 
-
+    /***** Initialize NearbySearchQuery *****/
     nearbySearchQuery = [[NearbySearchQuery alloc] init];
     nearbySearchQuery.radius = 100.0;
 
+    /***** Setup PFUser *****/
+    self.usernameLabel.text = [[PFUser currentUser] username];
+
     
+    /***** Setup Mapview *****/
     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
-//    NSLog(@"Current coordinate: %@", currentCoordinate);
-	
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:currentCoordinate.latitude
                                                             longitude:currentCoordinate.longitude
                                                                  zoom:15
@@ -52,25 +55,12 @@
     self.mapView.settings.compassButton = YES;
 //    self.mapView.settings.myLocationButton = YES;
     [self.mapView setMinZoom:10 maxZoom:18];
-    //[self.view addSubview:self.mapView];
-    
-    //self.mapView.hidden=YES;
-    
+//    [self.view addSubview:self.mapView];
+//    self.mapView.hidden=YES;
     self.mapView.delegate = self;
     
-    self.usernameLabel.text = [[PFUser currentUser] username];
-    
-    //self.searchDisplayController.searchBar.placeholder = @"Search or Address";
-    //self.searchDisplayController.searchBar.placeholder = @"Search or test";
-
     
     /***** Show user location *****/
-//    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = CLLocationCoordinate2DMake(40.714353, -74.005973);
-//    marker.title = @"Current Location";
-//    marker.snippet = @"New York City, USA";
-//    marker.map = _mapView;
-    
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
     PlaceMarker *marker = [[PlaceMarker alloc] init];
     marker.position = coordinate;
@@ -80,55 +70,7 @@
     self.userCreatedMarker = marker;
     
     
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.URLCache = [[NSURLCache alloc] initWithMemoryCapacity:2*1024*1024
-                                                    diskCapacity:10*1024*1024
-                                                        diskPath:@"MarkerData"];
-    self.markerSession = [NSURLSession sessionWithConfiguration:config];
-    
-    /***** Show places around the user location *****/
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        NSURL *url = [NSURL URLWithString:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=40.714353,-74.005973"];
-//        
-//        NSData *responseData = [NSData dataWithContentsOfURL:url];
-//        NSError *error;
-//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData
-//                                                             options:kNilOptions
-//                                                               error:&error];
-//        NSArray *results = json[@"results"];
-//        for (int i = 0; i < [results count]; i++){
-//            NSDictionary *place = [results objectAtIndex:i];
-//            double lat = [place[@"geometry"][@"location"][@"lat"] doubleValue];
-//            double lng = [place[@"geometry"][@"location"][@"lng"] doubleValue];
-//            GMSMarker *marker = [[GMSMarker alloc] init];
-//            marker.position = CLLocationCoordinate2DMake(lat, lng);
-//            marker.title = @"Mexican";
-//            marker.snippet = @"Customize this.";
-//            marker.appearAnimation = kGMSMarkerAnimationPop;
-////            marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
-//            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
-//            marker.map = _mapView;
-//        }
-//        
-//        /***** Google directions: get the route *****/
-//        NSDictionary *routes = json[@"routes"][0];
-//        NSDictionary *route = routes[@"overview_polyline"];
-//        NSString *encodedPath = route[@"points"];
-//        
-//        GMSPath *path = [GMSPath pathFromEncodedPath:encodedPath];
-//        GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-//        polyline.strokeWidth = 4;
-//        polyline.strokeColor = [UIColor colorWithRed:0 green:0 blue:1.0 alpha:0.7];
-//        polyline.map = _mapView;
-//        
-//    });
-    
-    //self.searchBar.delegate = self;
-    
-    
-    //self.autoCompleteTableView.delegate = self;
-    
-    
+    /***** Claim Google Maps Service *****/
     [GMSServices openSourceLicenseInfo];
 }
 
@@ -158,6 +100,7 @@
     return cell;
 }
 
+
 #pragma mark -
 #pragma mark UITableViewDelegate
 
@@ -176,12 +119,11 @@
     
     self.userCreatedMarker = marker;
     [self drawUserMarker];
-    
 }
 
 - (void)dismissSearchControllerWhileStayingActive {
-    // Animate out the table view.
     
+    // Animate out the table view.
     NSTimeInterval animationDuration = 0.3;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:animationDuration];
@@ -206,15 +148,16 @@
     }];
 }
 
+
 #pragma mark -
 #pragma mark UISearchDisplayDelegate
 
 - (void)nearbySearchForSearchString:(NSString *)searchString {
     
-    autoCompleteSearchQuery.location = self.userCreatedMarker.position;
-    autoCompleteSearchQuery.input = searchString;
+    autocompleteQuery.location = self.userCreatedMarker.position;
+    autocompleteQuery.input = searchString;
     
-    [autoCompleteSearchQuery fetchPlaces:^(NSArray *places, NSError *error) {
+    [autocompleteQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch places");
         } else {
@@ -231,6 +174,7 @@
     // Return YES to cause the search result table view to be reloaded.
     return YES;
 }
+
 
 #pragma mark -
 #pragma mark UISearchBar Delegate
@@ -261,7 +205,6 @@
 }
 
 
-
 #pragma mark -
 #pragma mark Google Maps Delegate.
 
@@ -274,6 +217,7 @@
         } else {
             longPressNearbyPlaces = [places copy];
             [self createMarkersWithPlaces];
+            [self drawPlaceMarkers];
         }
     }];
 }
@@ -281,6 +225,7 @@
 
 - (void)createMarkersWithPlaces {
     
+    self.markers = nil;
     NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] init];
 
     for (int i = 0; i < [longPressNearbyPlaces count]; i++){
@@ -300,16 +245,13 @@
         [mutableMarkerSet addObject:marker];
     }
     self.markers = [mutableMarkerSet copy];
-    [self drawPlaceMarkers];
 }
 
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     
-    if(self.userCreatedMarker != nil){
-        self.userCreatedMarker.map = nil;
-        self.userCreatedMarker = nil;
-    }
+    // Erase current userCreatedMarker from the map and set it to nil.
+    [self eraseUserMarker];
     
     GMSGeocoder *geocoder = [GMSGeocoder geocoder];
     [geocoder reverseGeocodeCoordinate:coordinate
@@ -327,22 +269,6 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
     
     // Create markers near the userCreatedMarker.
     [self nearbySearchForCoordinate:coordinate];
-    
-/*
-    // Show places around the user's point of interests.
-    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=%f,%f",coordinate.latitude,coordinate.longitude];
-    NSURL *restaurantURL = [NSURL URLWithString:urlString];
-    
-    NSURLSessionDataTask *task = [self.markerSession dataTaskWithURL:restaurantURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
-                                                             options:kNilOptions
-                                                               error:&error];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self createMarkerObjectsWithJson:json];
-        }];
-    }];
-    [task resume];
- */
 }
 
 
@@ -396,6 +322,13 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
     [self drawPlaceMarkers];
 }
 
+- (void)eraseUserMarker{
+    if(self.userCreatedMarker != nil){
+        self.userCreatedMarker.map = nil;
+        self.userCreatedMarker = nil;
+    }
+}
+
 - (void)drawUserMarker{
     if(self.userCreatedMarker != nil && self.userCreatedMarker.map == nil){
         self.userCreatedMarker.map = self.mapView;
@@ -405,6 +338,18 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
     }
 }
 
+- (void)erasePlaceMarkers{
+    for(PlaceMarker *marker in self.markers){
+        if (marker != nil) {
+            marker.map = nil;
+        }
+    }
+    
+    if(self.userCreatedMarker != nil){
+        self.userCreatedMarker.map = nil;
+        self.userCreatedMarker = nil;
+    }
+}
 
 - (void)drawPlaceMarkers{
     for(PlaceMarker *marker in self.markers){
@@ -453,8 +398,8 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
 }
 
 @end

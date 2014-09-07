@@ -218,6 +218,8 @@
 		72E3C62319BCC0DE00538233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A735E9F319AA371100500BF5 /* Place.h */,
+				A735E9F419AA371100500BF5 /* Place.m */,
 				72E3C62419BCC10100538233 /* Event.h */,
 				72E3C62519BCC10100538233 /* Event.m */,
 			);
@@ -292,8 +294,6 @@
 				72D5AF0F19AC5102004AC9A0 /* Assets */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
 				A772F66F19A01F60003DA103 /* Supporting Files */,
-				A735E9F319AA371100500BF5 /* Place.h */,
-				A735E9F419AA371100500BF5 /* Place.m */,
 				A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */,
 				A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */,
 				72FB5C5C19A8029D00D4FCB7 /* Constants.h */,

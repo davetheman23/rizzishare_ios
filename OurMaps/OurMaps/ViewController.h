@@ -15,7 +15,7 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, GMSMapViewDelegate> {
     
     NSArray *autocompleteNearbyPlaces;
-    AutocompleteQuery *autoCompleteSearchQuery;
+    AutocompleteQuery *autocompleteQuery;
     BOOL shouldBeginEditing;
 
     NSArray *longPressNearbyPlaces;
