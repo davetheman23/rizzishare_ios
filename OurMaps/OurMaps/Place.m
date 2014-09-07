@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompletePlace.m
+//  Place.m
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.

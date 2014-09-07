@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompletePlace.h
+//  Place.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
 @interface Place : NSObject{
     CLGeocoder *geocoder;

@@ -175,7 +175,7 @@
     marker.map = nil;
     
     self.userCreatedMarker = marker;
-    [self drawUserMarkers];
+    [self drawUserMarker];
     
 }
 
@@ -322,7 +322,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
                          marker.map = nil;
                          
                          self.userCreatedMarker = marker;
-                         [self drawUserMarkers];
+                         [self drawUserMarker];
                      }];
     
     // Create markers near the userCreatedMarker.
@@ -396,7 +396,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
     [self drawPlaceMarkers];
 }
 
-- (void)drawUserMarkers{
+- (void)drawUserMarker{
     if(self.userCreatedMarker != nil && self.userCreatedMarker.map == nil){
         self.userCreatedMarker.map = self.mapView;
         self.mapView.selectedMarker = self.userCreatedMarker;

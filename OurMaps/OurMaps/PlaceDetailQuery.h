@@ -1,5 +1,5 @@
 //
-//  GooglePlacesPlaceDetailQuery.h
+//  PlaceDetailQuery.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
 @interface PlaceDetailQuery : NSObject{
     NSURLConnection *googleConnection;

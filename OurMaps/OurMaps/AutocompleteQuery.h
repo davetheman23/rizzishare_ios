@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompleteQuery.h
+//  AutocompleteQuery.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/23/14.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
 
 

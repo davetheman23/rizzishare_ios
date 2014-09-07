@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompleteUtilities.h
+//  Utilities.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/23/14.

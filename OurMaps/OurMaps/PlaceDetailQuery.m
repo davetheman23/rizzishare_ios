@@ -1,5 +1,5 @@
 //
-//  GooglePlacesPlaceDetailQuery.m
+//  PlaceDetailQuery.m
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.

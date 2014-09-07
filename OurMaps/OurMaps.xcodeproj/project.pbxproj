@@ -26,7 +26,7 @@
 		72FB5C5919A8016100D4FCB7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB5C5819A8016100D4FCB7 /* GoogleMaps.framework */; };
 		72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */; };
 		72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FB5C5D19A8029D00D4FCB7 /* Constants.m */; };
-		A735E9EC19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EB19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m */; };
+		A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EB19A98B2900500BF5 /* Utilities.m */; };
 		A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */; };
 		A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */; };
 		A735E9F519AA371100500BF5 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F419AA371100500BF5 /* Place.m */; };
@@ -93,8 +93,8 @@
 		72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		72FB5C5C19A8029D00D4FCB7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		72FB5C5D19A8029D00D4FCB7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePlacesAutocompleteUtilities.h; sourceTree = "<group>"; };
-		A735E9EB19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePlacesAutocompleteUtilities.m; sourceTree = "<group>"; };
+		A735E9EA19A98B2900500BF5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		A735E9EB19A98B2900500BF5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A735E9ED19A98D3B00500BF5 /* AutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutocompleteQuery.h; sourceTree = "<group>"; };
 		A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutocompleteQuery.m; sourceTree = "<group>"; };
 		A735E9F019AA35EE00500BF5 /* PlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetailQuery.h; sourceTree = "<group>"; };
@@ -263,6 +263,7 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
+				A7EED3B019BC0EA60087CF9D /* PlaceDetail */,
 				A7D1024C19BB4C1500F1DEB8 /* NearbySearch */,
 				A7EE997219B9F713001AC07E /* Autocomplete */,
 				72A7232E19ABDB0E00293167 /* Main.storyboard */,
@@ -273,6 +274,8 @@
 				A735E9F419AA371100500BF5 /* Place.m */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
+				A735E9EA19A98B2900500BF5 /* Utilities.h */,
+				A735E9EB19A98B2900500BF5 /* Utilities.m */,
 				72D5AF0F19AC5102004AC9A0 /* Assets */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
 				A772F66F19A01F60003DA103 /* Supporting Files */,
@@ -325,14 +328,19 @@
 		A7EE997219B9F713001AC07E /* Autocomplete */ = {
 			isa = PBXGroup;
 			children = (
-				A735E9EA19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.h */,
-				A735E9EB19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m */,
 				A735E9ED19A98D3B00500BF5 /* AutocompleteQuery.h */,
 				A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */,
+			);
+			name = Autocomplete;
+			sourceTree = "<group>";
+		};
+		A7EED3B019BC0EA60087CF9D /* PlaceDetail */ = {
+			isa = PBXGroup;
+			children = (
 				A735E9F019AA35EE00500BF5 /* PlaceDetailQuery.h */,
 				A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */,
 			);
-			name = Autocomplete;
+			name = PlaceDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,7 +452,7 @@
 				72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */,
 				A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */,
 				A735E9F519AA371100500BF5 /* Place.m in Sources */,
-				A735E9EC19A98B2900500BF5 /* GooglePlacesAutocompleteUtilities.m in Sources */,
+				A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
 				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
