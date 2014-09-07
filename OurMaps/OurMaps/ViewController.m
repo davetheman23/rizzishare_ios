@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 #import "PlaceMarker.h"
-#import "GooglePlacesAutocompleteQuery.h"
+#import "AutocompleteQuery.h"
 #import "NearbySearchQuery.h"
-#import "GooglePlacesAutocompletePlace.h"
+#import "Place.h"
 #import <Parse/Parse.h>
 
 @interface ViewController () {
@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    autoCompleteSearchQuery = [[GooglePlacesAutocompleteQuery alloc] init];
+    autoCompleteSearchQuery = [[AutocompleteQuery alloc] init];
     autoCompleteSearchQuery.radius = 100.0;
     shouldBeginEditing = YES;
 
@@ -141,7 +141,7 @@
     return [autocompleteNearbyPlaces count];
 }
 
-- (GooglePlacesAutocompletePlace *)placeAtIndexPath:(NSIndexPath *)indexPath {
+- (Place *)placeAtIndexPath:(NSIndexPath *)indexPath {
     return [autocompleteNearbyPlaces objectAtIndex:indexPath.row];
 }
 
@@ -193,7 +193,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
+    Place *place = [self placeAtIndexPath:indexPath];
     
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
@@ -273,8 +273,8 @@
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
         } else {
             longPressNearbyPlaces = [places copy];
+            [self createMarkersWithPlaces];
         }
-        [self createMarkersWithPlaces];
     }];
 }
 
@@ -284,7 +284,7 @@
     NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] init];
 
     for (int i = 0; i < [longPressNearbyPlaces count]; i++){
-        GooglePlacesAutocompletePlace *place = [longPressNearbyPlaces objectAtIndex:i];
+        Place *place = [longPressNearbyPlaces objectAtIndex:i];
         
         PlaceMarker *marker = [[PlaceMarker alloc] init];
         
@@ -325,8 +325,8 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
                          [self drawUserMarkers];
                      }];
     
+    // Create markers near the userCreatedMarker.
     [self nearbySearchForCoordinate:coordinate];
-//    [self createMarkersWithPlaces];
     
 /*
     // Show places around the user's point of interests.

@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "GooglePlacesAutocompleteUtilities.h"
 
-@interface GooglePlacesPlaceDetailQuery : NSObject{
+@interface PlaceDetailQuery : NSObject{
     NSURLConnection *googleConnection;
     NSMutableData *responseData;
 }
 
 @property (nonatomic, copy, readonly) GooglePlacesPlaceDetailResultBlock resultBlock;
 
-+ (GooglePlacesPlaceDetailQuery *)query;
++ (PlaceDetailQuery *)query;
 
 /*!
  Issues a Place Details request and pulls down the results. If called twice, the first request will be cancelled and the request will be re-issued using the current property values.

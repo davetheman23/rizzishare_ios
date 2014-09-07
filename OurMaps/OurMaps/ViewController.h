@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-@class GooglePlacesAutocompleteQuery;
+@class AutocompleteQuery;
 @class NearbySearchQuery;
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, GMSMapViewDelegate> {
     
     NSArray *autocompleteNearbyPlaces;
-    GooglePlacesAutocompleteQuery *autoCompleteSearchQuery;
+    AutocompleteQuery *autoCompleteSearchQuery;
     BOOL shouldBeginEditing;
 
     NSArray *longPressNearbyPlaces;
