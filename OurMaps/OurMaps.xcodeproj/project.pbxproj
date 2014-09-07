@@ -20,6 +20,8 @@
 		72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */; };
 		72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */; };
 		72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */; };
+		72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */ = {isa = PBXBuildFile; fileRef = 72E3C61E19BBE88600538233 /* fig_Coffee_true.png */; };
+		72E3C62219BBEA6700538233 /* EventQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E3C62119BBEA6700538233 /* EventQuery.m */; };
 		72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */; };
 		72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42519A959500036FCBB /* FacebookSDK.framework */; };
 		72EAD42819A95FE90036FCBB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42719A95FE90036FCBB /* Parse.framework */; };
@@ -86,6 +88,9 @@
 		72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rizzilogo-01.png"; path = "Assets/rizzilogo-01.png"; sourceTree = "<group>"; };
 		72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splashscreenIPHONE-01.png"; path = "Assets/splashscreenIPHONE-01.png"; sourceTree = "<group>"; };
+		72E3C61E19BBE88600538233 /* fig_Coffee_true.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fig_Coffee_true.png; path = Assets/fig_Coffee_true.png; sourceTree = "<group>"; };
+		72E3C62019BBEA6700538233 /* EventQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventQuery.h; path = Models/EventQuery.h; sourceTree = "<group>"; };
+		72E3C62119BBEA6700538233 /* EventQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventQuery.m; path = Models/EventQuery.m; sourceTree = "<group>"; };
 		72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.2.21/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		72EAD42519A959500036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		72EAD42719A95FE90036FCBB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.2.21/Parse.framework"; sourceTree = "<group>"; };
@@ -200,6 +205,7 @@
 		72D5AF0F19AC5102004AC9A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				72E3C61E19BBE88600538233 /* fig_Coffee_true.png */,
 				72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */,
 				72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */,
 			);
@@ -318,6 +324,8 @@
 			children = (
 				A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */,
 				A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */,
+				72E3C62019BBEA6700538233 /* EventQuery.h */,
+				72E3C62119BBEA6700538233 /* EventQuery.m */,
 			);
 			name = NearbySearch;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 			files = (
 				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
+				72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */,
 				72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
@@ -436,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */,
+				72E3C62219BBEA6700538233 /* EventQuery.m in Sources */,
 				A772F67F19A01F60003DA103 /* ViewController.m in Sources */,
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* GooglePlacesAutocompleteQuery.m in Sources */,
