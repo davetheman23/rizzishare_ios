@@ -288,7 +288,7 @@
         
         PlaceMarker *marker = [[PlaceMarker alloc] init];
         
-        marker.objectID = place.identifier;
+        marker.place_id = place.place_id;
         marker.position = place.coordinate;
         
         marker.title = place.name;
@@ -380,7 +380,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
         
         PlaceMarker *marker = [[PlaceMarker alloc] init];
 
-        marker.objectID = markerData[@"id"];
+        marker.place_id = markerData[@"id"];
         double lat = [markerData[@"geometry"][@"location"][@"lat"] doubleValue];
         double lng = [markerData[@"geometry"][@"location"][@"lng"] doubleValue];
         marker.position = CLLocationCoordinate2DMake(lat, lng);

@@ -15,8 +15,6 @@
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain, readwrite) NSString *place_id;
 
-@property (nonatomic, retain, readwrite) NSString *reference;
-@property (nonatomic, retain, readwrite) NSString *identifier;
 @property (nonatomic, readwrite) GooglePlacesAutocompletePlaceType type;
 
 @property (nonatomic, readwrite) NSInteger price_level;
@@ -27,13 +25,12 @@
 
 @implementation Place
 
-@synthesize name, coordinate, place_id, reference, identifier, type, price_level, rating, open_now;
+@synthesize name, coordinate, place_id, type, price_level, rating, open_now;
 
 + (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
     Place *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"description"];
-    place.reference = [placeDictionary objectForKey:@"reference"];
-    place.identifier = [placeDictionary objectForKey:@"id"];
+    place.place_id = [placeDictionary objectForKey:@"place_id"];
     place.type = PlaceTypeFromDictionary(placeDictionary);
     return place;
 }
@@ -41,7 +38,6 @@
 + (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary {
     Place *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"name"];
-    place.identifier = [placeDictionary objectForKey:@"id"];
     place.place_id = [placeDictionary objectForKey:@"place_id"];
     
     double lat = [placeDictionary[@"geometry"][@"location"][@"lat"] doubleValue];
@@ -58,8 +54,8 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Name: %@, Reference: %@, Identifier: %@, Type: %@",
-            name, reference, identifier, PlaceTypeStringForPlaceType(type)];
+    return [NSString stringWithFormat:@"Name: %@, Place_ID: %@, Type: %@",
+            name, place_id, PlaceTypeStringForPlaceType(type)];
 }
 
 - (CLGeocoder *)geocoder {
@@ -71,7 +67,7 @@
 
 - (void)resolveEstablishmentPlaceToPlacemark:(GooglePlacesPlacemarkResultBlock)block {
     PlaceDetailQuery *query = [PlaceDetailQuery query];
-    query.reference = self.reference;
+    query.place_id = self.place_id;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {
             block(nil, nil, error);
@@ -108,13 +104,5 @@
         [self resolveEstablishmentPlaceToPlacemark:block];
     }
 }
-
-//- (void)dealloc {
-//    [name release];
-//    [reference release];
-//    [identifier release];
-//    [geocoder release];
-//    [super dealloc];
-//}
 
 @end

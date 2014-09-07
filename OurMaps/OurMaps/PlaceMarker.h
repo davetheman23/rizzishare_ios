@@ -11,6 +11,6 @@
 
 @interface PlaceMarker : GMSMarker
 
-@property (nonatomic, copy) NSString *objectID;
+@property (nonatomic, copy) NSString *place_id;
 
 @end
