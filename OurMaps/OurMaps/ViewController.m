@@ -267,16 +267,14 @@
 
 - (void)nearbySearchForCoordinate:(CLLocationCoordinate2D)coordinate {
     nearbySearchQuery.location = coordinate;
-    
-    NSLog(@"User location: (%f, %f)", nearbySearchQuery.location.latitude, nearbySearchQuery.location.longitude);
-    
+        
     [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
         if (error) {
             PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
         } else {
             longPressNearbyPlaces = [places copy];
         }
-        NSLog(@"Places count: %d", [longPressNearbyPlaces count]);
+        [self createMarkersWithPlaces];
     }];
 }
 
@@ -284,7 +282,7 @@
 - (void)createMarkersWithPlaces {
     
     NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] init];
-    
+
     for (int i = 0; i < [longPressNearbyPlaces count]; i++){
         GooglePlacesAutocompletePlace *place = [longPressNearbyPlaces objectAtIndex:i];
         
@@ -292,6 +290,7 @@
         
         marker.objectID = place.identifier;
         marker.position = place.coordinate;
+        
         marker.title = place.name;
         marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
         marker.appearAnimation = kGMSMarkerAnimationPop;
@@ -326,10 +325,10 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
                          [self drawUserMarkers];
                      }];
     
-//    [self nearbySearchForCoordinate:coordinate];
+    [self nearbySearchForCoordinate:coordinate];
 //    [self createMarkersWithPlaces];
     
-
+/*
     // Show places around the user's point of interests.
     NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=en&sensor=false&key=AIzaSyASvhdzIoZoDhTv0qayW_ybjYXnltaB8vc&radius=1000&keyword=mexican&location=%f,%f",coordinate.latitude,coordinate.longitude];
     NSURL *restaurantURL = [NSURL URLWithString:urlString];
@@ -343,7 +342,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
         }];
     }];
     [task resume];
- 
+ */
 }
 
 
