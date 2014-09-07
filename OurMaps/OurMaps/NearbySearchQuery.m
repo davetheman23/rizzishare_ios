@@ -79,6 +79,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
     googleConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     responseData = [[NSMutableData alloc] init];
+    
 }
 
 
@@ -136,13 +137,14 @@
             return;
         }
         if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
-            [self succeedWithPlaces:[response objectForKey:@"predictions"]];
+            [self succeedWithPlaces:[response objectForKey:@"results"]];
             return;
         }
         
         // Must have received a status of OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
         [self failWithError:[NSError errorWithDomain:@"ourmaps.ourmaps" code:kGoogleAPINSErrorCode userInfo:userInfo]];
+    
     }
 }
 
