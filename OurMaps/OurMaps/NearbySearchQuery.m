@@ -84,7 +84,7 @@
 
 
 #pragma mark -
-#pragma mark NSURLConnection Delegate
+#pragma mark NSURLConnectionDataDelegate
 
 - (void)failWithError:(NSError *)error {
     if (self.resultBlock != nil) {
