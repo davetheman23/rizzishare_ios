@@ -11,6 +11,7 @@
 
 @class AutocompleteQuery;
 @class NearbySearchQuery;
+@class EventQuery;
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate, GMSMapViewDelegate> {
     
@@ -21,6 +22,7 @@
     NSArray *longPressNearbyPlaces;
     NearbySearchQuery *nearbySearchQuery;
 
+    EventQuery *eventQuery;
 }
 
 @property (strong, nonatomic) IBOutlet GMSMapView *mapView;

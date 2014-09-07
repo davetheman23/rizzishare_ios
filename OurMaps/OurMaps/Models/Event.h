@@ -16,5 +16,6 @@
 + (Event *)eventFromPFObject:(PFObject *)anObject;
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *eventTime;
 
 @end

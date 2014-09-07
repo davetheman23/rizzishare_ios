@@ -12,6 +12,7 @@
 #import "NearbySearchQuery.h"
 #import "Place.h"
 #import <Parse/Parse.h>
+#import "EventQuery.h"
 
 @interface ViewController () {
 }
@@ -41,6 +42,7 @@
     /***** Setup PFUser *****/
     self.usernameLabel.text = [[PFUser currentUser] username];
 
+    eventQuery = [[EventQuery alloc] init];
     
     /***** Setup Mapview *****/
     CLLocationCoordinate2D currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
@@ -236,11 +238,28 @@
         marker.place_id = place.place_id;
         marker.position = place.coordinate;
         
+        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
+        [query whereKey:kPlaceIdKey equalTo:place.place_id];
+        PFObject *parsePlace = [query getFirstObject];
+        
         marker.title = place.name;
         marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
         marker.appearAnimation = kGMSMarkerAnimationPop;
         
-        marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+        //NSArray *eventArray = [[NSArray alloc] init];
+        
+        NSInteger eventCount = 0;
+        
+        if (parsePlace) {
+             eventCount = [eventQuery queryEventForPlace:parsePlace];
+        }
+        
+        if (eventCount>0) {
+            marker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
+        } else {
+            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+        }
+        
         marker.map = nil;
         [mutableMarkerSet addObject:marker];
     }

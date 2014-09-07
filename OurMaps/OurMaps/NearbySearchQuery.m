@@ -107,7 +107,7 @@
         
     }
     
-    //[PFObject saveAllInBackground:placesToUpload];
+    [PFObject saveAllInBackground:placesToUpload];
 
     
     if (self.resultBlock != nil) {
