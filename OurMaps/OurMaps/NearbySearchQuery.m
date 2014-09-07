@@ -79,7 +79,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
     googleConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     responseData = [[NSMutableData alloc] init];
-    
 }
 
 
@@ -128,6 +127,8 @@
     if (connection == googleConnection) {
         NSError *error = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        
+        
         if (error) {
             [self failWithError:error];
             return;

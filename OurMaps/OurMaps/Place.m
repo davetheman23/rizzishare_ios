@@ -44,7 +44,6 @@
     double lng = [placeDictionary[@"geometry"][@"location"][@"lng"] doubleValue];
     place.coordinate = CLLocationCoordinate2DMake(lat, lng);
 
-
     place.price_level = [placeDictionary[@"price_level"] integerValue];
     place.rating = [placeDictionary[@"rating"] floatValue];
     place.open_now = [placeDictionary[@"opening_hours"][@"open_now"] boolValue];
