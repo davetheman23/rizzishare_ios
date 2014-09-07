@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
 @interface NearbySearchQuery : NSObject{
     NSURLConnection *googleConnection;

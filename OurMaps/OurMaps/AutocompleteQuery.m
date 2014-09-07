@@ -1,23 +1,23 @@
 //
-//  GooglePlacesAutocompleteQuery.m
+//  AutocompleteQuery.m
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/23/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "GooglePlacesAutocompleteQuery.h"
-#import "GooglePlacesAutocompletePlace.h"
+#import "AutocompleteQuery.h"
+#import "Place.h"
 
-@interface GooglePlacesAutocompleteQuery()
+@interface AutocompleteQuery()
 @property (nonatomic, copy, readwrite) GooglePlacesAutocompleteResultBlock resultBlock;
 @end
 
-@implementation GooglePlacesAutocompleteQuery
+@implementation AutocompleteQuery
 
 @synthesize input, sensor, key, offset, location, radius, language, types, resultBlock;
 
-+ (GooglePlacesAutocompleteQuery *)query {
++ (AutocompleteQuery *)query {
     return [[self alloc] init];
 }
 
@@ -105,7 +105,7 @@
 - (void)succeedWithPlaces:(NSArray *)places {
     NSMutableArray *parsedPlaces = [NSMutableArray array];
     for (NSDictionary *place in places) {
-        [parsedPlaces addObject:[GooglePlacesAutocompletePlace placeFromAutocompleteDictionary:place]];
+        [parsedPlaces addObject:[Place placeFromAutocompleteDictionary:place]];
     }
     if (self.resultBlock != nil) {
         self.resultBlock(parsedPlaces, nil);

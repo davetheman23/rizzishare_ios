@@ -1,16 +1,16 @@
 //
-//  GooglePlacesAutocompletePlace.m
+//  Place.m
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "GooglePlacesAutocompletePlace.h"
-#import "GooglePlacesPlaceDetailQuery.h"
+#import "Place.h"
+#import "PlaceDetailQuery.h"
 
 
-@interface GooglePlacesAutocompletePlace()
+@interface Place()
 @property (nonatomic, retain, readwrite) NSString *name;
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @property (nonatomic, retain, readwrite) NSString *place_id;
@@ -25,12 +25,12 @@
 
 @end
 
-@implementation GooglePlacesAutocompletePlace
+@implementation Place
 
 @synthesize name, coordinate, place_id, reference, identifier, type, price_level, rating, open_now;
 
-+ (GooglePlacesAutocompletePlace *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
-    GooglePlacesAutocompletePlace *place = [[self alloc] init];
++ (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
+    Place *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"description"];
     place.reference = [placeDictionary objectForKey:@"reference"];
     place.identifier = [placeDictionary objectForKey:@"id"];
@@ -38,8 +38,8 @@
     return place;
 }
 
-+ (GooglePlacesAutocompletePlace *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary {
-    GooglePlacesAutocompletePlace *place = [[self alloc] init];
++ (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary {
+    Place *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"name"];
     place.identifier = [placeDictionary objectForKey:@"id"];
     place.place_id = [placeDictionary objectForKey:@"place_id"];
@@ -70,7 +70,7 @@
 }
 
 - (void)resolveEstablishmentPlaceToPlacemark:(GooglePlacesPlacemarkResultBlock)block {
-    GooglePlacesPlaceDetailQuery *query = [GooglePlacesPlaceDetailQuery query];
+    PlaceDetailQuery *query = [PlaceDetailQuery query];
     query.reference = self.reference;
     [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {

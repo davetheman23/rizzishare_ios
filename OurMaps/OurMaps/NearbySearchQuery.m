@@ -7,7 +7,7 @@
 //
 
 #import "NearbySearchQuery.h"
-#import "GooglePlacesAutocompletePlace.h"
+#import "Place.h"
 
 @interface NearbySearchQuery()
 @property (nonatomic, copy, readwrite) NearbySearchResultBlock resultBlock;
@@ -96,7 +96,7 @@
 - (void)succeedWithPlaces:(NSArray *)places {
     NSMutableArray *nearbyPlaces = [NSMutableArray array];
     for (NSDictionary *place in places) {
-        [nearbyPlaces addObject:[GooglePlacesAutocompletePlace placeFromNearbySearchDictionary:place]];
+        [nearbyPlaces addObject:[Place placeFromNearbySearchDictionary:place]];
     }
     if (self.resultBlock != nil) {
         self.resultBlock(nearbyPlaces, nil);

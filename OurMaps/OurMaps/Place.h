@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompletePlace.h
+//  Place.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.
@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
-@interface GooglePlacesAutocompletePlace : NSObject{
+@interface Place : NSObject{
     CLGeocoder *geocoder;
 }
 
-+ (GooglePlacesAutocompletePlace *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary;
++ (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary;
 
-+ (GooglePlacesAutocompletePlace *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary;
++ (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary;
 
 /*!
  Contains the human-readable name for the returned result. For establishment results, this is usually the business name.

@@ -1,22 +1,22 @@
 //
-//  GooglePlacesPlaceDetailQuery.m
+//  PlaceDetailQuery.m
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/24/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "GooglePlacesPlaceDetailQuery.h"
+#import "PlaceDetailQuery.h"
 
-@interface GooglePlacesPlaceDetailQuery()
+@interface PlaceDetailQuery()
 @property (nonatomic, copy, readwrite) GooglePlacesPlaceDetailResultBlock resultBlock;
 @end
 
-@implementation GooglePlacesPlaceDetailQuery
+@implementation PlaceDetailQuery
 
 @synthesize reference, sensor, key, language, resultBlock;
 
-+ (GooglePlacesPlaceDetailQuery *)query {
++ (PlaceDetailQuery *)query {
     return [[self alloc] init];
 }
 

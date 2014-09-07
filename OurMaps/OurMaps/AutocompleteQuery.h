@@ -1,5 +1,5 @@
 //
-//  GooglePlacesAutocompleteQuery.h
+//  AutocompleteQuery.h
 //  OurMaps
 //
 //  Created by Jiangchuan Huang on 8/23/14.
@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "GooglePlacesAutocompleteUtilities.h"
+#import "Utilities.h"
 
 
 
-@interface GooglePlacesAutocompleteQuery : NSObject{
+@interface AutocompleteQuery : NSObject{
     NSURLConnection *googleConnection;
     NSMutableData *responseData;
 }
 
 @property (nonatomic, copy, readonly) GooglePlacesAutocompleteResultBlock resultBlock;
 
-+ (GooglePlacesAutocompleteQuery *)query;
++ (AutocompleteQuery *)query;
 
 /*!
  Pulls down places that match the query. If -fetchPlaces is called twice, the first request will be cancelled and the request will be re-issued using the current property values.
