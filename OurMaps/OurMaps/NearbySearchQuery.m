@@ -102,7 +102,15 @@
     for (NSDictionary *place in places) {
         Place *aPlace = [Place placeFromNearbySearchDictionary:place];
         [nearbyPlaces addObject: aPlace];
+        
+        PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey dictionary:place];
+        [placesToUpload addObject:parsePlace];
+        
     }
+    
+    //[PFObject saveAllInBackground:placesToUpload];
+
+    
     if (self.resultBlock != nil) {
         self.resultBlock(nearbyPlaces, nil);
     }

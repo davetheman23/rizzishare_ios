@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Place.h"
+#import <Parse/Parse.h>
+#import "Event.h"
 
 @interface EventQuery : NSObject
+
+// 
 
 @end
