@@ -20,6 +20,9 @@ extern NSString *const kPlaceCategoryKey;
 extern NSString *const kPlaceNameKey;
 extern NSString *const kPlaceOverallRatingKey;
 extern NSString *const kPlaceDescriptionKey;
+extern NSString *const kPlaceIdKey;
 
 // Event attribute keys
 extern NSString *const kEventVenueKey;
+extern NSString *const kEventTimeKey;
+extern NSString *const kEventTitleKey;

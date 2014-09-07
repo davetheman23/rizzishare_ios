@@ -14,5 +14,6 @@
 @interface EventQuery : NSObject
 
 // 
+- (NSInteger)queryEventForPlace:(PFObject *)aPlace;
 
 @end

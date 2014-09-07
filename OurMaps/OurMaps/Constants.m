@@ -22,6 +22,9 @@ NSString *const kPlaceCategoryKey = @"category";
 NSString *const kPlaceNameKey = @"name";
 NSString *const kPlaceOverallRatingKey = @"overallRating";
 NSString *const kPlaceDescriptionKey = @"description";
+NSString *const kPlaceIdKey = @"place_id";
 
 // Event attribute keys
 NSString *const kEventVenueKey = @"venue";
+NSString *const kEventTimeKey = @"eventTime";
+NSString *const kEventTitleKey = @"title";

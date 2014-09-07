@@ -10,4 +10,12 @@
 
 @implementation Event
 
++ (Event *)eventFromPFObject:(PFObject *)anObject {
+    Event *event = [[self alloc] init];
+    event.title = [anObject objectForKey:kEventTitleKey];
+    event.eventTime = [anObject objectForKey:kEventTimeKey];
+    
+    return event;
+}
+
 @end
