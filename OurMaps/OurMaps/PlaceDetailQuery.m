@@ -14,7 +14,7 @@
 
 @implementation PlaceDetailQuery
 
-@synthesize reference, sensor, key, language, resultBlock;
+@synthesize place_id, sensor, key, language, resultBlock;
 
 + (PlaceDetailQuery *)query {
     return [[self alloc] init];
@@ -36,7 +36,7 @@
 
 
 - (NSString *)googleURLString {
-    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?reference=%@&sensor=%@&key=%@", reference, BooleanStringForBool(sensor), key];
+    NSMutableString *url = [NSMutableString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/details/json?placeid=%@&sensor=%@&key=%@", place_id, BooleanStringForBool(sensor), key];
     if (language) {
         [url appendFormat:@"&language=%@", language];
     }

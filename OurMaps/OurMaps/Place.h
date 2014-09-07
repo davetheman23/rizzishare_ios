@@ -39,15 +39,6 @@
  */
 @property (nonatomic, retain, readonly) NSString *place_id;
 
-/*!
- Contains a unique token that we can use to retrieve additional information about this place in a Place Details request. You can store this token and use it at any time in the future to refresh cached data about this Place, but the same token is not guaranteed to be returned for any given Place across different searches.
- */
-@property (nonatomic, retain, readonly) NSString *reference;
-
-/*!
- Contains a unique stable identifier denoting this place. This identifier may not be used to retrieve information about this place, but can be used to consolidate data about this Place, and to verify the identity of a Place across separate searches.
- */
-@property (nonatomic, retain, readonly) NSString *identifier;
 
 /*!
  The price level of the place, on a scale of 0 to 4. The exact amount indicated by a specific value will vary from region to region. Price levels are interpreted as follows:
