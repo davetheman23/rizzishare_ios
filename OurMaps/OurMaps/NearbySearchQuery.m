@@ -8,6 +8,7 @@
 
 #import "NearbySearchQuery.h"
 #import "Place.h"
+#import <Parse/Parse.h>
 
 @interface NearbySearchQuery()
 @property (nonatomic, copy, readwrite) NearbySearchResultBlock resultBlock;
@@ -83,7 +84,7 @@
 
 
 #pragma mark -
-#pragma mark NSURLConnection Delegate
+#pragma mark NSURLConnectionDataDelegate
 
 - (void)failWithError:(NSError *)error {
     if (self.resultBlock != nil) {
@@ -94,16 +95,28 @@
 
 - (void)succeedWithPlaces:(NSArray *)places {
     NSMutableArray *nearbyPlaces = [NSMutableArray array];
+    
+    NSMutableArray *placesToUpload = [NSMutableArray array];
+    
     for (NSDictionary *place in places) {
-        [nearbyPlaces addObject:[Place placeFromNearbySearchDictionary:place]];
+        Place *aPlace = [Place placeFromNearbySearchDictionary:place];
+        [nearbyPlaces addObject: aPlace];
+        
+        PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey dictionary:place];
+        [placesToUpload addObject:parsePlace];
+        
     }
+    
+    //[PFObject saveAllInBackground:placesToUpload];
+
+    
     if (self.resultBlock != nil) {
         self.resultBlock(nearbyPlaces, nil);
     }
     [self cleanup];
 }
 
-
+//- (PFObject *)preparePlaceForUpload:(Place *)
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (connection == googleConnection) {

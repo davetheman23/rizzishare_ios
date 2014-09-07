@@ -8,6 +8,20 @@
 
 #import "Constants.h"
 
-@implementation Constants
+// Class keys
+NSString *const kActivityClassKey = @"Activity";
+NSString *const kPlaceClassKey = @"Place";
+NSString *const kEventClassKey = @"Event";
 
-@end
+// Place attribute keys
+NSString *const kPlaceGooglePlaceIDKey = @"googlePlaceId";
+NSString *const kPlaceGeoLocationKey = @"geoLocation";
+NSString *const kPlaceAddressKey = @"Address";
+NSString *const kPlaceGoogleTypeKey = @"googleType";
+NSString *const kPlaceCategoryKey = @"category";
+NSString *const kPlaceNameKey = @"name";
+NSString *const kPlaceOverallRatingKey = @"overallRating";
+NSString *const kPlaceDescriptionKey = @"description";
+
+// Event attribute keys
+NSString *const kEventVenueKey = @"venue";

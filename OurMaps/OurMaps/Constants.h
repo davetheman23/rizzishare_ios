@@ -6,8 +6,20 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Class keys
+extern NSString *const kActivityClassKey;
+extern NSString *const kPlaceClassKey;
+extern NSString *const kEventClassKey;
 
-@interface Constants : NSObject
+// Place attribute keys
+extern NSString *const kPlaceGooglePlaceIDKey;
+extern NSString *const kPlaceGeoLocationKey;
+extern NSString *const kPlaceAddressKey;
+extern NSString *const kPlaceGoogleTypeKey;
+extern NSString *const kPlaceCategoryKey;
+extern NSString *const kPlaceNameKey;
+extern NSString *const kPlaceOverallRatingKey;
+extern NSString *const kPlaceDescriptionKey;
 
-@end
+// Event attribute keys
+extern NSString *const kEventVenueKey;
