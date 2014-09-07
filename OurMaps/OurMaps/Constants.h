@@ -14,3 +14,7 @@ extern NSString *const kPlaceGooglePlaceIDKey;
 extern NSString *const kPlaceGeoLocationKey;
 extern NSString *const kPlaceAddressKey;
 extern NSString *const kPlaceGoogleTypeKey;
+extern NSString *const kPlaceCategoryKey;
+extern NSString *const kPlaceNameKey;
+extern NSString *const kPlaceOverallRatingKey;
+extern NSString *const kPlaceDescriptionKey;
