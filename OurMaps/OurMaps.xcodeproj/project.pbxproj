@@ -218,10 +218,10 @@
 		72E3C62319BCC0DE00538233 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A735E9F319AA371100500BF5 /* Place.h */,
-				A735E9F419AA371100500BF5 /* Place.m */,
 				72E3C62419BCC10100538233 /* Event.h */,
 				72E3C62519BCC10100538233 /* Event.m */,
+				A735E9F319AA371100500BF5 /* Place.h */,
+				A735E9F419AA371100500BF5 /* Place.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
