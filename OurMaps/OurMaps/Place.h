@@ -34,7 +34,7 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, weak) PFGeoPoint *geoPoint;
 
-@property (nonatomic, weak) NSMutableArray *eventArray;
+@property (nonatomic, strong) NSMutableArray *eventArray;
 @property (nonatomic, strong) PlaceMarker *placeMarker;
 
 /*!

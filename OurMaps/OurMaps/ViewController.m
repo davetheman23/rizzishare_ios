@@ -292,76 +292,54 @@
     // Create a dispatch queue, the gloable queue, with high priority
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     
-//    dispatch_group_async(group, queue, ^ {
-//        NSLog(@"Block 1");
-//        [NSThread sleepForTimeInterval:3.0];
-//        NSLog(@"Block 1 End");
-//    });
-//    
-//    dispatch_group_async(group, queue, ^ {
-//        NSLog(@"Block 2");
-//        [NSThread sleepForTimeInterval:5.0];
-//        NSLog(@"Block 2 End");
-//    });
-//    
-//    dispatch_group_notify(group, queue, ^ {
-//        NSLog(@"Block3");
-//    });
     
     //dispatch_group_async(group, queue, ^ {
-        [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
-            if (error) {
-                PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
-            } else {
-                longPressNearbyPlaces = [places copy];
-                [self createMarkersWithPlaces];
-                [self drawPlaceMarkers];
-                NSLog(@"fetched %lu places nearby", places.count);
-                //[self changeMarkersToShowEvents];
-            }
-        }];
-    //});
-    //NSLog(@"wan");
-    
-//    dispatch_group_async(group, queue, ^ {
-//        [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
+//        [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
 //            if (error) {
-//                NSLog(@"Could not fetch nearby events!");
+//                PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
 //            } else {
-//                NSLog(@"Fetched %lu events nearby", events.count);
-//                longPressNearbyEvents = [events copy];
+//                longPressNearbyPlaces = [places copy];
+//                [self createMarkersWithPlaces];
+//                [self drawPlaceMarkers];
+//                NSLog(@"fetched %lu places nearby", places.count);
+//                //[self changeMarkersToShowEvents];
 //            }
 //        }];
-//    });
+    //});
     
-    // for (p in NP) {
-    //    for (e in E) {
-    //        if (p == e.v) [p.eA increment]
-    //    }
-    // }
+    dispatch_group_async(group, queue, ^ {
+        longPressNearbyPlaces = [nearbySearchQuery fetchNearbyPlacesSync];
+        [self createMarkersWithPlaces];
+        [self drawPlaceMarkers];
+        NSLog(@"fetched %lu places nearby", longPressNearbyPlaces.count);
+    });
+    //NSLog(@"wan");
+    
+    dispatch_group_async(group, queue, ^ {
+        [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
+            if (error) {
+                NSLog(@"Could not fetch nearby events!");
+            } else {
+                NSLog(@"Fetched %lu events nearby", events.count);
+                longPressNearbyEvents = [events copy];
+            }
+        }];
+    });
+    
     dispatch_group_notify(group, queue, ^ {
         for (Place *place in longPressNearbyPlaces) {
             for (PFObject *event in longPressNearbyEvents) {
-                if (event[kEventVenueKey][kPlaceIdKey] == place.place_id) {
+                NSLog(@"event[venue][placeId]=%@; place_id=%@", event[kEventVenueKey][kPlaceIdKey], place.place_id);
+                if ([event[kEventVenueKey][kPlaceIdKey] isEqualToString: place.place_id]) {
+                    NSLog(@"oh yeah");
                     [place.eventArray addObject:event];
                 }
             }
+            NSLog(@"%@ has %lu events", place.name, place.eventArray.count);
         }
         [self changeMarkersToShowEvents];
+        NSLog(@"Change place marker");
     });
-        
-            
-//    [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
-//        if (error) {
-//            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
-//        } else {
-//            longPressNearbyPlaces = [places copy];
-//            [self erasePlaceMarkers];
-//            [self createMarkersWithPlaces];
-//            [self drawPlaceMarkers];
-//        }
-//        [self changeMarkersToShowEvents];
-//    }];
     
     //dispatch_release(group);
 }
@@ -419,7 +397,9 @@
 //    }
     for (Place *place in longPressNearbyPlaces) {
         if (place.eventArray.count>0) {
+            NSLog(@"o?");
             place.placeMarker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
+            place.placeMarker.map = self.mapView;
         }
     }
 }

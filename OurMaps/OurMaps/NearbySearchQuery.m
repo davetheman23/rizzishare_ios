@@ -86,6 +86,19 @@
     responseData = [[NSMutableData alloc] init];
 }
 
+- (NSArray *)fetchNearbyPlacesSync {
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
+    
+    NSError *error = [[NSError alloc] init];
+    NSURLResponse *response = nil;
+    NSData *urlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSArray *placeArray = [self processDataAfterLoading:urlData];
+    
+    return placeArray;
+}
+
 - (void)fetchNearbyPlacesForEvents:(NearbySearchResultBlock)block {
     //self.resultBlock = block;
     self.eventResultBlock = block;
@@ -156,6 +169,27 @@
     [self cleanup];
 }
 
+- (NSArray *)buildPlacesWithDics:(NSArray *)places {
+    NSMutableArray *nearbyPlaces = [NSMutableArray array];
+    
+    NSMutableArray *placesToUpload = [NSMutableArray array];
+    
+    for (NSDictionary *place in places) {
+        Place *aPlace = [Place placeFromNearbySearchDictionary:place];
+        [nearbyPlaces addObject: aPlace];
+        
+        //PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey dictionary:place];
+        PFObject *parsePlace = [self parsePlaceFromPlace:aPlace];
+        
+        [placesToUpload addObject:parsePlace];
+        
+    }
+    
+    //[PFObject saveAllInBackground:placesToUpload];
+    
+    return nearbyPlaces;
+}
+
 - (PFObject *)parsePlaceFromPlace:(Place *)aPlace {
     PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey];
     PFGeoPoint *geoPoint = [[PFGeoPoint alloc] init];
@@ -218,6 +252,32 @@
         [self failWithError:[NSError errorWithDomain:@"ourmaps.ourmaps" code:kGoogleAPINSErrorCode userInfo:userInfo]];
     
     }
+}
+
+- (NSArray *)processDataAfterLoading:(NSData *)data {
+    NSError *error = nil;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    NSArray *placesArray = [[NSArray alloc] init];
+    
+    if (error) {
+        //[self failWithError:error];
+        return placesArray;
+    }
+    if ([[response objectForKey:@"status"] isEqualToString:@"ZERO_RESULTS"]) {
+        //placesArray = [self succeedWithPlaces:[NSArray array]];
+        return placesArray;
+    }
+    if ([[response objectForKey:@"status"] isEqualToString:@"OK"]) {
+        //[self succeedWithPlaces:[response objectForKey:@"results"]];
+        placesArray = [self buildPlacesWithDics:[response objectForKey:@"results"]];
+        return placesArray;
+    }
+    
+    // Must have received a status of OVER_QUERY_LIMIT, REQUEST_DENIED or INVALID_REQUEST.
+    //NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[response objectForKey:@"status"] forKey:NSLocalizedDescriptionKey];
+    //[self failWithError:[NSError errorWithDomain:@"ourmaps.ourmaps" code:kGoogleAPINSErrorCode userInfo:userInfo]];
+    return placesArray;
 }
 
 @end

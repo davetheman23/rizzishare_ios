@@ -28,6 +28,12 @@
 
 - (void)fetchNearbyPlacesForEvents:(NearbySearchResultBlock)block;
 
+/*
+ This is a synchronous data fetching method utilizing sendsynchronousrequest method. 
+ Using sendsynchronousrequest and sendasynchronous methods to make code more concise. 
+*/
+- (NSArray *)fetchNearbyPlacesSync;
+
 #pragma mark -
 #pragma mark Required parameters
 
