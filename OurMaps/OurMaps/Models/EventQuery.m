@@ -18,6 +18,7 @@
     PFQuery *query = [PFQuery queryWithClassName:kEventClassKey];
     [query whereKey:kEventVenueKey equalTo:aPlace];
     
+    //[query where]
     
 //    [query findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
 //        if (!error) {

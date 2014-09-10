@@ -12,6 +12,7 @@
 
 @interface NearbySearchQuery()
 @property (nonatomic, copy, readwrite) NearbySearchResultBlock resultBlock;
+@property (nonatomic, copy, readwrite) NearbySearchResultBlock eventResultBlock;
 @end
 
 
@@ -55,6 +56,7 @@
     if (types != -1) {
         [url appendFormat:@"&types=%@", PlaceTypeStringForPlaceType(types)];
     }
+    //NSLog(@"innnnn");
     return url;
 }
 
@@ -77,9 +79,44 @@
     [self cancelOutstandingRequests];
     self.resultBlock = block;
     
+    NSLog(@"innn");
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
     googleConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     responseData = [[NSMutableData alloc] init];
+}
+
+- (void)fetchNearbyPlacesForEvents:(NearbySearchResultBlock)block {
+    //self.resultBlock = block;
+    self.eventResultBlock = block;
+    
+    PFQuery *nearbyPlaceQuery = [PFQuery queryWithClassName:kPlaceClassKey];
+    PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:self.location.latitude longitude:self.location.longitude];
+    
+    [nearbyPlaceQuery whereKey:kPlaceGeoLocationKey nearGeoPoint:geoPoint withinKilometers:self.radius/1000];
+    
+    PFQuery *eventQuery = [PFQuery queryWithClassName:kEventClassKey];
+    [eventQuery whereKey:kEventVenueKey matchesQuery:nearbyPlaceQuery];
+    [eventQuery includeKey:kEventVenueKey];
+    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+        if (!error) {
+            NSLog(@"successfully fetched %lu nearby events", events.count);
+            
+            if (self.eventResultBlock != nil) {
+                self.eventResultBlock(events, nil);
+            }
+            self.eventResultBlock = nil;
+            //[self cleanup];
+        }
+    }];
+    
+    // Nearby places query
+    
+    // Event query - events in nearby places
+    
+    // for (e in eventQuery)
+    //      for (v in venueQuery)
+    //          if (e.v == v) [v.eventArray addobject]
 }
 
 
@@ -87,6 +124,7 @@
 #pragma mark NSURLConnectionDataDelegate
 
 - (void)failWithError:(NSError *)error {
+    //NSLog(@"innnnnE");
     if (self.resultBlock != nil) {
         self.resultBlock(nil, error);
     }
@@ -102,12 +140,14 @@
         Place *aPlace = [Place placeFromNearbySearchDictionary:place];
         [nearbyPlaces addObject: aPlace];
         
-        PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey dictionary:place];
+        //PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey dictionary:place];
+        PFObject *parsePlace = [self parsePlaceFromPlace:aPlace];
+        
         [placesToUpload addObject:parsePlace];
         
     }
     
-    [PFObject saveAllInBackground:placesToUpload];
+    //[PFObject saveAllInBackground:placesToUpload];
 
     
     if (self.resultBlock != nil) {
@@ -116,30 +156,48 @@
     [self cleanup];
 }
 
-//- (PFObject *)preparePlaceForUpload:(Place *)
+- (PFObject *)parsePlaceFromPlace:(Place *)aPlace {
+    PFObject *parsePlace = [PFObject objectWithClassName:kPlaceClassKey];
+    PFGeoPoint *geoPoint = [[PFGeoPoint alloc] init];
+    geoPoint.latitude = aPlace.coordinate.latitude;
+    geoPoint.longitude = aPlace.coordinate.longitude;
+
+    parsePlace[kPlaceGeoLocationKey] = geoPoint;
+    parsePlace[kPlaceNameKey] = aPlace.name;
+    parsePlace[kPlaceIdKey] = aPlace.place_id;
+    parsePlace[kPlaceOverallRatingKey] = [NSNumber numberWithFloat:aPlace.rating];
+    
+    
+    return parsePlace;
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"innnnn1");
     if (connection == googleConnection) {
         [responseData setLength:0];
     }
 }
 
 - (void)connection:(NSURLConnection *)connnection didReceiveData:(NSData *)data {
+    NSLog(@"innnnn2");
     if (connnection == googleConnection) {
         [responseData appendData:data];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"innnnn3");
     if (connection == googleConnection) {
         [self failWithError:error];
     }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"innnnn4");
     if (connection == googleConnection) {
         NSError *error = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+        
         
         
         if (error) {

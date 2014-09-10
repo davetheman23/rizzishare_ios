@@ -20,6 +20,8 @@
     BOOL shouldBeginEditing;
 
     NSArray *longPressNearbyPlaces;
+    NSArray *longPressNearbyEvents;
+    
     NearbySearchQuery *nearbySearchQuery;
 
     EventQuery *eventQuery;

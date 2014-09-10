@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
+#import "PlaceMarker.h"
 
 #import "Utilities.h"
 
@@ -28,6 +30,10 @@
  coordinate in (lat, lng).
  */
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, weak) PFGeoPoint *geoPoint;
+
+@property (nonatomic, weak) NSMutableArray *eventArray;
+@property (nonatomic, strong) PlaceMarker *placeMarker;
 
 /*!
  Contains the primary 'type' of this place (i.e. "establishment" or "gecode").

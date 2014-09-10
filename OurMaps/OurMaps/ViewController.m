@@ -212,16 +212,71 @@
 
 - (void)nearbySearchForCoordinate:(CLLocationCoordinate2D)coordinate {
     nearbySearchQuery.location = coordinate;
-        
-    [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
-        if (error) {
-            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
-        } else {
-            longPressNearbyPlaces = [places copy];
-            [self createMarkersWithPlaces];
-            [self drawPlaceMarkers];
+    
+    // Create a dispatch group variable
+    dispatch_group_t group = dispatch_group_create();
+    // Create a dispatch queue, the gloable queue, with high priority
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    
+//    dispatch_group_async(group, queue, ^ {
+//        NSLog(@"Block 1");
+//        [NSThread sleepForTimeInterval:3.0];
+//        NSLog(@"Block 1 End");
+//    });
+//    
+//    dispatch_group_async(group, queue, ^ {
+//        NSLog(@"Block 2");
+//        [NSThread sleepForTimeInterval:5.0];
+//        NSLog(@"Block 2 End");
+//    });
+//    
+//    dispatch_group_notify(group, queue, ^ {
+//        NSLog(@"Block3");
+//    });
+    
+    //dispatch_group_async(group, queue, ^ {
+        [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
+            if (error) {
+                PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
+            } else {
+                longPressNearbyPlaces = [places copy];
+                [self createMarkersWithPlaces];
+                [self drawPlaceMarkers];
+                NSLog(@"fetched %lu places nearby", places.count);
+                //[self changeMarkersToShowEvents];
+            }
+        }];
+    //});
+    //NSLog(@"wan");
+    
+//    dispatch_group_async(group, queue, ^ {
+//        [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
+//            if (error) {
+//                NSLog(@"Could not fetch nearby events!");
+//            } else {
+//                NSLog(@"Fetched %lu events nearby", events.count);
+//                longPressNearbyEvents = [events copy];
+//            }
+//        }];
+//    });
+    
+    // for (p in NP) {
+    //    for (e in E) {
+    //        if (p == e.v) [p.eA increment]
+    //    }
+    // }
+    dispatch_group_notify(group, queue, ^ {
+        for (Place *place in longPressNearbyPlaces) {
+            for (PFObject *event in longPressNearbyEvents) {
+                if (event[kEventVenueKey][kPlaceIdKey] == place.place_id) {
+                    [place.eventArray addObject:event];
+                }
+            }
         }
-    }];
+        [self changeMarkersToShowEvents];
+    });
+    
+    //dispatch_release(group);
 }
 
 
@@ -238,9 +293,9 @@
         marker.place_id = place.place_id;
         marker.position = place.coordinate;
         
-        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
-        [query whereKey:kPlaceIdKey equalTo:place.place_id];
-        PFObject *parsePlace = [query getFirstObject];
+//        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
+//        [query whereKey:kPlaceIdKey equalTo:place.place_id];
+//        PFObject *parsePlace = [query getFirstObject];
         
         marker.title = place.name;
         marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
@@ -250,9 +305,9 @@
         
         NSInteger eventCount = 0;
         
-        if (parsePlace) {
-             eventCount = [eventQuery queryEventForPlace:parsePlace];
-        }
+//        if (parsePlace) {
+//             eventCount = [eventQuery queryEventForPlace:parsePlace];
+//        }
         
         if (eventCount>0) {
             marker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
@@ -261,9 +316,25 @@
         }
         
         marker.map = nil;
+        
+        place.placeMarker = marker;
+        
         [mutableMarkerSet addObject:marker];
     }
     self.markers = [mutableMarkerSet copy];
+}
+
+- (void)changeMarkersToShowEvents {
+//    for (PlaceMarker *marker in self.markers) {
+//        for (Place *place in longPressNearbyPlaces) {
+//            
+//        }
+//    }
+    for (Place *place in longPressNearbyPlaces) {
+        if (place.eventArray.count>0) {
+            place.placeMarker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
+        }
+    }
 }
 
 - (void)mapView:(GMSMapView *)mapView
@@ -335,6 +406,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
         
         marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
         marker.map = nil;
+        
         [mutableMarkerSet addObject:marker];
     }
     self.markers = [mutableMarkerSet copy];

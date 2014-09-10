@@ -27,6 +27,7 @@
 
 @synthesize name, coordinate, place_id, type, price_level, rating, open_now;
 
+
 + (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
     Place *place = [[self alloc] init];
     place.name = [placeDictionary objectForKey:@"description"];
@@ -48,6 +49,8 @@
     place.rating = [placeDictionary[@"rating"] floatValue];
     place.open_now = [placeDictionary[@"opening_hours"][@"open_now"] boolValue];
 
+    place.eventArray = [NSMutableArray array];
+    
     return place;
 }
 

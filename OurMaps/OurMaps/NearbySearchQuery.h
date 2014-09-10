@@ -17,6 +17,7 @@
 
 
 @property (nonatomic, copy, readonly) NearbySearchResultBlock resultBlock;
+@property (nonatomic, copy, readonly) NearbySearchResultBlock eventResultBlock;
 
 + (NearbySearchQuery *)query;
 
@@ -25,6 +26,7 @@
  */
 - (void)fetchNearbyPlaces:(NearbySearchResultBlock)block;
 
+- (void)fetchNearbyPlacesForEvents:(NearbySearchResultBlock)block;
 
 #pragma mark -
 #pragma mark Required parameters
