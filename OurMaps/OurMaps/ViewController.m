@@ -19,17 +19,27 @@
 //@property (strong, nonatomic) GMSMapView *mapView;
 //@property (strong, nonatomic) NSURLSession *markerSession;
 @property (copy, nonatomic) NSSet *markers;
+@property (nonatomic) CLLocationCoordinate2D userCoordinate;
 @property (strong, nonatomic) PlaceMarker *userCreatedMarker;
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    CLLocationManager *locationManager;
+}
 
 @synthesize mapView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.userCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);  // Initialize to the location of the New York City.
     
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//    [locationManager startUpdatingLocation];
+    
+
     /***** Initialize AutocompleteQuery *****/
     autocompleteQuery = [[AutocompleteQuery alloc] init];
     autocompleteQuery.radius = 100.0;
@@ -77,6 +87,44 @@
 }
 
 
+#pragma mark -
+#pragma mark CLLocationManagerDelegate Methods
+
+//-(void) mapViewWithCurrentCoordinate {
+//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.userCoordinate.latitude
+//                                                            longitude:self.userCoordinate.longitude
+//                                                                 zoom:15
+//                                                              bearing:0
+//                                                         viewingAngle:0];
+//    self.mapView.camera = camera;
+//    self.mapView.mapType = kGMSTypeNormal;
+//    self.mapView.myLocationEnabled = YES;
+//    self.mapView.settings.compassButton = YES;
+////  self.mapView.settings.myLocationButton = YES;
+//    [self.mapView setMinZoom:10 maxZoom:18];
+//    //    [self.view addSubview:self.mapView];
+//    //    self.mapView.hidden=YES;
+//    self.mapView.delegate = self;
+//}
+//
+//-(void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+//    PresentAlertViewWithErrorAndTitle(error, @"Could not get current location.");
+//}
+//
+//-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+//    NSLog(@"Entered here 2");
+//    self.userCoordinate = newLocation.coordinate;
+//
+//    [self mapViewWithCurrentCoordinate];
+//    
+//    PlaceMarker *marker = [[PlaceMarker alloc] init];
+//    marker.position = self.userCoordinate;
+//    marker.title = @"Point of interest";
+//    marker.appearAnimation = kGMSMarkerAnimationPop;
+//    marker.map = nil;
+//    self.userCreatedMarker = marker;
+//
+//}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -107,11 +155,8 @@
 #pragma mark UITableViewDelegate
 
 - (void)addGMSMarkerToMap:(CLPlacemark *)placemark addressString:(NSString *)address {
-    
-    if(self.userCreatedMarker != nil){
-        self.userCreatedMarker.map = nil;
-        self.userCreatedMarker = nil;
-    }
+   
+    [self eraseUserMarker];
     
     PlaceMarker *marker = [[PlaceMarker alloc] init];
     marker.position = placemark.location.coordinate;
@@ -122,6 +167,22 @@
     self.userCreatedMarker = marker;
     [self drawUserMarker];
 }
+
+
+- (void)addGMSMarkerToMap:(Place *)place {
+    
+    [self eraseUserMarker];
+    
+    PlaceMarker *marker = [[PlaceMarker alloc] init];
+    marker.position = place.coordinate;
+    marker.appearAnimation = kGMSMarkerAnimationPop;
+    marker.title = place.name;
+    marker.map = nil;
+    
+    self.userCreatedMarker = marker;
+    [self drawUserMarker];
+}
+
 
 - (void)dismissSearchControllerWhileStayingActive {
     
@@ -137,17 +198,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
     Place *place = [self placeAtIndexPath:indexPath];
     
-    [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
+//    [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
+//        if (error) {
+//            PresentAlertViewWithErrorAndTitle(error, @"Could not map selected place.");
+//        } else if (placemark) {
+//            [self addGMSMarkerToMap:placemark addressString:addressString];
+//            [self dismissSearchControllerWhileStayingActive];
+//            [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
+//        }
+//    }];
+    
+    [place resolvePlaceIDToPlace:^(Place *aPlace, NSError *error) {
         if (error) {
-            PresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
-        } else if (placemark) {
-            [self addGMSMarkerToMap:placemark addressString:addressString];
+            PresentAlertViewWithErrorAndTitle(error, @"Could not query place detail.");
+        } else if (aPlace) {
+            [self addGMSMarkerToMap:aPlace];
+            
             [self dismissSearchControllerWhileStayingActive];
             [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:NO];
         }
     }];
+
 }
 
 
@@ -275,6 +349,19 @@
         }
         [self changeMarkersToShowEvents];
     });
+        
+            
+//    [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
+//        if (error) {
+//            PresentAlertViewWithErrorAndTitle(error, @"Could not fetch nearby places");
+//        } else {
+//            longPressNearbyPlaces = [places copy];
+//            [self erasePlaceMarkers];
+//            [self createMarkersWithPlaces];
+//            [self drawPlaceMarkers];
+//        }
+//        [self changeMarkersToShowEvents];
+//    }];
     
     //dispatch_release(group);
 }
@@ -435,11 +522,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
             marker.map = nil;
         }
     }
-    
-    if(self.userCreatedMarker != nil){
-        self.userCreatedMarker.map = nil;
-        self.userCreatedMarker = nil;
-    }
+    self.markers = nil;
 }
 
 - (void)drawPlaceMarkers{
@@ -489,8 +572,8 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 
 - (void)didReceiveMemoryWarning
 {
-    // Dispose of any resources that can be recreated.
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

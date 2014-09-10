@@ -13,7 +13,12 @@
 @interface Place()
 @property (nonatomic, retain, readwrite) NSString *name;
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property (nonatomic, retain, readwrite) NSString *formatted_address;
+@property (nonatomic, retain, readwrite) NSString *formatted_phone_number;
+
 @property (nonatomic, retain, readwrite) NSString *place_id;
+
+@property (nonatomic, retain, readwrite) NSArray *types;
 
 @property (nonatomic, readwrite) GooglePlacesAutocompletePlaceType type;
 
@@ -25,7 +30,7 @@
 
 @implementation Place
 
-@synthesize name, coordinate, place_id, type, price_level, rating, open_now;
+@synthesize name, coordinate, formatted_address, formatted_phone_number, place_id, types, type, price_level, rating, open_now;
 
 
 + (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
@@ -35,6 +40,26 @@
     place.type = PlaceTypeFromDictionary(placeDictionary);
     return place;
 }
+
++ (Place *)placeFromPlaceDetailDictionary:(NSDictionary *)placeDictionary {
+    Place *place = [[self alloc] init];
+    place.name = [placeDictionary objectForKey:@"name"];
+    place.place_id = [placeDictionary objectForKey:@"place_id"];
+
+    place.formatted_address = [placeDictionary objectForKey:@"formatted_address"];
+    place.formatted_phone_number = [placeDictionary objectForKey:@"formatted_phone_number"];
+    place.types = [placeDictionary objectForKey:@"types"];
+    
+    double lat = [placeDictionary[@"geometry"][@"location"][@"lat"] doubleValue];
+    double lng = [placeDictionary[@"geometry"][@"location"][@"lng"] doubleValue];
+    place.coordinate = CLLocationCoordinate2DMake(lat, lng);
+    
+    place.price_level = [placeDictionary[@"price_level"] integerValue];
+    place.rating = [placeDictionary[@"rating"] floatValue];
+    place.open_now = [placeDictionary[@"opening_hours"][@"open_now"] boolValue];
+    return place;
+}
+
 
 + (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary {
     Place *place = [[self alloc] init];
@@ -68,9 +93,9 @@
 }
 
 - (void)resolveEstablishmentPlaceToPlacemark:(GooglePlacesPlacemarkResultBlock)block {
-    PlaceDetailQuery *query = [PlaceDetailQuery query];
-    query.place_id = self.place_id;
-    [query fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
+    PlaceDetailQuery *placeDetailQuery = [PlaceDetailQuery query];
+    placeDetailQuery.place_id = self.place_id;
+    [placeDetailQuery fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
         if (error) {
             block(nil, nil, error);
         } else {
@@ -97,6 +122,45 @@
         }
     }];
 }
+
+- (void)resolvePlaceIDToPlace:(PlaceDetailResultBlock)block {
+    PlaceDetailQuery *placeDetailQuery = [PlaceDetailQuery query];
+    placeDetailQuery.place_id = self.place_id;
+    [placeDetailQuery fetchPlaceDetail:^(NSDictionary *placeDictionary, NSError *error) {
+        if (error) {
+            block(nil, error);
+        } else {
+            self.name = [placeDictionary objectForKey:@"name"];
+            self.place_id = [placeDictionary objectForKey:@"place_id"];
+            
+            self.formatted_address = [placeDictionary objectForKey:@"formatted_address"];
+            self.formatted_phone_number = [placeDictionary objectForKey:@"formatted_phone_number"];
+            self.types = [placeDictionary objectForKey:@"types"];
+            
+            double lat = [placeDictionary[@"geometry"][@"location"][@"lat"] doubleValue];
+            double lng = [placeDictionary[@"geometry"][@"location"][@"lng"] doubleValue];
+            self.coordinate = CLLocationCoordinate2DMake(lat, lng);
+            
+            self.price_level = [placeDictionary[@"price_level"] integerValue];
+            self.rating = [placeDictionary[@"rating"] floatValue];
+            self.open_now = [placeDictionary[@"opening_hours"][@"open_now"] boolValue];
+
+            block(self, error);
+        }
+    }];
+}
+
+
+
+
+//- (void)queryPlaceDetail:(PlaceDetailResultBlock)block {
+//    if (type == PlaceTypeGeocode) {
+//        // Geocode places already have their address stored in the 'name' field.
+//        [self resolveGecodePlaceToPlacemark:block];
+//    } else {
+//        [self resolveEstablishmentPlaceToPlacemark:block];
+//    }
+//}
 
 - (void)resolveToPlacemark:(GooglePlacesPlacemarkResultBlock)block {
     if (type == PlaceTypeGeocode) {

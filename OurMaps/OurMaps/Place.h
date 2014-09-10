@@ -19,6 +19,8 @@
 
 + (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary;
 
++ (Place *)placeFromPlaceDetailDictionary:(NSDictionary *)placeDictionary;
+
 + (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary;
 
 /*!
@@ -34,6 +36,22 @@
 
 @property (nonatomic, weak) NSMutableArray *eventArray;
 @property (nonatomic, strong) PlaceMarker *placeMarker;
+
+/*!
+ Address, e.g., Level 5/48 Pirrama Rd, Pyrmont NSW, Australia.
+ */
+@property (nonatomic, retain, readonly) NSString *formatted_address;
+
+/*!
+ Phone number, e.g., (02) 9374 4000.
+ */
+@property (nonatomic, retain, readonly) NSString *formatted_phone_number;
+
+
+/*!
+ types[] is an array indicating the type of the address component.
+ */
+@property (nonatomic, retain, readonly) NSArray *types;
 
 /*!
  Contains the primary 'type' of this place (i.e. "establishment" or "gecode").
@@ -71,5 +89,9 @@
  */
 - (void)resolveToPlacemark:(GooglePlacesPlacemarkResultBlock)block;
 
+/*!
+ Query the place detail by issuing Google Place Details request.
+ */
+- (void)resolvePlaceIDToPlace:(PlaceDetailResultBlock)block;
 
 @end
