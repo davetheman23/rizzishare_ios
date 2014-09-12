@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7273683519C2A48200E7A15B /* mapView_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7273683419C2A48200E7A15B /* mapView_background.png */; };
+		7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */; };
+		7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */; };
 		7293C28F19A9019E0000F456 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C28E19A9019E0000F456 /* Accounts.framework */; };
 		7293C29119A901A70000F456 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29019A901A70000F456 /* AudioToolbox.framework */; };
 		7293C29319A901AF0000F456 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29219A901AF0000F456 /* CFNetwork.framework */; };
@@ -73,6 +76,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7273683419C2A48200E7A15B /* mapView_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapView_background.png; path = Assets/mapView_background.png; sourceTree = "<group>"; };
+		7273683619C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoricalNearbyEventTableViewController.h; path = ViewControllers/CategoricalNearbyEventTableViewController.h; sourceTree = "<group>"; };
+		7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoricalNearbyEventTableViewController.m; path = ViewControllers/CategoricalNearbyEventTableViewController.m; sourceTree = "<group>"; };
+		7273683A19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoricalNearbyEventTableViewCell.h; path = Views/CategoricalNearbyEventTableViewCell.h; sourceTree = "<group>"; };
+		7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoricalNearbyEventTableViewCell.m; path = Views/CategoricalNearbyEventTableViewCell.m; sourceTree = "<group>"; };
 		7293C28E19A9019E0000F456 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		7293C29019A901A70000F456 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7293C29219A901AF0000F456 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -192,6 +200,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7273683919C2B10900E7A15B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7273683A19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.h */,
+				7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		72D5AF0519AC32C0004AC9A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +218,8 @@
 				72D5AF0719AC3329004AC9A0 /* LoginViewController.m */,
 				72D5AF0919AC335B004AC9A0 /* SignUpViewController.h */,
 				72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */,
+				7273683619C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.h */,
+				7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -208,6 +227,7 @@
 		72D5AF0F19AC5102004AC9A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7273683419C2A48200E7A15B /* mapView_background.png */,
 				72E3C61E19BBE88600538233 /* fig_Coffee_true.png */,
 				72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */,
 				72D5AF1119AC5120004AC9A0 /* splashscreenIPHONE-01.png */,
@@ -283,11 +303,12 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
+				72A7232E19ABDB0E00293167 /* Main.storyboard */,
+				7273683919C2B10900E7A15B /* Views */,
 				72E3C62319BCC0DE00538233 /* Models */,
 				A7EED3B019BC0EA60087CF9D /* PlaceDetail */,
 				A7D1024C19BB4C1500F1DEB8 /* NearbySearch */,
 				A7EE997219B9F713001AC07E /* Autocomplete */,
-				72A7232E19ABDB0E00293167 /* Main.storyboard */,
 				72D5AF0519AC32C0004AC9A0 /* View Controllers */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
@@ -441,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
+				7273683519C2A48200E7A15B /* mapView_background.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
 				72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */,
 				72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */,
@@ -479,6 +501,8 @@
 				A772F67519A01F60003DA103 /* main.m in Sources */,
 				72E3C62619BCC10100538233 /* Event.m in Sources */,
 				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,
+				7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */,
+				7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
