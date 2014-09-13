@@ -33,7 +33,7 @@
     
     if (_nearbyEvents == nil) {
         _nearbyEvents = [NSMutableArray array];
-        [self nearbySearchForCoordinate:self.currentCoordinate];
+        //[self nearbySearchForCoordinate:self.currentCoordinate];
     }
     
     // Uncomment the following line to preserve selection between presentations.
@@ -50,7 +50,7 @@
         if (error) {
             NSLog(@"Could not fetch nearby events!");
         } else {
-            NSLog(@"Fetched %lu events nearby", events.count);
+            NSLog(@"Fetched %lu events nearbywa", events.count);
             _nearbyEvents = [events copy];
             [self classifyEvents:events];
             [self.tableView reloadData];

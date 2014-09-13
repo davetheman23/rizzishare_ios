@@ -295,8 +295,11 @@
     // Create a dispatch group variable
     dispatch_group_t group = dispatch_group_create();
     // Create a dispatch queue, the gloable queue, with high priority
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    //dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    /* dispatch_get_main_queue() and dispatch_get_global_queue() difference? */
     
     //dispatch_group_async(group, queue, ^ {
 //        [nearbySearchQuery fetchNearbyPlaces:^(NSArray *places, NSError *error) {
@@ -325,7 +328,7 @@
             if (error) {
                 NSLog(@"Could not fetch nearby events!");
             } else {
-                NSLog(@"Fetched %lu events nearby", events.count);
+                NSLog(@"Fetched %lu events nearbyyy", events.count);
                 longPressNearbyEvents = [events copy];
             }
         }];

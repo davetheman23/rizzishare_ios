@@ -111,17 +111,23 @@
     PFQuery *eventQuery = [PFQuery queryWithClassName:kEventClassKey];
     [eventQuery whereKey:kEventVenueKey matchesQuery:nearbyPlaceQuery];
     [eventQuery includeKey:kEventVenueKey];
-    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
-        if (!error) {
-            NSLog(@"successfully fetched %lu nearby events", events.count);
-            
-            if (self.eventResultBlock != nil) {
-                self.eventResultBlock(events, nil);
-            }
-            self.eventResultBlock = nil;
-            //[self cleanup];
-        }
-    }];
+//    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
+//        if (!error) {
+//            NSLog(@"successfully fetched %lu nearby events", events.count);
+//            
+//            if (self.eventResultBlock != nil) {
+//                self.eventResultBlock(events, nil);
+//            }
+//            self.eventResultBlock = nil;
+//            //[self cleanup];
+//        }
+//    }];
+    
+    NSArray *events = [eventQuery findObjects];
+    if (self.eventResultBlock != nil) {
+        self.eventResultBlock(events, nil);
+    }
+    self.eventResultBlock = nil;
     
     // Nearby places query
     
