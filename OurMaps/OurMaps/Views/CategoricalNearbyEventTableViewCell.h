@@ -17,6 +17,6 @@
 
 @property (nonatomic, strong) NSString *type;
 
-@property (nonatomic) NSInteger *eventCount;
+@property (nonatomic) NSInteger eventCount;
 
 @end

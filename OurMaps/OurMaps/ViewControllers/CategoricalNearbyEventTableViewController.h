@@ -14,12 +14,18 @@
 @interface CategoricalNearbyEventTableViewController : UITableViewController
 
 //@property (nonatomic, strong)
-@property (nonatomic) NSInteger Food;
-@property (nonatomic) NSInteger Movie;
-@property (nonatomic) NSInteger Nightlife;
-@property (nonatomic) NSInteger Shopping;
-@property (nonatomic) NSInteger Gym;
-@property (nonatomic) NSInteger Spiritual;
+//@property (nonatomic) NSInteger Food;
+//@property (nonatomic) NSInteger Movie;
+//@property (nonatomic) NSInteger Nightlife;
+//@property (nonatomic) NSInteger Shopping;
+//@property (nonatomic) NSInteger Gym;
+//@property (nonatomic) NSInteger Spiritual;
+@property (nonatomic, strong) NSDecimalNumber *Food;
+@property (nonatomic, strong) NSDecimalNumber *Movie;
+@property (nonatomic, strong) NSDecimalNumber *Nightlife;
+@property (nonatomic, strong) NSDecimalNumber *Shopping;
+@property (nonatomic, strong) NSDecimalNumber *Gym;
+@property (nonatomic, strong) NSDecimalNumber *Spiritual;
 
 @property (nonatomic) CLLocationCoordinate2D currentCoordinate;
 @property (nonatomic, strong) NearbySearchQuery *nearbySearchQuery;

@@ -21,19 +21,37 @@
 
 @synthesize nearbySearchQuery;
 
+@synthesize Food;
+@synthesize Movie;
+@synthesize Nightlife;
+@synthesize Shopping;
+@synthesize Gym;
+@synthesize Spiritual;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _eventTypeItems = @[@"Food", @"Movie", @"Nightlife", @"Shopping", @"Gym", @"Spiritual"];
-    self.currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
+    self.currentCoordinate = CLLocationCoordinate2DMake(40.712325, -74.009584);
     
     /***** Initialize NearbySearchQuery *****/
     nearbySearchQuery = [[NearbySearchQuery alloc] init];
     nearbySearchQuery.radius = 100.0;
     
+    /* Initialize type counters */
+    if (Spiritual == nil) {
+        Food = [NSDecimalNumber zero];
+        Movie = [NSDecimalNumber zero];
+        Nightlife = [NSDecimalNumber zero];
+        Shopping = [NSDecimalNumber zero];
+        Gym = [NSDecimalNumber zero];
+        Spiritual = [NSDecimalNumber zero];
+    }
+    
+    
     if (_nearbyEvents == nil) {
         _nearbyEvents = [NSMutableArray array];
-        //[self nearbySearchForCoordinate:self.currentCoordinate];
+        [self nearbySearchForCoordinate:self.currentCoordinate];
     }
     
     // Uncomment the following line to preserve selection between presentations.
@@ -46,16 +64,24 @@
 - (void)nearbySearchForCoordinate:(CLLocationCoordinate2D)coordinate {
     nearbySearchQuery.location = coordinate;
     
-    [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
-        if (error) {
-            NSLog(@"Could not fetch nearby events!");
-        } else {
-            NSLog(@"Fetched %lu events nearbywa", events.count);
-            _nearbyEvents = [events copy];
-            [self classifyEvents:events];
-            [self.tableView reloadData];
-        }
-    }];
+    /* Most importantly don't block the main thread, use main thread solely to handle UI */
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(queue, ^ {
+        [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
+            if (error) {
+                NSLog(@"Could not fetch nearby events!");
+            } else {
+                NSLog(@"Fetched %lu events nearbywa", events.count);
+                _nearbyEvents = [events copy];
+                [self classifyEvents:events];
+                dispatch_async(dispatch_get_main_queue(), ^ {
+                    [self.tableView reloadData];
+                });
+            }
+        }];
+    });
 }
 
 - (void)classifyEvents:(NSArray *)eventArray {
@@ -64,7 +90,8 @@
         if ([self respondsToSelector:NSSelectorFromString(typeKey)]) {
             NSDecimalNumber *value = [self valueForKey:typeKey];
             //NSDecimalNumber *one = @1;
-            [value decimalNumberByAdding:[NSDecimalNumber one]];
+            NSLog(@"typeKey: %@", typeKey);
+            value = [value decimalNumberByAdding:[NSDecimalNumber one]];
             //id value_new = (id)value;
             [self setValue:value forKey:typeKey];
         }
@@ -96,6 +123,7 @@
     
     // Configure the cell...
     cell.type = [self.eventTypeItems objectAtIndex:indexPath.row];
+    cell.eventCount = [[self valueForKey:cell.type] intValue];
     
     return cell;
 }

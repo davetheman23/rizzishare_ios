@@ -35,4 +35,11 @@
     }
 }
 
+- (void)setEventCount:(NSInteger)aCount {
+    eventCount = aCount;
+    if (eventCount) {
+        _eventLabel.text = [NSString stringWithFormat:@"%lu Events", eventCount];
+    }
+}
+
 @end
