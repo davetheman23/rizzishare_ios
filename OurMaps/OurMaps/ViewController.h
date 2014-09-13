@@ -31,6 +31,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+
 
 //@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 //@property (weak, nonatomic) IBOutlet UITableView *autoCompleteTableView;

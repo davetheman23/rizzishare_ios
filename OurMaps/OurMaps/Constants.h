@@ -26,3 +26,4 @@ extern NSString *const kPlaceIdKey;
 extern NSString *const kEventVenueKey;
 extern NSString *const kEventTimeKey;
 extern NSString *const kEventTitleKey;
+extern NSString *const kEventTypeKey;

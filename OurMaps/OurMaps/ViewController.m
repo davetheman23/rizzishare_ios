@@ -13,11 +13,15 @@
 #import "Place.h"
 #import <Parse/Parse.h>
 #import "EventQuery.h"
+#import "CategoricalNearbyEventTableViewController.h"
 
 @interface ViewController () {
 }
 //@property (strong, nonatomic) GMSMapView *mapView;
 //@property (strong, nonatomic) NSURLSession *markerSession;
+
+@property (nonatomic, weak) CategoricalNearbyEventTableViewController *containerViewController;
+
 @property (copy, nonatomic) NSSet *markers;
 @property (nonatomic) CLLocationCoordinate2D userCoordinate;
 @property (strong, nonatomic) PlaceMarker *userCreatedMarker;
@@ -28,6 +32,7 @@
 }
 
 @synthesize mapView;
+@synthesize containerView;
 
 - (void)viewDidLoad
 {
@@ -549,6 +554,38 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 //-(BOOL) prefersStatusBarHidden{
 //    return YES;
 //}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"embedContainer"]) {
+        self.containerViewController = segue.destinationViewController;
+    }
+}
+
+- (IBAction)hideContainerButtonPressed:(id)sender {
+    if (containerView.hidden == NO) {
+        [self hideContentController:self.containerViewController];
+    } else {
+        [self displayContentController:self.containerViewController];
+    }
+}
+
+- (void)hideContentController:(UIViewController *)contentVC
+{
+    [contentVC willMoveToParentViewController:nil];
+    [contentVC.view removeFromSuperview];
+    [contentVC removeFromParentViewController];
+    
+    containerView.hidden = YES;
+}
+
+- (void)displayContentController:(UIViewController *)contentVC
+{
+    //[self addChildViewController:contentVC];
+    //contentVC.view.frame = [self f]
+    containerView.hidden = NO;
+    [self performSegueWithIdentifier:@"embedContainer" sender:self];
+}
 
 - (void)didReceiveMemoryWarning
 {

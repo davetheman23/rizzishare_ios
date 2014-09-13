@@ -28,3 +28,4 @@ NSString *const kPlaceIdKey = @"place_id";
 NSString *const kEventVenueKey = @"venue";
 NSString *const kEventTimeKey = @"eventTime";
 NSString *const kEventTitleKey = @"title";
+NSString *const kEventTypeKey = @"type";

@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _eventLabel.text = @"0 Events";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,7 +31,7 @@
     type = aType;
     if (type) {
         _categoryLabel.text = type;
-        _eventLabel.text = @"0 Events";
+        //_eventLabel.text = @"0 Events";
     }
 }
 

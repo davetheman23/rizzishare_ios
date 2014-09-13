@@ -7,8 +7,11 @@
 //
 
 #import "CategoricalNearbyEventTableViewController.h"
+#import <Parse/Parse.h>
 
-@interface CategoricalNearbyEventTableViewController ()
+@interface CategoricalNearbyEventTableViewController () {
+    NSMutableArray *_nearbyEvents;
+}
 
 @property (nonatomic, strong) NSArray *eventTypeItems;
 
@@ -16,16 +19,56 @@
 
 @implementation CategoricalNearbyEventTableViewController
 
+@synthesize nearbySearchQuery;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _eventTypeItems = @[@"Food", @"Movie", @"Nightlife", @"Shopping", @"Gym", @"Spiritual"];
+    self.currentCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);
+    
+    /***** Initialize NearbySearchQuery *****/
+    nearbySearchQuery = [[NearbySearchQuery alloc] init];
+    nearbySearchQuery.radius = 100.0;
+    
+    if (_nearbyEvents == nil) {
+        _nearbyEvents = [NSMutableArray array];
+        [self nearbySearchForCoordinate:self.currentCoordinate];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)nearbySearchForCoordinate:(CLLocationCoordinate2D)coordinate {
+    nearbySearchQuery.location = coordinate;
+    
+    [nearbySearchQuery fetchNearbyPlacesForEvents:^(NSArray *events, NSError *error) {
+        if (error) {
+            NSLog(@"Could not fetch nearby events!");
+        } else {
+            NSLog(@"Fetched %lu events nearby", events.count);
+            _nearbyEvents = [events copy];
+            [self classifyEvents:events];
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)classifyEvents:(NSArray *)eventArray {
+    for (PFObject *event in eventArray) {
+        NSString *typeKey = event[kEventTypeKey];
+        if ([self respondsToSelector:NSSelectorFromString(typeKey)]) {
+            NSDecimalNumber *value = [self valueForKey:typeKey];
+            //NSDecimalNumber *one = @1;
+            [value decimalNumberByAdding:[NSDecimalNumber one]];
+            //id value_new = (id)value;
+            [self setValue:value forKey:typeKey];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
