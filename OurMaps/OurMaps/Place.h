@@ -23,6 +23,8 @@
 
 + (Place *)placeFromNearbySearchDictionary:(NSDictionary *)placeDictionary;
 
++ (Place *)placeFromParseObject:(PFObject *)anObject;
+
 /*!
  Contains the human-readable name for the returned result. For establishment results, this is usually the business name.
  */

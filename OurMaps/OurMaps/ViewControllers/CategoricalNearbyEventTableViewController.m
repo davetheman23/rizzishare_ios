@@ -40,12 +40,19 @@
     
     /* Initialize type counters */
     if (Spiritual == nil) {
-        Food = [NSDecimalNumber zero];
-        Movie = [NSDecimalNumber zero];
-        Nightlife = [NSDecimalNumber zero];
-        Shopping = [NSDecimalNumber zero];
-        Gym = [NSDecimalNumber zero];
-        Spiritual = [NSDecimalNumber zero];
+//        Food = [NSDecimalNumber zero];
+//        Movie = [NSDecimalNumber zero];
+//        Nightlife = [NSDecimalNumber zero];
+//        Shopping = [NSDecimalNumber zero];
+//        Gym = [NSDecimalNumber zero];
+        //Spiritual = [NSDecimalNumber zero];
+        
+        Food = [NSMutableArray array];
+        Movie = [NSMutableArray array];
+        Nightlife = [NSMutableArray array];
+        Shopping = [NSMutableArray array];
+        Gym = [NSMutableArray array];
+        Spiritual = [NSMutableArray array];
     }
     
     
@@ -88,12 +95,16 @@
     for (PFObject *event in eventArray) {
         NSString *typeKey = event[kEventTypeKey];
         if ([self respondsToSelector:NSSelectorFromString(typeKey)]) {
-            NSDecimalNumber *value = [self valueForKey:typeKey];
+            //NSDecimalNumber *value = [self valueForKey:typeKey];
             //NSDecimalNumber *one = @1;
             NSLog(@"typeKey: %@", typeKey);
-            value = [value decimalNumberByAdding:[NSDecimalNumber one]];
+            
+            id tempArray = [self valueForKey:typeKey];
+            [tempArray addObject:event];
+            //value = [value decimalNumberByAdding:[NSDecimalNumber one]];
             //id value_new = (id)value;
-            [self setValue:value forKey:typeKey];
+            //[self setValue:value forKey:typeKey];
+            [self setValue:tempArray forKeyPath:typeKey];
         }
     }
 }
@@ -101,6 +112,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view delegate 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //[self.parentViewController ]
+    
+    NSArray *events = [self valueForKey:[self.eventTypeItems objectAtIndex:indexPath.row]];
+    NSLog(@"events count == %lu", events.count);
+    [self.delegate didSelectACategory:events];
 }
 
 #pragma mark - Table view data source
@@ -123,8 +144,8 @@
     
     // Configure the cell...
     cell.type = [self.eventTypeItems objectAtIndex:indexPath.row];
-    cell.eventCount = [[self valueForKey:cell.type] intValue];
-    
+    //cell.eventCount = [[self valueForKey:cell.type] intValue];
+    cell.eventCount = [[self valueForKey:cell.type] count];
     return cell;
 }
 
@@ -163,9 +184,11 @@
 }
 */
 
-/*
+
+
 #pragma mark - Navigation
 
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

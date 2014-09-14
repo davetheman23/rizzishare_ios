@@ -15,12 +15,13 @@
 #import "EventQuery.h"
 #import "CategoricalNearbyEventTableViewController.h"
 
-@interface ViewController () {
+@interface ViewController () <CategoricalTableVCDelegate> {
+    //CategoricalNearbyEventTableViewController *_containerViewController;
 }
 //@property (strong, nonatomic) GMSMapView *mapView;
 //@property (strong, nonatomic) NSURLSession *markerSession;
 
-@property (nonatomic, weak) CategoricalNearbyEventTableViewController *containerViewController;
+@property (nonatomic, weak) CategoricalNearbyEventTableViewController *_containerViewController;
 
 @property (copy, nonatomic) NSSet *markers;
 @property (nonatomic) CLLocationCoordinate2D userCoordinate;
@@ -33,11 +34,16 @@
 
 @synthesize mapView;
 @synthesize containerView;
+@synthesize _containerViewController;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.userCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);  // Initialize to the location of the New York City.
+    
+    //_containerViewController = [[CategoricalNearbyEventTableViewController alloc] init];
+    _containerViewController.delegate = self;
+    
     
 //    locationManager = [[CLLocationManager alloc] init];
 //    locationManager.delegate = self;
@@ -352,6 +358,49 @@
     //dispatch_release(group);
 }
 
+- (void)createMarkersWithEvents:(NSArray *)events {
+    self.markers = nil;
+    NSMutableSet *mutableMarkerSet = [[NSMutableSet alloc] init];
+    
+    for (PFObject *event in events) {
+        PFObject *parsePlace = event[kEventVenueKey];
+        Place *place = [Place placeFromParseObject:parsePlace];
+        
+        PlaceMarker *marker = [[PlaceMarker alloc] init];
+        
+        marker.place_id = place.place_id;
+        marker.position = place.coordinate;
+        
+        //        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
+        //        [query whereKey:kPlaceIdKey equalTo:place.place_id];
+        //        PFObject *parsePlace = [query getFirstObject];
+        
+        marker.title = place.name;
+        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
+        marker.appearAnimation = kGMSMarkerAnimationPop;
+        
+        //NSArray *eventArray = [[NSArray alloc] init];
+        
+        NSInteger eventCount = 0;
+        
+        //        if (parsePlace) {
+        //             eventCount = [eventQuery queryEventForPlace:parsePlace];
+        //        }
+        
+        if (eventCount>0) {
+            marker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
+        } else {
+            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+        }
+        
+        marker.map = nil;
+        
+        place.placeMarker = marker;
+        
+        [mutableMarkerSet addObject:marker];
+    }
+    self.markers = [mutableMarkerSet copy];
+}
 
 - (void)createMarkersWithPlaces {
     
@@ -561,15 +610,17 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"embedContainer"]) {
-        self.containerViewController = segue.destinationViewController;
+        _containerViewController = segue.destinationViewController;
+        _containerViewController.delegate = self;
+        //containerViewController.
     }
 }
 
 - (IBAction)hideContainerButtonPressed:(id)sender {
     if (containerView.hidden == NO) {
-        [self hideContentController:self.containerViewController];
+        [self hideContentController:_containerViewController];
     } else {
-        [self displayContentController:self.containerViewController];
+        [self displayContentController:_containerViewController];
     }
 }
 
@@ -588,6 +639,16 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
     //contentVC.view.frame = [self f]
     containerView.hidden = NO;
     [self performSegueWithIdentifier:@"embedContainer" sender:self];
+}
+
+#pragma mark - Categorical VC delegate methods
+
+- (void)didSelectACategory:(NSArray *)events {
+    if (containerView.hidden == NO) {
+        [self hideContentController:_containerViewController];
+    }
+    [self createMarkersWithEvents:events];
+    [self drawPlaceMarkers];
 }
 
 - (void)didReceiveMemoryWarning

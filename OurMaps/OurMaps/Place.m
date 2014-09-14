@@ -32,6 +32,23 @@
 
 @synthesize name, coordinate, formatted_address, formatted_phone_number, place_id, types, type, price_level, rating, open_now;
 
++ (Place *)placeFromParseObject:(PFObject *)anObject {
+    
+    Place *aPlace = [[Place alloc] init];
+    
+    aPlace.name = anObject[kPlaceNameKey];
+    aPlace.place_id = anObject[kPlaceIdKey];
+    aPlace.rating = [anObject[kPlaceOverallRatingKey] floatValue];
+    PFGeoPoint *geoPoint = anObject[kPlaceGeoLocationKey];
+    //aPlace.price_level = [
+    
+    double lat = geoPoint.latitude;
+    double lng = geoPoint.longitude;
+    aPlace.coordinate = CLLocationCoordinate2DMake(lat, lng);
+    
+    
+    return aPlace;
+}
 
 + (Place *)placeFromAutocompleteDictionary:(NSDictionary *)placeDictionary {
     Place *place = [[self alloc] init];

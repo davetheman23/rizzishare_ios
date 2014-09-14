@@ -33,6 +33,12 @@
 
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 
+@property (nonatomic, strong) NSMutableArray *Food;
+@property (nonatomic, strong) NSMutableArray *Movie;
+@property (nonatomic, strong) NSMutableArray *Nightlife;
+@property (nonatomic, strong) NSMutableArray *Shopping;
+@property (nonatomic, strong) NSMutableArray *Gym;
+@property (nonatomic, strong) NSMutableArray *Spiritual;
 
 //@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 //@property (weak, nonatomic) IBOutlet UITableView *autoCompleteTableView;

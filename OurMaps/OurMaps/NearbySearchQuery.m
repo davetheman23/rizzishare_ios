@@ -123,7 +123,10 @@
 //        }
 //    }];
     
-    NSArray *events = [eventQuery findObjects];
+    NSError *localError = nil;
+    
+    NSArray *events = [eventQuery findObjects:&localError];
+    NSLog(@"localError: %@", localError);
     if (self.eventResultBlock != nil) {
         self.eventResultBlock(events, nil);
     }
