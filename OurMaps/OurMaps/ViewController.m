@@ -43,6 +43,9 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
     [super viewDidLoad];
     self.userCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);  // Initialize to the location of the New York City.
     
+    /* Hide navigation bar */
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     //_containerViewController = [[CategoricalNearbyEventTableViewController alloc] init];
     _containerViewController.delegate = self;
     
