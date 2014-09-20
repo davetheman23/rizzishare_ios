@@ -8,6 +8,7 @@
 
 static NSString * const kLoginViewControllerID = @"LoginVC";
 static NSString * const kMainViewControllerID = @"MainVC";
+static NSString * const kNavigationControllerID = @"NavController";
 
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
@@ -102,7 +103,7 @@ static NSString * const kMainViewControllerID = @"MainVC";
 - (void)presentMainViewController {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //UIStoryboard *mainStoryboard = [[self.window rootViewController] storyboard];
-    ViewController *mainVC = [mainStoryboard instantiateViewControllerWithIdentifier:kMainViewControllerID];
+    ViewController *mainVC = [mainStoryboard instantiateViewControllerWithIdentifier:kNavigationControllerID];
     self.window.rootViewController = mainVC;
     [self.window makeKeyAndVisible];
     //[self.window.rootViewController presentViewController:mainVC animated:YES completion:NULL];

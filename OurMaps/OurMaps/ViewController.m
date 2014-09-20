@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
+static NSString *const showEventsSegueID = @"showEventsAtAPlace";
+
 #import "ViewController.h"
 #import "PlaceMarker.h"
 #import "AutocompleteQuery.h"
@@ -488,14 +490,15 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
 
 - (void)mapView:(GMSMapView *)mapView
 didTapInfoWindowOfMarker:(GMSMarker *)marker{
-    NSString *message = [NSString stringWithFormat:@"You tapped the info window for the %@ marker", marker.title];
-    UIAlertView *windowTapped = [[UIAlertView alloc] initWithTitle:@"info Window Tapped!"
-                                                           message:message
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"Alright!"
-                                                 otherButtonTitles:nil];
+    //NSString *message = [NSString stringWithFormat:@"You tapped the info window for the %@ marker", marker.title];
+//    UIAlertView *windowTapped = [[UIAlertView alloc] initWithTitle:@"info Window Tapped!"
+//                                                           message:message
+//                                                          delegate:nil
+//                                                 cancelButtonTitle:@"Alright!"
+//                                                 otherButtonTitles:nil];
     
-    [windowTapped show];
+    //[windowTapped show];
+    [self performSegueWithIdentifier:showEventsSegueID sender:self];
 }
 
 
