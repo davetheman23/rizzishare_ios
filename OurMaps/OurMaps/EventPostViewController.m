@@ -7,11 +7,11 @@
 //
 
 
-#import "DateAndTimePickerViewController.h"
+#import "EventPostViewController.h"
 #define currentMonth [currentMonthString integerValue]
 
 
-@interface DateAndTimePickerViewController ()<UITextFieldDelegate>
+@interface EventPostViewController ()<UITextFieldDelegate>
 
 #pragma mark - IBActions
 
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation DateAndTimePickerViewController
+@implementation EventPostViewController
 {
     
     NSMutableArray *yearArray;

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DateAndTimePickerViewController : UIViewController
+@interface EventPostViewController : UIViewController
 
 @end

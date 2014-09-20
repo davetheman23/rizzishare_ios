@@ -36,7 +36,7 @@
 		A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */; };
 		A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */; };
 		A735E9F519AA371100500BF5 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F419AA371100500BF5 /* Place.m */; };
-		A75FA53319CDD2620034368B /* DateAndTimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75FA53219CDD2620034368B /* DateAndTimePickerViewController.m */; };
+		A75FA53319CDD2620034368B /* EventPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75FA53219CDD2620034368B /* EventPostViewController.m */; };
 		A772F66919A01F60003DA103 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66819A01F60003DA103 /* Foundation.framework */; };
 		A772F66B19A01F60003DA103 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66A19A01F60003DA103 /* CoreGraphics.framework */; };
 		A772F66D19A01F60003DA103 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F66C19A01F60003DA103 /* UIKit.framework */; };
@@ -118,8 +118,8 @@
 		A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailQuery.m; sourceTree = "<group>"; };
 		A735E9F319AA371100500BF5 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		A735E9F419AA371100500BF5 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		A75FA53119CDD2620034368B /* DateAndTimePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateAndTimePickerViewController.h; sourceTree = "<group>"; };
-		A75FA53219CDD2620034368B /* DateAndTimePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateAndTimePickerViewController.m; sourceTree = "<group>"; };
+		A75FA53119CDD2620034368B /* EventPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPostViewController.h; sourceTree = "<group>"; };
+		A75FA53219CDD2620034368B /* EventPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPostViewController.m; sourceTree = "<group>"; };
 		A772F66519A01F60003DA103 /* OurMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OurMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A772F66819A01F60003DA103 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A772F66A19A01F60003DA103 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -215,6 +215,8 @@
 		72D5AF0519AC32C0004AC9A0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A75FA53119CDD2620034368B /* EventPostViewController.h */,
+				A75FA53219CDD2620034368B /* EventPostViewController.m */,
 				72D5AF0C19AC410A004AC9A0 /* WelcomeViewController.h */,
 				72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */,
 				72D5AF0619AC3329004AC9A0 /* LoginViewController.h */,
@@ -326,8 +328,6 @@
 				A772F67819A01F60003DA103 /* AppDelegate.m */,
 				A735E9EA19A98B2900500BF5 /* Utilities.h */,
 				A735E9EB19A98B2900500BF5 /* Utilities.m */,
-				A75FA53119CDD2620034368B /* DateAndTimePickerViewController.h */,
-				A75FA53219CDD2620034368B /* DateAndTimePickerViewController.m */,
 			);
 			path = OurMaps;
 			sourceTree = "<group>";
@@ -503,7 +503,7 @@
 				A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */,
 				A735E9F519AA371100500BF5 /* Place.m in Sources */,
 				A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */,
-				A75FA53319CDD2620034368B /* DateAndTimePickerViewController.m in Sources */,
+				A75FA53319CDD2620034368B /* EventPostViewController.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
 				72E3C62619BCC10100538233 /* Event.m in Sources */,
 				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,

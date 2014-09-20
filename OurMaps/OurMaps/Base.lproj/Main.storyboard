@@ -25,12 +25,12 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="4Xp-v9-BEx" id="pdA-Vv-Heb"/>
-                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="Login_success" id="FQ5-sZ-u9p"/>
+                        <segue destination="cAr-gU-WTZ" kind="modal" identifier="Login_success" id="qV1-D4-oYM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xu7-YR-FAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-418" y="-777"/>
+            <point key="canvasLocation" x="-810" y="-777"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="Rqz-iy-mRs">
@@ -91,6 +91,41 @@
             </objects>
             <point key="canvasLocation" x="186" y="55"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="zjs-Ed-5R5">
+            <objects>
+                <tableViewController id="oyD-im-vgB" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3ow-Pz-vXU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Dyu-rh-Akr">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dyu-rh-Akr" id="4yk-OA-XTX">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oyD-im-vgB" id="sML-n7-CQO"/>
+                            <outlet property="delegate" destination="oyD-im-vgB" id="avS-va-E7G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="hP3-3U-cjY">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="N9J-ib-ij9">
+                            <connections>
+                                <segue destination="FTZ-Xd-NBZ" kind="push" identifier="showEventPost" id="nhR-cK-SB4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0tP-9m-lmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1278" y="-494"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -138,11 +173,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3YW-cz-6bO"/>
                     <connections>
                         <outlet property="containerView" destination="QrK-ph-ytY" id="vwP-G4-SCF"/>
                         <outlet property="mapView" destination="SAr-be-LMD" id="TaD-gg-923"/>
                         <outlet property="searchDisplayController" destination="Ejh-FG-v3S" id="jsj-Xq-mIr"/>
                         <outlet property="usernameLabel" destination="fsU-4T-RP4" id="8pg-tn-AsR"/>
+                        <segue destination="oyD-im-vgB" kind="push" identifier="showEventsAtAPlace" id="mYb-sj-iiK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -156,7 +193,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="256" y="-777"/>
+            <point key="canvasLocation" x="438" y="-777"/>
         </scene>
         <!--Categorical Nearby Event Table View Controller-->
         <scene sceneID="JF4-k4-yMJ">
@@ -208,69 +245,88 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekf-G5-Yao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-869"/>
+            <point key="canvasLocation" x="1278" y="-953"/>
         </scene>
-        <!--Date And Time Picker View Controller-->
-        <scene sceneID="B0g-83-Azj">
+        <!--Navigation Controller-->
+        <scene sceneID="khW-H4-4sF">
             <objects>
-                <viewController id="3ec-ZH-P8d" customClass="DateAndTimePickerViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="cAr-gU-WTZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="giy-ei-Xn4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UvS-kt-T5k">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="eN2-Nb-RCh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdA-Jo-6AO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-170" y="-777"/>
+        </scene>
+        <!--Event Post View Controller-->
+        <scene sceneID="ayE-h6-bo8">
+            <objects>
+                <viewController id="FTZ-Xd-NBZ" customClass="EventPostViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jNZ-mO-TlW"/>
-                        <viewControllerLayoutGuide type="bottom" id="7ee-TI-F1G"/>
+                        <viewControllerLayoutGuide type="top" id="jAx-Kq-qbL"/>
+                        <viewControllerLayoutGuide type="bottom" id="yky-sO-bdq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rij-bL-x5K">
+                    <view key="view" contentMode="scaleToFill" id="0g6-Ga-TAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1H-S5-azG">
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DPf-yZ-hty">
                                 <rect key="frame" x="0.0" y="406" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="3ec-ZH-P8d" id="23L-L0-JpF"/>
-                                    <outlet property="delegate" destination="3ec-ZH-P8d" id="LKv-6m-IZH"/>
+                                    <outlet property="dataSource" destination="FTZ-Xd-NBZ" id="Nxf-Ni-KEZ"/>
+                                    <outlet property="delegate" destination="FTZ-Xd-NBZ" id="FqG-32-GVU"/>
                                 </connections>
                             </pickerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Y0-x2-0lj">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h11-um-Uit">
                                 <rect key="frame" x="0.0" y="362" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Cancel" id="tfh-WQ-Kpv">
+                                    <barButtonItem title="Cancel" id="RcY-Nc-Sut">
                                         <connections>
-                                            <action selector="actionCancel:" destination="3ec-ZH-P8d" id="Uu5-3m-5cg"/>
+                                            <action selector="actionCancel:" destination="FTZ-Xd-NBZ" id="oMP-yP-jsd"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="HGv-AZ-LGl"/>
-                                    <barButtonItem title="Done" id="PiI-uB-M6C">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qBk-TC-3hO"/>
+                                    <barButtonItem title="Done" id="eQA-yo-EH4">
                                         <connections>
-                                            <action selector="actionDone:" destination="3ec-ZH-P8d" id="6b6-cC-Pql"/>
+                                            <action selector="actionDone:" destination="FTZ-Xd-NBZ" id="wub-22-ggy"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMs-JD-6Uq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="de0-Zm-NIf">
                                 <rect key="frame" x="33" y="202" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
-                                    <outlet property="delegate" destination="3ec-ZH-P8d" id="BXD-O6-1GF"/>
+                                    <outlet property="delegate" destination="FTZ-Xd-NBZ" id="Sof-Tm-Se6"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cxE-ih-JyJ"/>
+                    <navigationItem key="navigationItem" id="oVT-Dk-eJn"/>
                     <connections>
-                        <outlet property="customPicker" destination="D1H-S5-azG" id="AP5-zw-JSm"/>
-                        <outlet property="textFieldEnterDate" destination="MMs-JD-6Uq" id="eOt-4U-a7Z"/>
-                        <outlet property="toolbarCancelDone" destination="5Y0-x2-0lj" id="Nqj-RF-Jnl"/>
+                        <outlet property="customPicker" destination="DPf-yZ-hty" id="IxT-dC-an5"/>
+                        <outlet property="textFieldEnterDate" destination="de0-Zm-NIf" id="ZWF-O9-EqV"/>
+                        <outlet property="toolbarCancelDone" destination="h11-um-Uit" id="cst-mA-M4f"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gae-H6-9vJ" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gor-99-CVG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-413"/>
+            <point key="canvasLocation" x="1822" y="-494"/>
         </scene>
     </scenes>
     <resources>

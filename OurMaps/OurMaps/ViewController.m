@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
+static NSString *const showEventsSegueID = @"showEventsAtAPlace";
+
 #import "ViewController.h"
 #import "PlaceMarker.h"
 #import "AutocompleteQuery.h"
@@ -494,12 +496,9 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 //                                                          delegate:nil
 //                                                 cancelButtonTitle:@"Alright!"
 //                                                 otherButtonTitles:nil];
-//    
-//    [windowTapped show];
-//    
     
-    [self performSegueWithIdentifier:@"showEventPost" sender:self];
-    
+    //[windowTapped show];
+    [self performSegueWithIdentifier:showEventsSegueID sender:self];
 }
 
 
