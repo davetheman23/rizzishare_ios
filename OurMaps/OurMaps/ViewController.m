@@ -493,7 +493,7 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate {
 
 - (void)mapView:(GMSMapView *)mapView
 didTapInfoWindowOfMarker:(GMSMarker *)marker{
-    //NSString *message = [NSString stringWithFormat:@"You tapped the info window for the %@ marker", marker.title];
+//    NSString *message = [NSString stringWithFormat:@"You tapped the info window for the %@ marker", marker.title];
 //    UIAlertView *windowTapped = [[UIAlertView alloc] initWithTitle:@"info Window Tapped!"
 //                                                           message:message
 //                                                          delegate:nil
