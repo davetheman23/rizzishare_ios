@@ -16,6 +16,7 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
 #import <Parse/Parse.h>
 #import "EventQuery.h"
 #import "CategoricalNearbyEventTableViewController.h"
+#import "EventListTableViewController.h"
 
 @interface ViewController () <CategoricalTableVCDelegate> {
     //CategoricalNearbyEventTableViewController *_containerViewController;
@@ -42,6 +43,9 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
 {
     [super viewDidLoad];
     self.userCoordinate = CLLocationCoordinate2DMake(40.714353, -74.005973);  // Initialize to the location of the New York City.
+    
+    /* Hide navigation bar */
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     //_containerViewController = [[CategoricalNearbyEventTableViewController alloc] init];
     _containerViewController.delegate = self;
@@ -378,10 +382,12 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
         //        PFObject *parsePlace = [query getFirstObject];
         
         marker.title = place.name;
-        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
+        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %ld",place.rating, place.price_level];
         marker.appearAnimation = kGMSMarkerAnimationPop;
         
         //NSArray *eventArray = [[NSArray alloc] init];
+        
+        [place.eventArray addObject:event];
         
         NSInteger eventCount = 0;
         
@@ -398,6 +404,8 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
         marker.map = nil;
         
         place.placeMarker = marker;
+        
+        marker.place = place;
         
         [mutableMarkerSet addObject:marker];
     }
@@ -422,7 +430,7 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
 //        PFObject *parsePlace = [query getFirstObject];
         
         marker.title = place.name;
-        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %d",place.rating, place.price_level];
+        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %ld",place.rating, place.price_level];
         marker.appearAnimation = kGMSMarkerAnimationPop;
         
         //NSArray *eventArray = [[NSArray alloc] init];
@@ -498,7 +506,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
 //                                                 otherButtonTitles:nil];
     
     //[windowTapped show];
-    [self performSegueWithIdentifier:showEventsSegueID sender:self];
+    [self performSegueWithIdentifier:showEventsSegueID sender:marker];
 }
 
 
@@ -617,9 +625,16 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
         _containerViewController.delegate = self;
         //containerViewController.
     }
+    else if ([segue.identifier isEqualToString:showEventsSegueID]) {
+        EventListTableViewController *destVC = segue.destinationViewController;
+        //PlaceMarker *marker = (PlaceMarker *)sender;
+        destVC.place = [sender valueForKey:@"place"];
+        NSLog(@"test event count == %lu", destVC.place.eventArray.count);
+    }
 }
 
 - (IBAction)hideContainerButtonPressed:(id)sender {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (containerView.hidden == NO) {
         [self hideContentController:_containerViewController];
     } else {
