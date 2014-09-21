@@ -32,6 +32,8 @@
 
 @synthesize name, coordinate, formatted_address, formatted_phone_number, place_id, types, type, price_level, rating, open_now;
 
+
+
 + (Place *)placeFromParseObject:(PFObject *)anObject {
     
     Place *aPlace = [[Place alloc] init];
@@ -46,6 +48,7 @@
     double lng = geoPoint.longitude;
     aPlace.coordinate = CLLocationCoordinate2DMake(lat, lng);
     
+    aPlace.eventArray = [NSMutableArray array];
     
     return aPlace;
 }

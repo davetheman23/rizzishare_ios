@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		723E3ACE19CDED4E00F2B3DE /* EventListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 723E3ACD19CDED4E00F2B3DE /* EventListTableViewController.m */; };
+		723E3AD119CE2E0C00F2B3DE /* EventListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */; };
 		7273683519C2A48200E7A15B /* mapView_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7273683419C2A48200E7A15B /* mapView_background.png */; };
 		7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */; };
 		7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */; };
@@ -77,6 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		723E3ACC19CDED4E00F2B3DE /* EventListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListTableViewController.h; path = ViewControllers/EventListTableViewController.h; sourceTree = "<group>"; };
+		723E3ACD19CDED4E00F2B3DE /* EventListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventListTableViewController.m; path = ViewControllers/EventListTableViewController.m; sourceTree = "<group>"; };
+		723E3ACF19CE2E0C00F2B3DE /* EventListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListTableViewCell.h; path = Views/EventListTableViewCell.h; sourceTree = "<group>"; };
+		723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventListTableViewCell.m; path = Views/EventListTableViewCell.m; sourceTree = "<group>"; };
 		7273683419C2A48200E7A15B /* mapView_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapView_background.png; path = Assets/mapView_background.png; sourceTree = "<group>"; };
 		7273683619C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoricalNearbyEventTableViewController.h; path = ViewControllers/CategoricalNearbyEventTableViewController.h; sourceTree = "<group>"; };
 		7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoricalNearbyEventTableViewController.m; path = ViewControllers/CategoricalNearbyEventTableViewController.m; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 			children = (
 				7273683A19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.h */,
 				7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */,
+				723E3ACF19CE2E0C00F2B3DE /* EventListTableViewCell.h */,
+				723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -225,6 +233,8 @@
 				72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */,
 				7273683619C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.h */,
 				7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */,
+				723E3ACC19CDED4E00F2B3DE /* EventListTableViewController.h */,
+				723E3ACD19CDED4E00F2B3DE /* EventListTableViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -496,6 +506,7 @@
 				72E3C62219BBEA6700538233 /* EventQuery.m in Sources */,
 				A772F67F19A01F60003DA103 /* ViewController.m in Sources */,
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
+				723E3ACE19CDED4E00F2B3DE /* EventListTableViewController.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */,
 				72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */,
 				A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */,
@@ -507,6 +518,7 @@
 				A772F67519A01F60003DA103 /* main.m in Sources */,
 				72E3C62619BCC10100538233 /* Event.m in Sources */,
 				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,
+				723E3AD119CE2E0C00F2B3DE /* EventListTableViewCell.m in Sources */,
 				7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */,
 				7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,

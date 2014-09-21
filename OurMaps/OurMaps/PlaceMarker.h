@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <GoogleMaps/GoogleMaps.h>
+//#import "Place.h"
+@class Place;
 
 @interface PlaceMarker : GMSMarker
 
 @property (nonatomic, copy) NSString *place_id;
+
+@property (nonatomic, strong) Place *place;
 
 @end
