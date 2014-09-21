@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BWLongTextViewController : UIViewController
+@interface LongTextViewController : UIViewController
 
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) NSString *text;
