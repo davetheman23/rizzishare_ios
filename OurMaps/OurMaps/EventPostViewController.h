@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventPostViewController : UIViewController
+@interface EventPostViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *EventPostTableView;
 
 @end

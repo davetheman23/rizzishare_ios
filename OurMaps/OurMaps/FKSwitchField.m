@@ -1,0 +1,49 @@
+//
+//  FKSwitchField.m
+//  OurMaps
+//
+//  Created by Jiangchuan Huang on 9/21/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
+//
+
+#import "FKSwitchField.h"
+
+#import "FKMacrosDefinitions.h"
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+@implementation FKSwitchField
+
+@synthesize switchControl = _switchControl;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _switchControl = [[UISwitch alloc] init];
+        self.accessoryView = self.switchControl;
+    }
+    return self;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    [self.switchControl removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    
+    self.switchControl.on = NO;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
++ (UITableViewCellStyle)cellStyle {
+    return UITableViewCellStyleValue1;
+}
+
+
+@end
