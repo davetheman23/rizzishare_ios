@@ -66,8 +66,8 @@
 		A7248C7C19CF29C100CAB393 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C7B19CF29C100CAB393 /* ActionSheetDistancePicker.m */; };
 		A7248C7F19CF2A0600CAB393 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C7E19CF2A0600CAB393 /* ActionSheetStringPicker.m */; };
 		A7248C8219CF2A3C00CAB393 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C8119CF2A3C00CAB393 /* DistancePickerView.m */; };
-		A7248C8619CF2AC400CAB393 /* BWLongTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C8519CF2AC400CAB393 /* BWLongTextViewController.m */; };
-		A7248C8A19CF2B1C00CAB393 /* BWSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C8919CF2B1C00CAB393 /* BWSelectViewController.m */; };
+		A7248C8619CF2AC400CAB393 /* LongTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C8519CF2AC400CAB393 /* LongTextViewController.m */; };
+		A7248C8A19CF2B1C00CAB393 /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7248C8919CF2B1C00CAB393 /* SelectViewController.m */; };
 		A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EB19A98B2900500BF5 /* Utilities.m */; };
 		A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */; };
 		A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */; };
@@ -100,6 +100,10 @@
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
 		A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */; };
+		A7F9974E19CF341F0002836C /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9974D19CF341F0002836C /* Comment.m */; };
+		A7F9975119CF34610002836C /* FormTableViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975019CF34610002836C /* FormTableViewExampleController.m */; };
+		A7F9975419CF349F0002836C /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975319CF349F0002836C /* Genre.m */; };
+		A7F9975719CF34E10002836C /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975619CF34E10002836C /* Movie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,10 +227,10 @@
 		A7248C7E19CF2A0600CAB393 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		A7248C8019CF2A3C00CAB393 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		A7248C8119CF2A3C00CAB393 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
-		A7248C8419CF2AC400CAB393 /* BWLongTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWLongTextViewController.h; sourceTree = "<group>"; };
-		A7248C8519CF2AC400CAB393 /* BWLongTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWLongTextViewController.m; sourceTree = "<group>"; };
-		A7248C8819CF2B1C00CAB393 /* BWSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BWSelectViewController.h; sourceTree = "<group>"; };
-		A7248C8919CF2B1C00CAB393 /* BWSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWSelectViewController.m; sourceTree = "<group>"; };
+		A7248C8419CF2AC400CAB393 /* LongTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongTextViewController.h; sourceTree = "<group>"; };
+		A7248C8519CF2AC400CAB393 /* LongTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LongTextViewController.m; sourceTree = "<group>"; };
+		A7248C8819CF2B1C00CAB393 /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
+		A7248C8919CF2B1C00CAB393 /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 		A735E9EA19A98B2900500BF5 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		A735E9EB19A98B2900500BF5 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A735E9ED19A98D3B00500BF5 /* AutocompleteQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutocompleteQuery.h; sourceTree = "<group>"; };
@@ -271,6 +275,14 @@
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbySearchQuery.h; sourceTree = "<group>"; };
 		A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbySearchQuery.m; sourceTree = "<group>"; };
+		A7F9974C19CF341F0002836C /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		A7F9974D19CF341F0002836C /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		A7F9974F19CF34610002836C /* FormTableViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewExampleController.h; sourceTree = "<group>"; };
+		A7F9975019CF34610002836C /* FormTableViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewExampleController.m; sourceTree = "<group>"; };
+		A7F9975219CF349F0002836C /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Genre.h; sourceTree = "<group>"; };
+		A7F9975319CF349F0002836C /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
+		A7F9975519CF34E10002836C /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		A7F9975619CF34E10002836C /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,8 +482,8 @@
 		A7248C8319CF2A7500CAB393 /* LongTextViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A7248C8419CF2AC400CAB393 /* BWLongTextViewController.h */,
-				A7248C8519CF2AC400CAB393 /* BWLongTextViewController.m */,
+				A7248C8419CF2AC400CAB393 /* LongTextViewController.h */,
+				A7248C8519CF2AC400CAB393 /* LongTextViewController.m */,
 			);
 			name = LongTextViewController;
 			sourceTree = "<group>";
@@ -479,8 +491,8 @@
 		A7248C8719CF2AE900CAB393 /* SelectViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A7248C8819CF2B1C00CAB393 /* BWSelectViewController.h */,
-				A7248C8919CF2B1C00CAB393 /* BWSelectViewController.m */,
+				A7248C8819CF2B1C00CAB393 /* SelectViewController.h */,
+				A7248C8919CF2B1C00CAB393 /* SelectViewController.m */,
 			);
 			name = SelectViewController;
 			sourceTree = "<group>";
@@ -542,6 +554,7 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
+				A7F9974B19CF33FD0002836C /* FormKitDemo */,
 				A7248C8719CF2AE900CAB393 /* SelectViewController */,
 				A7248C8319CF2A7500CAB393 /* LongTextViewController */,
 				A7248C6D19CF287400CAB393 /* ActionSheetPicker */,
@@ -626,6 +639,21 @@
 				A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */,
 			);
 			name = PlaceDetail;
+			sourceTree = "<group>";
+		};
+		A7F9974B19CF33FD0002836C /* FormKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				A7F9974C19CF341F0002836C /* Comment.h */,
+				A7F9974D19CF341F0002836C /* Comment.m */,
+				A7F9974F19CF34610002836C /* FormTableViewExampleController.h */,
+				A7F9975019CF34610002836C /* FormTableViewExampleController.m */,
+				A7F9975219CF349F0002836C /* Genre.h */,
+				A7F9975319CF349F0002836C /* Genre.m */,
+				A7F9975519CF34E10002836C /* Movie.h */,
+				A7F9975619CF34E10002836C /* Movie.m */,
+			);
+			name = FormKitDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -732,7 +760,9 @@
 			files = (
 				A7248C0B19CF1B8E00CAB393 /* UITableViewCell+FormKit.m in Sources */,
 				A7248C8219CF2A3C00CAB393 /* DistancePickerView.m in Sources */,
+				A7F9975719CF34E10002836C /* Movie.m in Sources */,
 				A7248C6919CF23CB00CAB393 /* FKSeparatorField.m in Sources */,
+				A7F9974E19CF341F0002836C /* Comment.m in Sources */,
 				A7248C4219CF20EE00CAB393 /* FKImageField.m in Sources */,
 				A7248C2F19CF1F6D00CAB393 /* FKTitleHeaderView.m in Sources */,
 				72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */,
@@ -741,6 +771,7 @@
 				72E3C62219BBEA6700538233 /* EventQuery.m in Sources */,
 				A7248C4B19CF219000CAB393 /* FKPasswordTextField.m in Sources */,
 				A7248C2919CF1EF900CAB393 /* FKFormAttributeValidation.m in Sources */,
+				A7F9975119CF34610002836C /* FormTableViewExampleController.m in Sources */,
 				A772F67F19A01F60003DA103 /* ViewController.m in Sources */,
 				A772F67919A01F60003DA103 /* AppDelegate.m in Sources */,
 				A7248C4519CF212600CAB393 /* FKIntegerField.m in Sources */,
@@ -755,18 +786,19 @@
 				A7248C5119CF21F400CAB393 /* FKSimpleField.m in Sources */,
 				A7248C5A19CF228900CAB393 /* FKTextField.m in Sources */,
 				A7248C3619CF1FF500CAB393 /* FKBadgeField.m in Sources */,
-				A7248C8619CF2AC400CAB393 /* BWLongTextViewController.m in Sources */,
+				A7248C8619CF2AC400CAB393 /* LongTextViewController.m in Sources */,
 				72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */,
 				A7248C1419CF1C9600CAB393 /* FKFormAttributeMapping.m in Sources */,
 				A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */,
 				A7248C2319CF1E6D00CAB393 /* FKSectionObject.m in Sources */,
 				A735E9F519AA371100500BF5 /* Place.m in Sources */,
+				A7F9975419CF349F0002836C /* Genre.m in Sources */,
 				A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */,
 				A7248C1A19CF1D5000CAB393 /* FKFormMapping.m in Sources */,
 				A75FA53319CDD2620034368B /* EventPostViewController.m in Sources */,
 				A7248C6319CF233800CAB393 /* FKDisclosureIndicatorAccessoryField.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
-				A7248C8A19CF2B1C00CAB393 /* BWSelectViewController.m in Sources */,
+				A7248C8A19CF2B1C00CAB393 /* SelectViewController.m in Sources */,
 				72E3C62619BCC10100538233 /* Event.m in Sources */,
 				A7248C1719CF1CD600CAB393 /* FKFormMapper.m in Sources */,
 				A7248C7919CF297600CAB393 /* ActionSheetDatePicker.m in Sources */,

@@ -16,9 +16,9 @@
 #import "FKSaveButtonField.h"
 #import "FKFields.h"
 #import "NSObject+FKFormAttributeMapping.h"
-#import "BWSelectViewController.h"
+#import "SelectViewController.h"
 #import "UIView+FormKit.h"
-#import "BWLongTextViewController.h"
+#import "LongTextViewController.h"
 #import "FKTitleHeaderView.h"
 #import "FKTitleHeaderViewProtocol.h"
 
@@ -80,8 +80,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.selectControllerClass = [BWSelectViewController class];
-        self.longTextControllerClass = [BWLongTextViewController class];
+        self.selectControllerClass = [SelectViewController class];
+        self.longTextControllerClass = [LongTextViewController class];
         self.validationErrorColor = [UIColor colorWithRed:216/255.0f green:98/255.0f blue:98/255.0f alpha:1];
         self.validationErrorCellBackgroundColor = [UIColor colorWithRed:255/255.0f green:235/255.0f blue:235/255.0f alpha:1];
         self.validationNormalCellBackgroundColor = [UIColor colorWithRed:250/255.0f green:250/255.0f blue:250/255.0f alpha:1];
@@ -482,7 +482,7 @@
     self.longTextControllerClass : attributeMapping.controllerClass;
     
     NSString *value = [self.formMapper valueForAttributeMapping:attributeMapping];
-    BWLongTextViewController *vc = [[controllerClass alloc] initWithText:value];
+    LongTextViewController *vc = [[controllerClass alloc] initWithText:value];
     vc.title = attributeMapping.title;
     vc.textView.delegate = self.formMapper;
     vc.textView.formAttributeMapping = attributeMapping;
@@ -517,7 +517,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showSelectWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping {
     NSInteger selectedIndex = 0;
-    BWSelectViewController *vc = [[self.selectControllerClass alloc] init];
+    SelectViewController *vc = [[self.selectControllerClass alloc] init];
     vc.items = attributeMapping.selectValuesBlock(nil, self.object, &selectedIndex);
     vc.title = attributeMapping.title;
     vc.formAttributeMapping = attributeMapping;
@@ -525,7 +525,7 @@
     
     
     __weak FKFormModel *weakRef = self;
-    [vc setDidSelectBlock:^(NSArray *selectedIndexPaths, BWSelectViewController *controller) {
+    [vc setDidSelectBlock:^(NSArray *selectedIndexPaths, SelectViewController *controller) {
         NSIndexPath *selectedIndexPath = [selectedIndexPaths lastObject];
         NSUInteger selectedIndex = selectedIndexPath.row;
         id selectedValue = [controller.items objectAtIndex:selectedIndex];

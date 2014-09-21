@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class BWSelectViewController;
+@class SelectViewController;
 
-typedef void(^BWSelectViewControllerDidSelectBlock)(NSArray *selectedIndexPaths, BWSelectViewController *controller);
+typedef void(^BWSelectViewControllerDidSelectBlock)(NSArray *selectedIndexPaths, SelectViewController *controller);
 
-@interface BWSelectViewController : UITableViewController
+@interface SelectViewController : UITableViewController
 
 @property (nonatomic, copy) NSArray *items;
 @property (nonatomic, strong) BWSelectViewControllerDidSelectBlock selectBlock;
