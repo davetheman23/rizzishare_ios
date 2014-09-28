@@ -12,7 +12,7 @@
 
 - (BOOL)isEqual:(id)object {
     PlaceMarker *otherMarker = (PlaceMarker *)object;
-    if(self.place_id == otherMarker.place_id) {
+    if([self.place_id isEqualToString:otherMarker.place_id]) {
         return YES;
     }
     return NO;
@@ -21,5 +21,6 @@
 - (NSUInteger)hash {
     return [self.place_id hash];
 }
+
 
 @end

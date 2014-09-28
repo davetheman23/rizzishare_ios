@@ -191,4 +191,8 @@
     }
 }
 
+- (NSUInteger)hash {
+    return [self.place_id hash];
+}
+
 @end

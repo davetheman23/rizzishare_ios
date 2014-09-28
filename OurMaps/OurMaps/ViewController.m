@@ -373,6 +373,36 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
         Place *place = [Place placeFromParseObject:parsePlace];
         
         PlaceMarker *marker = [[PlaceMarker alloc] init];
+        marker.eventArray = [NSMutableArray array];
+        
+        marker.place_id = place.place_id;
+        marker.position = place.coordinate;
+        
+        marker.title = place.name;
+        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %ld",place.rating, place.price_level];
+        marker.appearAnimation = kGMSMarkerAnimationPop;
+        
+
+        
+        marker.map = nil;
+        
+        place.placeMarker = marker;
+        
+        marker.place = place;
+        
+        
+        [mutableMarkerSet addObject:marker];
+    }
+    
+    
+    for (PFObject *event in events) {
+        
+        
+        
+        PFObject *parsePlace = event[kEventVenueKey];
+        Place *place = [Place placeFromParseObject:parsePlace];
+        
+        PlaceMarker *marker = [[PlaceMarker alloc] init];
         
         marker.place_id = place.place_id;
         marker.position = place.coordinate;

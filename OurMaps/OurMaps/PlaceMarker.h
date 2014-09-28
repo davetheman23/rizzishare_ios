@@ -17,4 +17,6 @@
 
 @property (nonatomic, strong) Place *place;
 
+@property (nonatomic, strong) NSArray *eventArray;
+
 @end
