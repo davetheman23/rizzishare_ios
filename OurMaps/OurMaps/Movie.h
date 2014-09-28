@@ -12,16 +12,16 @@
 
 @interface Movie : NSObject
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *content;
-@property (nonatomic, retain) NSDate *releaseDate;
-@property (nonatomic, retain) NSNumber *numberOfActor;
-@property (nonatomic, retain) NSNumber *suitAllAges;
-@property (nonatomic, retain) Genre *genre;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSString *shortName;
-@property (nonatomic, retain) NSString *choice;
-@property (nonatomic, retain) NSNumber *rate;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSDate *releaseDate;
+@property (nonatomic, strong) NSNumber *numberOfActor;
+@property (nonatomic, strong) NSNumber *suitAllAges;
+@property (nonatomic, strong) Genre *genre;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *shortName;
+@property (nonatomic, strong) NSString *choice;
+@property (nonatomic, strong) NSNumber *rate;
 @property (nonatomic, strong) NSString *subtitle;
 
 + (id)movieWithTitle:(NSString *)title content:(NSString *)content;
