@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
+
 #import "ActionSheetDistancePicker.h"
 #import <objc/message.h>
 
@@ -46,8 +47,8 @@
         self.smallUnitString = smallUnitString;
         self.smallUnitMax = smallUnitMax;
         self.selectedSmallUnit = selectedSmallUnit;
-        self.bigUnitDigits = [[NSString stringWithFormat:@"%i", self.bigUnitMax] length];
-        self.smallUnitDigits = [[NSString stringWithFormat:@"%i", self.smallUnitMax] length];
+        self.bigUnitDigits = [[NSString stringWithFormat:@"%li", (long)self.bigUnitMax] length];
+        self.smallUnitDigits = [[NSString stringWithFormat:@"%li", (long)self.smallUnitMax] length];
     }
     return self;
 }
@@ -59,8 +60,9 @@
     picker.delegate = self;
     picker.dataSource = self;
     picker.showsSelectionIndicator = YES;
-    [picker addLabel:self.bigUnitString forComponent:(self.bigUnitDigits - 1) forLongestString:nil];
-    [picker addLabel:self.smallUnitString forComponent:(self.bigUnitDigits + self.smallUnitDigits - 1) forLongestString:nil];
+    [picker addLabel:self.bigUnitString forComponent:(NSUInteger) (self.bigUnitDigits - 1) forLongestString:nil];
+    [picker addLabel:self.smallUnitString forComponent:(NSUInteger) (self.bigUnitDigits + self.smallUnitDigits - 1)
+    forLongestString:nil];
     
     NSInteger unitSubtract = 0;
     NSInteger currentDigit = 0;
@@ -74,7 +76,7 @@
     
     unitSubtract = 0;
     
-    for (int i = self.bigUnitDigits; i < self.bigUnitDigits + self.smallUnitDigits; ++i) {
+    for (NSInteger i = self.bigUnitDigits; i < self.bigUnitDigits + self.smallUnitDigits; ++i) {
         NSInteger factor = (int)pow((double)10, (double)(self.bigUnitDigits + self.smallUnitDigits - (i+1)));
         currentDigit = (( self.selectedSmallUnit - unitSubtract ) / factor )  ;
         [picker selectRow:currentDigit inComponent:i animated:NO];
@@ -94,12 +96,15 @@
     for (int i = 0; i < self.bigUnitDigits; ++i)
         bigUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)(self.bigUnitDigits - (i + 1)));
     
-    for (int i = self.bigUnitDigits; i < self.bigUnitDigits + self.smallUnitDigits; ++i)
+    for (NSInteger i = self.bigUnitDigits; i < self.bigUnitDigits + self.smallUnitDigits; ++i)
         smallUnits += [picker selectedRowInComponent:i] * (int)pow((double)10, (double)((picker.numberOfComponents - i - 1)));
     
     //sending three objects, so can't use performSelector:
     if ([target respondsToSelector:action])
-        objc_msgSend(target, action, [NSNumber numberWithInt:bigUnits], [NSNumber numberWithInt:smallUnits], origin);
+    {
+        void (*response)(id, SEL, id, id,id) = (void (*)(id, SEL, id, id,id)) objc_msgSend;
+        response(target, action, @(bigUnits), @(smallUnits), origin);
+    }
     else
         NSAssert(NO, @"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), sel_getName(action));
 }
@@ -123,13 +128,35 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [NSString stringWithFormat:@"%i", row];
+    return [NSString stringWithFormat:@"%li", (long)row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     CGFloat totalWidth = pickerView.frame.size.width - 30;
-    CGFloat bigUnitLabelSize = [self.bigUnitString sizeWithFont:[UIFont boldSystemFontOfSize:20]].width;
-    CGFloat smallUnitLabelSize = [self.smallUnitString sizeWithFont:[UIFont boldSystemFontOfSize:20]].width;
+    
+    CGFloat bigUnitLabelSize;
+    CGFloat smallUnitLabelSize;
+    UIFont *font = [UIFont boldSystemFontOfSize:20];
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnavailableInDeploymentTarget"
+        bigUnitLabelSize = [self.bigUnitString sizeWithAttributes:
+                            @{NSFontAttributeName:
+                                  font}].width;
+        
+        smallUnitLabelSize = [self.smallUnitString sizeWithAttributes:
+                              @{NSFontAttributeName:
+                                    font}].width;
+#pragma clang diagnostic pop
+    }
+    else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        bigUnitLabelSize = [self.bigUnitString sizeWithFont:font].width;
+        smallUnitLabelSize = [self.smallUnitString sizeWithFont:font].width;
+#pragma clang diagnostic pop
+    }
+    
     CGFloat otherSize = (totalWidth - bigUnitLabelSize - smallUnitLabelSize)/(self.bigUnitDigits + self.smallUnitDigits);
     if (component == self.bigUnitDigits - 1)
         return otherSize + bigUnitLabelSize;

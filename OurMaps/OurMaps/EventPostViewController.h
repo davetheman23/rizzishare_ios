@@ -1,14 +1,19 @@
 //
-//  DateAndTimePickerViewController.h
+//  EventPostViewController.h
 //  OurMaps
 //
-//  Created by Jiangchuan Huang on 9/20/14.
+//  Created by Jiangchuan Huang on 9/27/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface EventPostViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *EventPostTableView;
+@class FKFormModel;
+@class Movie;
+
+@interface EventPostViewController : UITableViewController
+
+@property (nonatomic, strong) FKFormModel *formModel;
+@property (nonatomic, strong) Movie *movie;
 
 @end

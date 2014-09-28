@@ -46,7 +46,6 @@
         self.keyboardType = UIKeyboardTypeDecimalPad;
     } else if (FKFormAttributeMappingTypeInteger == type) {
         self.keyboardType = UIKeyboardTypeNumberPad;
-        
     } else {
         self.keyboardType = UIKeyboardTypeDefault;
     }
