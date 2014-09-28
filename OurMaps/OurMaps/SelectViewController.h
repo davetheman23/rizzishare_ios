@@ -10,12 +10,12 @@
 
 @class SelectViewController;
 
-typedef void(^BWSelectViewControllerDidSelectBlock)(NSArray *selectedIndexPaths, SelectViewController *controller);
+typedef void(^SelectViewControllerDidSelectBlock)(NSArray *selectedIndexPaths, SelectViewController *controller);
 
 @interface SelectViewController : UITableViewController
 
 @property (nonatomic, copy) NSArray *items;
-@property (nonatomic, strong) BWSelectViewControllerDidSelectBlock selectBlock;
+@property (nonatomic, strong) SelectViewControllerDidSelectBlock selectBlock;
 @property (nonatomic, readonly) NSMutableArray *selectedIndexPaths;
 @property (nonatomic, assign) BOOL multiSelection;
 @property (nonatomic, assign) Class cellClass;
@@ -25,10 +25,10 @@ typedef void(^BWSelectViewControllerDidSelectBlock)(NSArray *selectedIndexPaths,
      multiselection:(BOOL)multiSelection
          allowEmpty:(BOOL)allowEmpty
       selectedItems:(NSArray *)selectedItems
-        selectBlock:(BWSelectViewControllerDidSelectBlock)selectBlock;
+        selectBlock:(SelectViewControllerDidSelectBlock)selectBlock;
 
-- (void)setDidSelectBlock:(BWSelectViewControllerDidSelectBlock)didSelectBlock;
+- (void)setDidSelectBlock:(SelectViewControllerDidSelectBlock)didSelectBlock;
 
-- (void)setSlectedIndexPaths:(NSArray *)selectedIndexPaths;
+- (void)setSelectedIndexPaths:(NSArray *)selectedIndexPaths;
 
 @end

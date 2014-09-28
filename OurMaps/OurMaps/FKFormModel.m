@@ -521,7 +521,7 @@
     vc.items = attributeMapping.selectValuesBlock(nil, self.object, &selectedIndex);
     vc.title = attributeMapping.title;
     vc.formAttributeMapping = attributeMapping;
-    [vc setSlectedIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]]];
+    [vc setSelectedIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:selectedIndex inSection:0]]];
     
     
     __weak FKFormModel *weakRef = self;

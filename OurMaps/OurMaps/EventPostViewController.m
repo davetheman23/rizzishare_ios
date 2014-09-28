@@ -1,132 +1,176 @@
 //
-//  DateAndTimePickerViewController.m
+//  EventPostViewController.m
 //  OurMaps
 //
-//  Created by Jiangchuan Huang on 9/20/14.
+//  Created by Jiangchuan Huang on 9/27/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
 
 #import "EventPostViewController.h"
-#define currentMonth [currentMonthString integerValue]
+
+#import "FormKit.h"
+
+#import "Movie.h"
+#import "Comment.h"
+#import "Genre.h"
+#import "LongTextViewController.h"
+
+@implementation EventPostViewController
+
+@synthesize formModel;
+@synthesize movie = _movie;
+
+#pragma mark - View lifecycle
 
 
-@interface EventPostViewController ()<UITextFieldDelegate>
-{
-    NSMutableArray *titleArray;
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    if (self) {
+    }
+    return self;
 }
 
-#pragma mark - IBActions
 
-@property (weak, nonatomic) IBOutlet UITextField *textFieldEnterDate;
-
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbarCancelDone;
-
-@property (weak, nonatomic) IBOutlet UIPickerView *customPicker;
-
-
-#pragma mark - IBActions
-
-- (IBAction)actionCancel:(id)sender;
-
-- (IBAction)actionDone:(id)sender;
-
-@end
-
-@implementation EventPostViewController {
-    NSMutableArray *yearArray;
-    NSArray *monthArray;
-    NSMutableArray *DaysArray;
-    NSArray *amPmArray;
-    NSArray *hoursArray;
-    NSMutableArray *minutesArray;
-    
-    NSString *currentMonthString;
-    
-    int selectedYearRow;
-    int selectedMonthRow;
-    int selectedDayRow;
-    
-    BOOL firstTimeLoad;
-}
-
-@synthesize EventPostTableView;
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    self.EventPostTableView.delegate = self;
-    self.EventPostTableView.dataSource = self;
+    self.formModel = [FKFormModel formTableModelForTableView:self.tableView
+                                        navigationController:self.navigationController];
     
-    titleArray = [[NSMutableArray alloc] initWithObjects:@"Name", @"Participants", @"Place", @"Time", nil];
+    self.formModel.labelTextColor = [UIColor blackColor];
+    self.formModel.valueTextColor = [UIColor lightGrayColor];
+    self.formModel.topHeaderViewClass = [FKTitleHeaderView class];
+    self.formModel.bottomHeaderViewClass = [FKTitleHeaderView class];
     
-    firstTimeLoad = YES;
-    self.customPicker.hidden = YES;
-    self.toolbarCancelDone.hidden = YES;
+    Movie *movie = [Movie movieWithTitle:@"Star Wars: Episode VI - Return of the Jedi"
+                                 content:@"After rescuing Han Solo from the palace of Jabba the Hutt, the Rebels attempt to destroy the Second Death Star, while Luke Skywalker tries to bring his father back to the Light Side of the Force."];
     
-    NSDate *date = [NSDate date];
+    movie.shortName = @"SWEVI";
+    movie.suitAllAges = [NSNumber numberWithBool:YES];
+    movie.numberOfActor = [NSNumber numberWithInt:4];
+    movie.genre = [Genre genreWithName:@"Action"];
+    movie.releaseDate = [NSDate date];
+    movie.rate = [NSNumber numberWithFloat:5];
     
-    // Get Current Year
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy"];
-    NSString *currentyearString = [NSString stringWithFormat:@"%@",
-                                   [formatter stringFromDate:date]];
+    self.movie = movie;
     
-    // Get Current  Month
-    [formatter setDateFormat:@"MM"];
-    currentMonthString = [NSString stringWithFormat:@"%d",[[formatter stringFromDate:date]integerValue]];
+    [FKFormMapping mappingForClass:[Movie class] block:^(FKFormMapping *formMapping) {
+        [formMapping sectionWithTitle:@"Header" footer:@"Footer" identifier:@"info"];
+        [formMapping mapAttribute:@"title" title:@"Title" type:FKFormAttributeMappingTypeText];
+        
+        [formMapping mappingForAttribute:@"subtitle" attributeMapping:^(FKFormAttributeMapping *mapping) {
+            mapping.hideLabel = YES;
+            mapping.type = FKFormAttributeMappingTypeText;
+            mapping.valueTextAlignment = NSTextAlignmentLeft;
+            mapping.placeholderText = @"Subtitle";
+            mapping.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        }];
+        
+        //        [formMapping mapAttribute:@"releaseDate" title:@"ReleaseDate" type:FKFormAttributeMappingTypeDate dateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        [formMapping mappingForAttribute:@"releaseDate"
+                                   title:@"ReleaseDate"
+                                    type:FKFormAttributeMappingTypeDate
+                        attributeMapping:^(FKFormAttributeMapping *mapping) {
+                            
+                            mapping.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                        }];
+        
+        [formMapping mapAttribute:@"suitAllAges" title:@"All ages" type:FKFormAttributeMappingTypeBoolean];
+        [formMapping mapAttribute:@"shortName" title:@"ShortName" type:FKFormAttributeMappingTypeLabel];
+        [formMapping mapAttribute:@"numberOfActor" title:@"Number of actor" type:FKFormAttributeMappingTypeInteger];
+        [formMapping mapAttribute:@"content" title:@"Content" type:FKFormAttributeMappingTypeBigText];
+        
+        //        Doesn't work very good now
+        [formMapping mapSliderAttribute:@"rate" title:@"Rate" minValue:0 maxValue:10 valueBlock:^NSString *(id value) {
+            return [NSString stringWithFormat:@"%.1f", [value floatValue]];
+        }];
+        
+        [formMapping mapAttribute:@"choice"
+                            title:@"Choices"
+                     showInPicker:NO
+                selectValuesBlock:^NSArray *(id value, id object, NSInteger *selectedValueIndex){
+                    *selectedValueIndex = 1;
+                    return [NSArray arrayWithObjects:@"choice1", @"choice2", @"choice3", nil];
+                    
+                } valueFromSelectBlock:^id(id value, id object, NSInteger selectedValueIndex) {
+                    return value;
+                    
+                } labelValueBlock:^id(id value, id object) {
+                    return value;
+                    
+                }];
+        
+        [formMapping sectionWithTitle:@"Custom cells" identifier:@"customCells"];
+        
+        [formMapping mapCustomCell:[FKDisclosureIndicatorAccessoryField class]
+                        identifier:@"custom"
+                         rowHeight:70
+                         blockData:@(1)
+              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
+                  cell.textLabel.text = [NSString stringWithFormat:@"I am a custom cell ! With blockData %@", [blockData description]];
+                  cell.textLabel.numberOfLines = 0;
+                  
+              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
+                  NSLog(@"You pressed me");
+                  
+              }];
+        
+        [formMapping mapCustomCell:[UITableViewCell class]
+                        identifier:@"custom2"
+              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+                  cell.textLabel.text = @"I am a custom cell too !";
+                  
+              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+                  NSLog(@"You pressed me");
+                  
+              }];
+        
+        [formMapping sectionWithTitle:@"Buttons" identifier:@"saveButton"];
+        
+        [formMapping buttonSave:@"Save" handler:^{
+            NSLog(@"save pressed");
+            NSLog(@"%@", self.movie);
+            [self.formModel save];
+        }];
+        
+        [formMapping validationForAttribute:@"custom" validBlock:^BOOL(id value, id object) {
+            return NO;
+        } errorMessageBlock:^NSString *(id value, id object) {
+            return @"Error";
+        }];
+        
+        [formMapping validationForAttribute:@"title" validBlock:^BOOL(NSString *value, id object) {
+            return value.length < 10;
+            
+        } errorMessageBlock:^NSString *(id value, id object) {
+            return @"Text is too long.";
+        }];
+        
+        [formMapping validationForAttribute:@"releaseDate" validBlock:^BOOL(id value, id object) {
+            return NO;
+        }];
+        
+        [self.formModel registerMapping:formMapping];
+    }];
     
-    // Get Current  Date
-    [formatter setDateFormat:@"dd"];
-    NSString *currentDateString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    [self.formModel setDidChangeValueWithBlock:^(id object, id value, NSString *keyPath) {
+        NSLog(@"did change model value");
+    }];
     
-    // Get Current  Hour
-    [formatter setDateFormat:@"hh"];
-    NSString *currentHourString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
+    [self.formModel loadFieldsWithObject:movie];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)viewDidUnload {
+    [super viewDidUnload];
     
-    // Get Current  Minutes
-    [formatter setDateFormat:@"mm"];
-    NSString *currentMinutesString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
-    
-    // Get Current  AM PM
-    [formatter setDateFormat:@"a"];
-    NSString *currentTimeAMPMString = [NSString stringWithFormat:@"%@",[formatter stringFromDate:date]];
-    
-    // PickerView -  Years data
-    yearArray = [[NSMutableArray alloc]init];
-    for (int i = 1970; i <= 2050 ; i++) {
-        [yearArray addObject:[NSString stringWithFormat:@"%d",i]];
-    }
-    
-    // PickerView -  Months data
-    monthArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12"];
-    
-    // PickerView -  Hours data
-    hoursArray = @[@"01",@"02",@"03",@"04",@"05",@"06",@"07",@"08",@"09",@"10",@"11",@"12"];
-    
-    // PickerView -  Hours data
-    minutesArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < 60; i++) {
-        [minutesArray addObject:[NSString stringWithFormat:@"%02d",i]];
-    }
-    
-    // PickerView -  AM PM data
-    amPmArray = @[@"AM",@"PM"];
-    
-    // PickerView -  days data
-    DaysArray = [[NSMutableArray alloc]init];
-    for (int i = 1; i <= 31; i++) {
-        [DaysArray addObject:[NSString stringWithFormat:@"%d",i]];
-    }
-    
-    // PickerView - Default Selection as per current Date
-    [self.customPicker selectRow:[yearArray indexOfObject:currentyearString] inComponent:0 animated:YES];
-    [self.customPicker selectRow:[monthArray indexOfObject:currentMonthString] inComponent:1 animated:YES];
-    [self.customPicker selectRow:[DaysArray indexOfObject:currentDateString] inComponent:2 animated:YES];
-    [self.customPicker selectRow:[hoursArray indexOfObject:currentHourString] inComponent:3 animated:YES];
-    [self.customPicker selectRow:[minutesArray indexOfObject:currentMinutesString] inComponent:4 animated:YES];
-    [self.customPicker selectRow:[amPmArray indexOfObject:currentTimeAMPMString] inComponent:5 animated:YES];
+    self.formModel = nil;
+    self.movie = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,178 +178,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-#pragma mark - UITableViewDelegate
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [titleArray count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"EventPostCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.textLabel.text = [titleArray objectAtIndex:indexPath.row];
-//    cell.accessoryView
-    return cell;
-}
-
-#pragma mark - UIPickerViewDelegate
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (component == 0) {
-        selectedYearRow = row;
-        [self.customPicker reloadAllComponents];
-    } else if (component == 1) {
-        selectedMonthRow = row;
-        [self.customPicker reloadAllComponents];
-    } else if (component == 2) {
-        selectedDayRow = row;
-        [self.customPicker reloadAllComponents];
-    }
-}
-
-
-#pragma mark - UIPickerViewDatasource
-
-- (UIView *)pickerView:(UIPickerView *)pickerView
-            viewForRow:(NSInteger)row
-          forComponent:(NSInteger)component
-           reusingView:(UIView *)view {
-    
-    // Custom View created for each component
-    UILabel *pickerLabel = (UILabel *)view;
-    if (pickerLabel == nil) {
-        CGRect frame = CGRectMake(0.0, 0.0, 50, 60);
-        pickerLabel = [[UILabel alloc] initWithFrame:frame];
-        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
-        [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont systemFontOfSize:15.0f]];
-        pickerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15.0];
-        pickerLabel.textColor = [UIColor whiteColor];
-    }
-    
-    if (component == 0) {
-        pickerLabel.text =  [yearArray objectAtIndex:row]; // Year
-    } else if (component == 1) {
-        pickerLabel.text =  [monthArray objectAtIndex:row];  // Month
-    } else if (component == 2) {
-        pickerLabel.text =  [DaysArray objectAtIndex:row]; // Date
-    } else if (component == 3) {
-        pickerLabel.text =  [hoursArray objectAtIndex:row]; // Hours
-    } else if (component == 4) {
-        pickerLabel.text =  [minutesArray objectAtIndex:row]; // Mins
-    } else {
-        pickerLabel.text =  [amPmArray objectAtIndex:row]; // AM/PM
-    }
-    return pickerLabel;
-}
-
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 6;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    if (component == 0) {
-        return [yearArray count];
-    } else if (component == 1) {
-        return [monthArray count];
-    } else if (component == 2) { // day
-        if (firstTimeLoad) {
-            if (currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8 || currentMonth == 10 || currentMonth == 12) {
-                return 31;
-            } else if (currentMonth == 2) {
-                int yearint = [[yearArray objectAtIndex:selectedYearRow] intValue];
-                if(((yearint %4==0)&&(yearint %100!=0))||(yearint %400==0)) {
-                    return 29;
-                } else {
-                    return 28; // or return 29
-                }
-            } else {
-                return 30;
-            }
-        } else {
-            if (selectedMonthRow == 0 || selectedMonthRow == 2 || selectedMonthRow == 4 || selectedMonthRow == 6 || selectedMonthRow == 7 || selectedMonthRow == 9 || selectedMonthRow == 11) {
-                return 31;
-            } else if (selectedMonthRow == 1) {
-                int yearint = [[yearArray objectAtIndex:selectedYearRow] intValue];
-                if(((yearint %4==0)&&(yearint %100!=0))||(yearint %400==0)) {
-                    return 29;
-                } else {
-                    return 28; // or return 29
-                }
-            } else {
-                return 30;
-            }
-        }
-    } else if (component == 3) { // hour
-        return 12;
-    } else if (component == 4) { // min
-        return 60;
-    } else { // am/pm
-        return 2;
-    }
-}
-
-- (IBAction)actionCancel:(id)sender {
-    [UIView animateWithDuration:0.5
-                          delay:0.1
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.customPicker.hidden = YES;
-                         self.toolbarCancelDone.hidden = YES;
-                     }
-                     completion:^(BOOL finished){}];
-}
-
-- (IBAction)actionDone:(id)sender {
-    self.textFieldEnterDate.text = [NSString stringWithFormat:@"%@/%@/%@ -- %@ : %@ - %@",[yearArray objectAtIndex:[self.customPicker selectedRowInComponent:0]],[monthArray objectAtIndex:[self.customPicker selectedRowInComponent:1]],[DaysArray objectAtIndex:[self.customPicker selectedRowInComponent:2]],[hoursArray objectAtIndex:[self.customPicker selectedRowInComponent:3]],[minutesArray objectAtIndex:[self.customPicker selectedRowInComponent:4]],[amPmArray objectAtIndex:[self.customPicker selectedRowInComponent:5]]];
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.1
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.customPicker.hidden = YES;
-                         self.toolbarCancelDone.hidden = YES;
-                     }
-                     completion:^(BOOL finished){}];
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self.view endEditing:YES];
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.5
-                          delay:0.1
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.customPicker.hidden = NO;
-                         self.toolbarCancelDone.hidden = NO;
-                         self.textFieldEnterDate.text = @"";
-                     }
-                     completion:^(BOOL finished){}];
-    self.customPicker.hidden = NO;
-    self.toolbarCancelDone.hidden = NO;
-    self.textFieldEnterDate.text = @"";
+////////////////////////////////////////////////////////////////////////////////////////////////////
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return YES;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return  YES;
-}
 
 @end
-
-

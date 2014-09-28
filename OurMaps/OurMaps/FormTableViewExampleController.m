@@ -93,7 +93,7 @@
                      showInPicker:NO
                 selectValuesBlock:^NSArray *(id value, id object, NSInteger *selectedValueIndex){
                     *selectedValueIndex = 1;
-                    return [NSArray arrayWithObjects:@"choice1", @"choice2", nil];
+                    return [NSArray arrayWithObjects:@"choice1", @"choice2", @"choice3", nil];
                     
                 } valueFromSelectBlock:^id(id value, id object, NSInteger selectedValueIndex) {
                     return value;
@@ -172,6 +172,10 @@
     self.movie = nil;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {

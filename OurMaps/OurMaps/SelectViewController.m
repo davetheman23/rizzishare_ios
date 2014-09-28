@@ -38,7 +38,7 @@ static NSString *CellIdentifier = @"Cell";
      multiselection:(BOOL)multiSelection
          allowEmpty:(BOOL)allowEmpty
       selectedItems:(NSArray *)selectedItems
-        selectBlock:(BWSelectViewControllerDidSelectBlock)selectBlock; {
+        selectBlock:(SelectViewControllerDidSelectBlock)selectBlock; {
     
     self = [self init];
     if (self) {
@@ -78,13 +78,13 @@ static NSString *CellIdentifier = @"Cell";
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setDidSelectBlock:(BWSelectViewControllerDidSelectBlock)didSelectBlock {
+- (void)setDidSelectBlock:(SelectViewControllerDidSelectBlock)didSelectBlock {
     self.selectBlock = didSelectBlock;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)setSlectedIndexPaths:(NSArray *)indexPaths {
+- (void)setSelectedIndexPaths:(NSArray *)indexPaths {
     [self.selectedIndexPaths removeAllObjects];
     [self.selectedIndexPaths addObjectsFromArray:indexPaths];
 }
