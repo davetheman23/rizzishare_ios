@@ -10,7 +10,7 @@
 
 @interface Genre : NSObject
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, strong) NSString *name;
 
 + (id)genreWithName:(NSString *)name;
 

@@ -12,6 +12,7 @@
 #import "FormKit.h"
 
 #import "Movie.h"
+#import "Event.h"
 #import "Comment.h"
 #import "Genre.h"
 #import "LongTextViewController.h"
@@ -20,6 +21,7 @@
 
 @synthesize formModel;
 @synthesize movie = _movie;
+@synthesize event = _event;
 
 #pragma mark - View lifecycle
 
@@ -45,56 +47,34 @@
     self.formModel.topHeaderViewClass = [FKTitleHeaderView class];
     self.formModel.bottomHeaderViewClass = [FKTitleHeaderView class];
     
-    Movie *movie = [Movie movieWithTitle:@"Star Wars: Episode VI - Return of the Jedi"
-                                 content:@"After rescuing Han Solo from the palace of Jabba the Hutt, the Rebels attempt to destroy the Second Death Star, while Luke Skywalker tries to bring his father back to the Light Side of the Force."];
+    Event *event = [Event eventWithTitle:@"Play Poker"];
+    event.eventTime = [NSDate date];
+    event.eventPlace = @"SWEVI";
+    event.participants = nil;
+    self.event = event;
+   
     
-    movie.shortName = @"SWEVI";
-    movie.suitAllAges = [NSNumber numberWithBool:YES];
-    movie.numberOfActor = [NSNumber numberWithInt:4];
-    movie.genre = [Genre genreWithName:@"Action"];
-    movie.releaseDate = [NSDate date];
-    movie.rate = [NSNumber numberWithFloat:5];
-    
-    self.movie = movie;
-    
-    [FKFormMapping mappingForClass:[Movie class] block:^(FKFormMapping *formMapping) {
+    [FKFormMapping mappingForClass:[Event class] block:^(FKFormMapping *formMapping) {
         [formMapping sectionWithTitle:@"Header" footer:@"Footer" identifier:@"info"];
         [formMapping mapAttribute:@"title" title:@"Title" type:FKFormAttributeMappingTypeText];
-        
-        [formMapping mappingForAttribute:@"subtitle" attributeMapping:^(FKFormAttributeMapping *mapping) {
-            mapping.hideLabel = YES;
-            mapping.type = FKFormAttributeMappingTypeText;
-            mapping.valueTextAlignment = NSTextAlignmentLeft;
-            mapping.placeholderText = @"Subtitle";
-            mapping.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        }];
-        
-        //        [formMapping mapAttribute:@"releaseDate" title:@"ReleaseDate" type:FKFormAttributeMappingTypeDate dateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        [formMapping mappingForAttribute:@"releaseDate"
-                                   title:@"ReleaseDate"
+
+ 
+        [formMapping mappingForAttribute:@"eventTime"
+                                   title:@"Event time"
                                     type:FKFormAttributeMappingTypeDate
                         attributeMapping:^(FKFormAttributeMapping *mapping) {
-                            
                             mapping.dateFormat = @"yyyy-MM-dd HH:mm:ss";
                         }];
+
+        [formMapping mapAttribute:@"eventPlace" title:@"Event place" type:FKFormAttributeMappingTypeText];
         
-        [formMapping mapAttribute:@"suitAllAges" title:@"All ages" type:FKFormAttributeMappingTypeBoolean];
-        [formMapping mapAttribute:@"shortName" title:@"ShortName" type:FKFormAttributeMappingTypeLabel];
-        [formMapping mapAttribute:@"numberOfActor" title:@"Number of actor" type:FKFormAttributeMappingTypeInteger];
-        [formMapping mapAttribute:@"content" title:@"Content" type:FKFormAttributeMappingTypeBigText];
-        
-        //        Doesn't work very good now
-        [formMapping mapSliderAttribute:@"rate" title:@"Rate" minValue:0 maxValue:10 valueBlock:^NSString *(id value) {
-            return [NSString stringWithFormat:@"%.1f", [value floatValue]];
-        }];
-        
-        [formMapping mapAttribute:@"choice"
-                            title:@"Choices"
+        [formMapping mapAttribute:@"participants"
+                            title:@"Participants"
                      showInPicker:NO
                 selectValuesBlock:^NSArray *(id value, id object, NSInteger *selectedValueIndex){
                     *selectedValueIndex = 1;
-                    return [NSArray arrayWithObjects:@"choice1", @"choice2", @"choice3", nil];
+                    return event.participants;
+//                    [NSArray arrayWithObjects:@"choice1", @"choice2", @"choice3", nil];
                     
                 } valueFromSelectBlock:^id(id value, id object, NSInteger selectedValueIndex) {
                     return value;
@@ -104,44 +84,44 @@
                     
                 }];
         
-        [formMapping sectionWithTitle:@"Custom cells" identifier:@"customCells"];
-        
-        [formMapping mapCustomCell:[FKDisclosureIndicatorAccessoryField class]
-                        identifier:@"custom"
-                         rowHeight:70
-                         blockData:@(1)
-              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
-                  cell.textLabel.text = [NSString stringWithFormat:@"I am a custom cell ! With blockData %@", [blockData description]];
-                  cell.textLabel.numberOfLines = 0;
-                  
-              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
-                  NSLog(@"You pressed me");
-                  
-              }];
-        
-        [formMapping mapCustomCell:[UITableViewCell class]
-                        identifier:@"custom2"
-              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-                  cell.textLabel.text = @"I am a custom cell too !";
-                  
-              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-                  NSLog(@"You pressed me");
-                  
-              }];
+//        [formMapping sectionWithTitle:@"Custom cells" identifier:@"customCells"];
+//        
+//        [formMapping mapCustomCell:[FKDisclosureIndicatorAccessoryField class]
+//                        identifier:@"custom"
+//                         rowHeight:70
+//                         blockData:@(1)
+//              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
+//                  cell.textLabel.text = [NSString stringWithFormat:@"I am a custom cell ! With blockData %@", [blockData description]];
+//                  cell.textLabel.numberOfLines = 0;
+//                  
+//              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
+//                  NSLog(@"You pressed me");
+//                  
+//              }];
+//        
+//        [formMapping mapCustomCell:[UITableViewCell class]
+//                        identifier:@"custom2"
+//              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+//                  cell.textLabel.text = @"I am a custom cell too !";
+//                  
+//              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
+//                  NSLog(@"You pressed me");
+//                  
+//              }];
         
         [formMapping sectionWithTitle:@"Buttons" identifier:@"saveButton"];
         
         [formMapping buttonSave:@"Save" handler:^{
             NSLog(@"save pressed");
-            NSLog(@"%@", self.movie);
+            NSLog(@"%@", self.event);
             [self.formModel save];
         }];
         
-        [formMapping validationForAttribute:@"custom" validBlock:^BOOL(id value, id object) {
-            return NO;
-        } errorMessageBlock:^NSString *(id value, id object) {
-            return @"Error";
-        }];
+//        [formMapping validationForAttribute:@"custom" validBlock:^BOOL(id value, id object) {
+//            return NO;
+//        } errorMessageBlock:^NSString *(id value, id object) {
+//            return @"Error";
+//        }];
         
         [formMapping validationForAttribute:@"title" validBlock:^BOOL(NSString *value, id object) {
             return value.length < 10;
@@ -156,12 +136,13 @@
         
         [self.formModel registerMapping:formMapping];
     }];
-    
+
     [self.formModel setDidChangeValueWithBlock:^(id object, id value, NSString *keyPath) {
         NSLog(@"did change model value");
     }];
     
-    [self.formModel loadFieldsWithObject:movie];
+//    [self.formModel loadFieldsWithObject:movie];
+    [self.formModel loadFieldsWithObject:event];
 }
 
 
@@ -171,6 +152,7 @@
     
     self.formModel = nil;
     self.movie = nil;
+    self.event = nil;
 }
 
 - (void)didReceiveMemoryWarning {
