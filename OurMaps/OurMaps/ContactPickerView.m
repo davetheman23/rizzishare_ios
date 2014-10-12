@@ -166,7 +166,6 @@
     
     self.textView.hidden = NO;
     self.textView.text = @"";
-    
 }
 
 - (void)removeContact:(id)contact {

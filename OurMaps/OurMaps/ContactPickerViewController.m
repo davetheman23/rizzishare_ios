@@ -124,24 +124,19 @@ UIBarButtonItem *barButton;
         
         [self.tableView reloadData];
     }
-    else
-    {
+    else {
         NSLog(@"Error");
-        
     }
 }
 
-- (void) refreshContacts
-{
-    for (Contact* contact in self.contacts)
-    {
+- (void) refreshContacts {
+    for (Contact* contact in self.contacts) {
         [self refreshContact: contact];
     }
     [self.tableView reloadData];
 }
 
-- (void) refreshContact:(Contact*)contact
-{
+- (void) refreshContact:(Contact*)contact {
     
     ABRecordRef contactPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, (ABRecordID)contact.recordId);
     contact.recordId = ABRecordGetRecordID(contactPerson);
@@ -169,8 +164,7 @@ UIBarButtonItem *barButton;
     }
 }
 
-- (NSString *)getMobilePhoneProperty:(ABMultiValueRef)phonesRef
-{
+- (NSString *)getMobilePhoneProperty:(ABMultiValueRef)phonesRef {
     for (int i=0; i < ABMultiValueGetCount(phonesRef); i++) {
         CFStringRef currentPhoneLabel = ABMultiValueCopyLabelAtIndex(phonesRef, i);
         CFStringRef currentPhoneValue = ABMultiValueCopyValueAtIndex(phonesRef, i);
@@ -191,7 +185,6 @@ UIBarButtonItem *barButton;
             CFRelease(currentPhoneValue);
         }
     }
-    
     return nil;
 }
 
@@ -351,8 +344,7 @@ UIBarButtonItem *barButton;
     if(self.selectedContacts.count > 0) {
         barButton.enabled = TRUE;
     }
-    else
-    {
+    else {
         barButton.enabled = FALSE;
     }
     
@@ -394,8 +386,7 @@ UIBarButtonItem *barButton;
     if(self.selectedContacts.count > 0) {
         barButton.enabled = TRUE;
     }
-    else
-    {
+    else {
         barButton.enabled = FALSE;
     }
     
@@ -416,10 +407,12 @@ UIBarButtonItem *barButton;
     self.filteredContacts = self.contacts;
     [self.tableView reloadData];
 }
+
+
 #pragma mark ABPersonViewControllerDelegate
 
-- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-{
+- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    
     return YES;
 }
 
@@ -432,14 +425,12 @@ UIBarButtonItem *barButton;
     view.addressBook = self.addressBookRef;
     view.personViewDelegate = self;
     view.displayedPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, personId);
-
     
     [self.navigationController pushViewController:view animated:YES];
 }
 
 // TODO: send contact object
-- (void)done:(id)sender
-{
+- (void)done:(id)sender {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Done!"
                                                         message:@"Now do whatevet you want!"
                                                        delegate:nil
