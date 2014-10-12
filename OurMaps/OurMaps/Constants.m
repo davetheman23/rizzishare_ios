@@ -33,3 +33,9 @@ NSString *const kEventTypeKey = @"type";
 
 // Event Activity attribute keys
 NSString *const kEventActivityEventKey = @"toEvent";
+
+// User attribute keys
+NSString *const kUserDisplayNameKey = @"displayName";
+
+// Installation attribute keys
+NSString *const kInstallationUserKey = @"user";

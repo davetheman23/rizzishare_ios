@@ -9,6 +9,7 @@
 #import "ContactPickerViewController.h"
 #import <AddressBook/AddressBook.h>
 #import "Contact.h"
+#import <Parse/Parse.h>
 
 UIBarButtonItem *barButton;
 
@@ -41,7 +42,7 @@ UIBarButtonItem *barButton;
     // Do any additional setup after loading the view from its nib.
     //    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleBordered target:self action:@selector(removeAllContacts:)];
     
-    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
+    barButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(prepareForInvitation)];
     barButton.enabled = FALSE;
     
     self.navigationItem.rightBarButtonItem = barButton;
@@ -429,9 +430,52 @@ UIBarButtonItem *barButton;
     [self.navigationController pushViewController:view animated:YES];
 }
 
+# pragma mark - prepare for invitation
+
+- (void)prepareForInvitation {
+    if (self.selectedContacts.count > 0) {
+        NSMutableArray *nameArray = [NSMutableArray array];
+        
+        for (Contact *contact in self.selectedContacts) {
+            [nameArray addObject:contact.fullName];
+        }
+        
+        // find corresponding PFUser
+        PFQuery *userQuery = [PFUser query];
+        [userQuery whereKey:kUserDisplayNameKey containedIn:nameArray];
+        
+        // Build the push notification target query
+        PFQuery *pushQuery = [PFInstallation query];
+        [pushQuery whereKey:kInstallationUserKey matchesQuery:userQuery];
+     
+        // Set push data
+        NSString *message = [[NSString alloc] initWithFormat:@"Invitation From %@",[[[PFUser currentUser] username] uppercaseString]];
+        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                              message, @"alert",
+                              nil];
+        // Send good ball
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:pushQuery];
+        [push setData:data];
+        //[push setMessage:@"Good Ball"];
+        //[push sendPushInBackground];
+        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+            if (succeeded) {
+                //[self switchToSendFinishedState];
+                NSLog(@"push done");
+                [self done:nil];
+//                [self performSelector:@selector(switchToSendFinishedState) withObject:nil afterDelay:0.8];
+//                [self performSelector:@selector(normalState) withObject:nil afterDelay:1.8];
+            }
+        }];
+        
+    }
+}
+
 // TODO: send contact object
-- (void)done:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Done!"
+- (void)done:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invitation Done!"
                                                         message:@"Now do whatevet you want!"
                                                        delegate:nil
                                               cancelButtonTitle:@"Ok"
