@@ -8,6 +8,7 @@
 
 #import "EventListTableViewController.h"
 #import "EventListTableViewCell.h"
+#import "EventPostViewController.h"
 
 @interface EventListTableViewController ()
 
@@ -115,15 +116,25 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    Event *event = nil;
+    if([segue.identifier isEqualToString:@"eventPostSegue"]) {
+        event = [Event eventWithTitle:@"Type event title"];
+        event.eventTime = [NSDate date];
+        event.eventPlace = @"SWEVI";
+        event.participants = nil;
+    } else if([segue.identifier isEqualToString:@"eventQuerySegue"]) {
+        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+        PFObject *PFEvent = [_eventArray objectAtIndex:index.row];
+        event = [Event eventFromPFObject:PFEvent];
+    }
+    EventPostViewController *vc = [segue destinationViewController];
+    vc.event = event;
 }
-*/
+
 
 @end

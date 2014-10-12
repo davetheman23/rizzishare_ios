@@ -47,11 +47,11 @@
     self.formModel.topHeaderViewClass = [FKTitleHeaderView class];
     self.formModel.bottomHeaderViewClass = [FKTitleHeaderView class];
     
-    Event *event = [Event eventWithTitle:@"Play Poker"];
-    event.eventTime = [NSDate date];
-    event.eventPlace = @"SWEVI";
-    event.participants = nil;
-    self.event = event;
+//    Event *event = [Event eventWithTitle:@"Play Poker"];
+//    event.eventTime = [NSDate date];
+//    event.eventPlace = @"SWEVI";
+//    event.participants = nil;
+//    self.event = event;
    
     
     [FKFormMapping mappingForClass:[Event class] block:^(FKFormMapping *formMapping) {
@@ -73,7 +73,7 @@
                      showInPicker:NO
                 selectValuesBlock:^NSArray *(id value, id object, NSInteger *selectedValueIndex){
                     *selectedValueIndex = 1;
-                    return event.participants;
+                    return self.event.participants;
 //                    [NSArray arrayWithObjects:@"choice1", @"choice2", @"choice3", nil];
                     
                 } valueFromSelectBlock:^id(id value, id object, NSInteger selectedValueIndex) {
@@ -142,7 +142,7 @@
     }];
     
 //    [self.formModel loadFieldsWithObject:movie];
-    [self.formModel loadFieldsWithObject:event];
+    [self.formModel loadFieldsWithObject:self.event];
 }
 
 
