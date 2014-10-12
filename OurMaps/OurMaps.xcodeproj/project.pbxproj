@@ -103,6 +103,23 @@
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
 		A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */; };
+		A7F9890819DA23E20031E279 /* ContactBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9890719DA23E20031E279 /* ContactBubble.m */; };
+		A7F9890B19DA242F0031E279 /* ContactPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9890A19DA242F0031E279 /* ContactPickerView.m */; };
+		A7F9890E19DA24870031E279 /* ContactPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9890D19DA24870031E279 /* ContactPickerViewController.m */; };
+		A7F9891119DA24C70031E279 /* BubbleColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9891019DA24C70031E279 /* BubbleColor.m */; };
+		A7F9891419DA25070031E279 /* ContactPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9891319DA25070031E279 /* ContactPickerTableViewCell.m */; };
+		A7F9891719DA256C0031E279 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9891619DA256C0031E279 /* Contact.m */; };
+		A7F9892119DA26D90031E279 /* icon-avatar-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891819DA26D90031E279 /* icon-avatar-60x60.png */; };
+		A7F9892219DA26D90031E279 /* icon-avatar-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891919DA26D90031E279 /* icon-avatar-60x60@2x.png */; };
+		A7F9892319DA26D90031E279 /* icon-checkbox-selected-green-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891A19DA26D90031E279 /* icon-checkbox-selected-green-25x25.png */; };
+		A7F9892419DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891B19DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png */; };
+		A7F9892519DA26D90031E279 /* icon-checkbox-unselected-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891C19DA26D90031E279 /* icon-checkbox-unselected-25x25.png */; };
+		A7F9892619DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891D19DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png */; };
+		A7F9892719DA26D90031E279 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891E19DA26D90031E279 /* Default.png */; };
+		A7F9892819DA26D90031E279 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891F19DA26D90031E279 /* Default@2x.png */; };
+		A7F9892919DA26D90031E279 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9892019DA26D90031E279 /* Default-568h@2x.png */; };
+		A7F9892C19DA28D20031E279 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F9892A19DA28D20031E279 /* AddressBook.framework */; };
+		A7F9892D19DA28D20031E279 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F9892B19DA28D20031E279 /* AddressBookUI.framework */; };
 		A7F9974E19CF341F0002836C /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9974D19CF341F0002836C /* Comment.m */; };
 		A7F9975119CF34610002836C /* FormTableViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975019CF34610002836C /* FormTableViewExampleController.m */; };
 		A7F9975419CF349F0002836C /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975319CF349F0002836C /* Genre.m */; };
@@ -284,6 +301,29 @@
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbySearchQuery.h; sourceTree = "<group>"; };
 		A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbySearchQuery.m; sourceTree = "<group>"; };
+		A7F9890619DA23E20031E279 /* ContactBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBubble.h; sourceTree = "<group>"; };
+		A7F9890719DA23E20031E279 /* ContactBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBubble.m; sourceTree = "<group>"; };
+		A7F9890919DA242F0031E279 /* ContactPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPickerView.h; sourceTree = "<group>"; };
+		A7F9890A19DA242F0031E279 /* ContactPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPickerView.m; sourceTree = "<group>"; };
+		A7F9890C19DA24870031E279 /* ContactPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPickerViewController.h; sourceTree = "<group>"; };
+		A7F9890D19DA24870031E279 /* ContactPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPickerViewController.m; sourceTree = "<group>"; };
+		A7F9890F19DA24C70031E279 /* BubbleColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleColor.h; sourceTree = "<group>"; };
+		A7F9891019DA24C70031E279 /* BubbleColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleColor.m; sourceTree = "<group>"; };
+		A7F9891219DA25070031E279 /* ContactPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPickerTableViewCell.h; sourceTree = "<group>"; };
+		A7F9891319DA25070031E279 /* ContactPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPickerTableViewCell.m; sourceTree = "<group>"; };
+		A7F9891519DA256C0031E279 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		A7F9891619DA256C0031E279 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		A7F9891819DA26D90031E279 /* icon-avatar-60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60.png"; sourceTree = "<group>"; };
+		A7F9891919DA26D90031E279 /* icon-avatar-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60@2x.png"; sourceTree = "<group>"; };
+		A7F9891A19DA26D90031E279 /* icon-checkbox-selected-green-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-selected-green-25x25.png"; sourceTree = "<group>"; };
+		A7F9891B19DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-selected-green-25x25@2x.png"; sourceTree = "<group>"; };
+		A7F9891C19DA26D90031E279 /* icon-checkbox-unselected-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-unselected-25x25.png"; sourceTree = "<group>"; };
+		A7F9891D19DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-unselected-25x25@2x.png"; sourceTree = "<group>"; };
+		A7F9891E19DA26D90031E279 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		A7F9891F19DA26D90031E279 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A7F9892019DA26D90031E279 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A7F9892A19DA28D20031E279 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A7F9892B19DA28D20031E279 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A7F9974C19CF341F0002836C /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
 		A7F9974D19CF341F0002836C /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		A7F9974F19CF34610002836C /* FormTableViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewExampleController.h; sourceTree = "<group>"; };
@@ -299,6 +339,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F9892C19DA28D20031E279 /* AddressBook.framework in Frameworks */,
+				A7F9892D19DA28D20031E279 /* AddressBookUI.framework in Frameworks */,
 				A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */,
 				7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */,
 				72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */,
@@ -541,6 +583,8 @@
 		A772F66719A01F60003DA103 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7F9892A19DA28D20031E279 /* AddressBook.framework */,
+				A7F9892B19DA28D20031E279 /* AddressBookUI.framework */,
 				72EAD42719A95FE90036FCBB /* Parse.framework */,
 				72EAD42519A959500036FCBB /* FacebookSDK.framework */,
 				72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */,
@@ -577,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				726FBDE519D8C4E500906BCC /* Main.storyboard */,
+				A7F9890519DA23AB0031E279 /* ContactPicker */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
 				A75D33C419D71D6800D0F5F1 /* EventPost */,
@@ -609,6 +654,15 @@
 		A772F66F19A01F60003DA103 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A7F9891819DA26D90031E279 /* icon-avatar-60x60.png */,
+				A7F9891919DA26D90031E279 /* icon-avatar-60x60@2x.png */,
+				A7F9891A19DA26D90031E279 /* icon-checkbox-selected-green-25x25.png */,
+				A7F9891B19DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png */,
+				A7F9891C19DA26D90031E279 /* icon-checkbox-unselected-25x25.png */,
+				A7F9891D19DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png */,
+				A7F9891E19DA26D90031E279 /* Default.png */,
+				A7F9891F19DA26D90031E279 /* Default@2x.png */,
+				A7F9892019DA26D90031E279 /* Default-568h@2x.png */,
 				A772F67019A01F60003DA103 /* OurMaps-Info.plist */,
 				A772F67119A01F60003DA103 /* InfoPlist.strings */,
 				A772F67419A01F60003DA103 /* main.m */,
@@ -662,6 +716,25 @@
 				A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */,
 			);
 			name = PlaceDetail;
+			sourceTree = "<group>";
+		};
+		A7F9890519DA23AB0031E279 /* ContactPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A7F9890619DA23E20031E279 /* ContactBubble.h */,
+				A7F9890719DA23E20031E279 /* ContactBubble.m */,
+				A7F9890919DA242F0031E279 /* ContactPickerView.h */,
+				A7F9890A19DA242F0031E279 /* ContactPickerView.m */,
+				A7F9890C19DA24870031E279 /* ContactPickerViewController.h */,
+				A7F9890D19DA24870031E279 /* ContactPickerViewController.m */,
+				A7F9890F19DA24C70031E279 /* BubbleColor.h */,
+				A7F9891019DA24C70031E279 /* BubbleColor.m */,
+				A7F9891219DA25070031E279 /* ContactPickerTableViewCell.h */,
+				A7F9891319DA25070031E279 /* ContactPickerTableViewCell.m */,
+				A7F9891519DA256C0031E279 /* Contact.h */,
+				A7F9891619DA256C0031E279 /* Contact.m */,
+			);
+			name = ContactPicker;
 			sourceTree = "<group>";
 		};
 		A7F9974B19CF33FD0002836C /* FormKitDemo */ = {
@@ -755,13 +828,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F9892819DA26D90031E279 /* Default@2x.png in Resources */,
 				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
 				7273683519C2A48200E7A15B /* mapView_background.png in Resources */,
+				A7F9892419DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
 				726FBDE719D8C4E500906BCC /* Main.storyboard in Resources */,
+				A7F9892719DA26D90031E279 /* Default.png in Resources */,
 				72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */,
+				A7F9892519DA26D90031E279 /* icon-checkbox-unselected-25x25.png in Resources */,
+				A7F9892919DA26D90031E279 /* Default-568h@2x.png in Resources */,
 				72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */,
+				A7F9892219DA26D90031E279 /* icon-avatar-60x60@2x.png in Resources */,
+				A7F9892319DA26D90031E279 /* icon-checkbox-selected-green-25x25.png in Resources */,
+				A7F9892119DA26D90031E279 /* icon-avatar-60x60.png in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
+				A7F9892619DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -781,9 +863,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F9890819DA23E20031E279 /* ContactBubble.m in Sources */,
 				A7248C0B19CF1B8E00CAB393 /* UITableViewCell+FormKit.m in Sources */,
 				A7248C8219CF2A3C00CAB393 /* DistancePickerView.m in Sources */,
 				A7F9975719CF34E10002836C /* Movie.m in Sources */,
+				A7F9890B19DA242F0031E279 /* ContactPickerView.m in Sources */,
 				A7248C6919CF23CB00CAB393 /* FKSeparatorField.m in Sources */,
 				A7F9974E19CF341F0002836C /* Comment.m in Sources */,
 				A7248C4219CF20EE00CAB393 /* FKImageField.m in Sources */,
@@ -801,6 +885,7 @@
 				A7248C4519CF212600CAB393 /* FKIntegerField.m in Sources */,
 				723E3ACE19CDED4E00F2B3DE /* EventListTableViewController.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */,
+				A7F9891719DA256C0031E279 /* Contact.m in Sources */,
 				72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */,
 				A7248C7319CF290400CAB393 /* ActionSheetCustomPicker.m in Sources */,
 				A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */,
@@ -811,6 +896,7 @@
 				A7248C5119CF21F400CAB393 /* FKSimpleField.m in Sources */,
 				A7248C5A19CF228900CAB393 /* FKTextField.m in Sources */,
 				A7248C3619CF1FF500CAB393 /* FKBadgeField.m in Sources */,
+				A7F9891119DA24C70031E279 /* BubbleColor.m in Sources */,
 				A7248C8619CF2AC400CAB393 /* LongTextViewController.m in Sources */,
 				72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */,
 				A7248C1419CF1C9600CAB393 /* FKFormAttributeMapping.m in Sources */,
@@ -840,8 +926,10 @@
 				7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */,
 				A7248C2019CF1E2000CAB393 /* FKFormModel.m in Sources */,
 				A7248C4E19CF21C200CAB393 /* FKSaveButtonField.m in Sources */,
+				A7F9891419DA25070031E279 /* ContactPickerTableViewCell.m in Sources */,
 				A7248C5719CF225E00CAB393 /* FKSwitchField.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
+				A7F9890E19DA24870031E279 /* ContactPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
