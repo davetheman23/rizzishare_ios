@@ -411,7 +411,7 @@
     }
 }
 
-#pragma mark - THContactBubbleDelegate Functions
+#pragma mark - ContactBubbleDelegate Functions
 
 - (void)contactBubbleWasSelected:(ContactBubble *)contactBubble {
     if (self.selectedContactBubble != nil){
