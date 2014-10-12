@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-
 #import "ContactPickerViewController.h"
 #import <AddressBook/AddressBook.h>
 #import "Contact.h"
@@ -89,7 +88,7 @@ UIBarButtonItem *barButton;
             Contact *contact = [[Contact alloc] init];
             ABRecordRef contactPerson = (__bridge ABRecordRef)allContacts[i];
             contact.recordId = ABRecordGetRecordID(contactPerson);
-            
+
             // Get first and last names
             NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(contactPerson, kABPersonFirstNameProperty);
             NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(contactPerson, kABPersonLastNameProperty);
@@ -433,7 +432,7 @@ UIBarButtonItem *barButton;
     view.addressBook = self.addressBookRef;
     view.personViewDelegate = self;
     view.displayedPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, personId);
-    
+
     
     [self.navigationController pushViewController:view animated:YES];
 }

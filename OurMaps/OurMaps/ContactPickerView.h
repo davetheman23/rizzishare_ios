@@ -11,7 +11,7 @@
 
 @class ContactPickerView;
 
-@protocol THContactPickerDelegate <NSObject>
+@protocol ContactPickerDelegate <NSObject>
 
 - (void)contactPickerTextViewDidChange:(NSString *)textViewText;
 - (void)contactPickerDidRemoveContact:(id)contact;
@@ -19,10 +19,10 @@
 
 @end
 
-@interface ContactPickerView : UIView <UITextViewDelegate, THContactBubbleDelegate, UIScrollViewDelegate>
+@interface ContactPickerView : UIView <UITextViewDelegate, ContactBubbleDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) ContactBubble *selectedContactBubble;
-@property (nonatomic, assign) IBOutlet id <THContactPickerDelegate> delegate;
+@property (nonatomic, assign) IBOutlet id <ContactPickerDelegate> delegate;
 @property (nonatomic, assign) BOOL limitToOne;
 @property (nonatomic, assign) CGFloat viewPadding;
 @property (nonatomic, strong) UIFont *font;
@@ -34,5 +34,5 @@
 - (void)disableDropShadow;
 - (void)resignKeyboard;
 - (void)setBubbleColor:(BubbleColor *)color selectedColor:(BubbleColor *)selectedColor;
-
+    
 @end

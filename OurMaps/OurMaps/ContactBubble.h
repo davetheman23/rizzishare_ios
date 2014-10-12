@@ -12,7 +12,7 @@
 
 @class ContactBubble;
 
-@protocol THContactBubbleDelegate <NSObject>
+@protocol ContactBubbleDelegate <NSObject>
 
 - (void)contactBubbleWasSelected:(ContactBubble *)contactBubble;
 - (void)contactBubbleWasUnSelected:(ContactBubble *)contactBubble;
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UITextView *textView; // used to capture keyboard touches when view is selected
 @property (nonatomic, assign) BOOL isSelected;
-@property (nonatomic, assign) id <THContactBubbleDelegate>delegate;
+@property (nonatomic, assign) id <ContactBubbleDelegate>delegate;
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
 
 @property (nonatomic, strong) BubbleColor *color;

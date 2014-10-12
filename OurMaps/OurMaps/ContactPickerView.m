@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-
 #import "ContactPickerView.h"
 #import "ContactBubble.h"
 

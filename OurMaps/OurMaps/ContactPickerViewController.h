@@ -11,7 +11,7 @@
 #import "ContactPickerView.h"
 #import "ContactPickerTableViewCell.h"
 
-@interface ContactPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, THContactPickerDelegate, ABPersonViewControllerDelegate>
+@interface ContactPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ContactPickerDelegate, ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) ContactPickerView *contactPickerView;
 @property (nonatomic, strong) UITableView *tableView;

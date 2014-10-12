@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-
 #import "ContactBubble.h"
 
 @implementation ContactBubble
@@ -19,7 +18,7 @@
 
 - (id)initWithName:(NSString *)name {
     if ([self initWithName:name color:nil selectedColor:nil]) {
-        
+
     }
     return self;
 }
@@ -29,18 +28,18 @@
     if (self){
         self.name = name;
         self.isSelected = NO;
-        
+
         if (color == nil){
             color = [[BubbleColor alloc] initWithGradientTop:kBubbleColor gradientBottom:kBubbleColor border:kBubbleColor];
         }
-        
+
         if (selectedColor == nil){
             selectedColor = [[BubbleColor alloc] initWithGradientTop:kBubbleColorSelected gradientBottom:kBubbleColorSelected border:kBubbleColorSelected];
         }
         
         self.color = color;
         self.selectedColor = selectedColor;
-        
+
         [self setupView];
     }
     return self;
@@ -86,7 +85,7 @@
         [self.layer insertSublayer:self.gradientLayer atIndex:0];
     }
     self.gradientLayer.frame = self.bounds;
-    
+
     // Round the corners
     CALayer *viewLayer = [self layer];
     viewLayer.cornerRadius = self.bounds.size.height / 2;
@@ -96,7 +95,7 @@
 
 - (void)setFont:(UIFont *)font {
     self.label.font = font;
-    
+
     [self adjustSize];
 }
 
@@ -104,12 +103,12 @@
     if ([self.delegate respondsToSelector:@selector(contactBubbleWasSelected:)]){
         [self.delegate contactBubbleWasSelected:self];
     }
-    
+
     CALayer *viewLayer = [self layer];
     viewLayer.borderColor = self.selectedColor.border.CGColor;
     
     self.gradientLayer.colors = [NSArray arrayWithObjects:(id)[self.selectedColor.gradientTop CGColor], (id)[self.selectedColor.gradientBottom CGColor], nil];
-    
+
     self.label.textColor = [UIColor whiteColor];
     
     self.isSelected = YES;
@@ -124,7 +123,7 @@
     self.gradientLayer.colors = [NSArray arrayWithObjects:(id)[self.color.gradientTop CGColor], (id)[self.color.gradientBottom CGColor], nil];
     
     self.label.textColor = [UIColor whiteColor];
-    
+
     [self setNeedsDisplay];
     self.isSelected = NO;
     
@@ -168,12 +167,12 @@
 }
 
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end
