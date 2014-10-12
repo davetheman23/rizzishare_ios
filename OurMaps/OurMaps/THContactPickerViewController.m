@@ -1,19 +1,18 @@
 //
 //  ContactPickerViewController.m
-//  OurMaps
+//  ContactPicker
 //
-//  Created by Jiangchuan Huang on 9/29/14.
-//  Copyright (c) 2014 OurMaps. All rights reserved.
+//  Created by Tristan Himmelman on 11/2/12.
+//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
 //
 
-
-#import "ContactPickerViewController.h"
+#import "THContactPickerViewController.h"
 #import <AddressBook/AddressBook.h>
-#import "Contact.h"
+#import "THContact.h"
 
 UIBarButtonItem *barButton;
 
-@interface ContactPickerViewController ()
+@interface THContactPickerViewController ()
 
 @property (nonatomic, assign) ABAddressBookRef addressBookRef;
 
@@ -22,7 +21,7 @@ UIBarButtonItem *barButton;
 //#define kKeyboardHeight 216.0
 #define kKeyboardHeight 0.0
 
-@implementation ContactPickerViewController
+@implementation THContactPickerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,7 +47,7 @@ UIBarButtonItem *barButton;
     self.navigationItem.rightBarButtonItem = barButton;
     
     // Initialize and add Contact Picker View
-    self.contactPickerView = [[ContactPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    self.contactPickerView = [[THContactPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     self.contactPickerView.delegate = self;
     [self.contactPickerView setPlaceholderString:@"Type contact name"];
     [self.view addSubview:self.contactPickerView];
@@ -86,10 +85,10 @@ UIBarButtonItem *barButton;
         NSUInteger i = 0;
         for (i = 0; i<[allContacts count]; i++)
         {
-            Contact *contact = [[Contact alloc] init];
+            THContact *contact = [[THContact alloc] init];
             ABRecordRef contactPerson = (__bridge ABRecordRef)allContacts[i];
             contact.recordId = ABRecordGetRecordID(contactPerson);
-            
+
             // Get first and last names
             NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(contactPerson, kABPersonFirstNameProperty);
             NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(contactPerson, kABPersonLastNameProperty);
@@ -134,14 +133,14 @@ UIBarButtonItem *barButton;
 
 - (void) refreshContacts
 {
-    for (Contact* contact in self.contacts)
+    for (THContact* contact in self.contacts)
     {
         [self refreshContact: contact];
     }
     [self.tableView reloadData];
 }
 
-- (void) refreshContact:(Contact*)contact
+- (void) refreshContact:(THContact*)contact
 {
     
     ABRecordRef contactPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, (ABRecordID)contact.recordId);
@@ -262,7 +261,7 @@ UIBarButtonItem *barButton;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the desired contact from the filteredContacts array
-    Contact *contact = [self.filteredContacts objectAtIndex:indexPath.row];
+    THContact *contact = [self.filteredContacts objectAtIndex:indexPath.row];
     
     // Initialize the table view cell
     NSString *cellIdentifier = @"ContactCell";
@@ -329,7 +328,7 @@ UIBarButtonItem *barButton;
     
     // This uses the custom cellView
     // Set the custom imageView
-    Contact *user = [self.filteredContacts objectAtIndex:indexPath.row];
+    THContact *user = [self.filteredContacts objectAtIndex:indexPath.row];
     UIImageView *checkboxImageView = (UIImageView *)[cell viewWithTag:104];
     UIImage *image;
     
@@ -380,7 +379,7 @@ UIBarButtonItem *barButton;
     [self.tableView reloadData];
 }
 
-- (void)contactPickerDidResize:(ContactPickerView *)contactPickerView {
+- (void)contactPickerDidResize:(THContactPickerView *)contactPickerView {
     [self adjustTableViewFrame:YES];
 }
 
@@ -433,7 +432,7 @@ UIBarButtonItem *barButton;
     view.addressBook = self.addressBookRef;
     view.personViewDelegate = self;
     view.displayedPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, personId);
-    
+
     
     [self.navigationController pushViewController:view animated:YES];
 }

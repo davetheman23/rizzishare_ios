@@ -1,27 +1,27 @@
 //
-//  ContactPickerView.h
-//  OurMaps
+//  ContactPickerTextView.h
+//  ContactPicker
 //
-//  Created by Jiangchuan Huang on 9/29/14.
-//  Copyright (c) 2014 OurMaps. All rights reserved.
+//  Created by Tristan Himmelman on 11/2/12.
+//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "ContactBubble.h"
+#import "THContactBubble.h"
 
-@class ContactPickerView;
+@class THContactPickerView;
 
 @protocol THContactPickerDelegate <NSObject>
 
 - (void)contactPickerTextViewDidChange:(NSString *)textViewText;
 - (void)contactPickerDidRemoveContact:(id)contact;
-- (void)contactPickerDidResize:(ContactPickerView *)contactPickerView;
+- (void)contactPickerDidResize:(THContactPickerView *)contactPickerView;
 
 @end
 
-@interface ContactPickerView : UIView <UITextViewDelegate, THContactBubbleDelegate, UIScrollViewDelegate>
+@interface THContactPickerView : UIView <UITextViewDelegate, THContactBubbleDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) ContactBubble *selectedContactBubble;
+@property (nonatomic, strong) THContactBubble *selectedContactBubble;
 @property (nonatomic, assign) IBOutlet id <THContactPickerDelegate> delegate;
 @property (nonatomic, assign) BOOL limitToOne;
 @property (nonatomic, assign) CGFloat viewPadding;
@@ -33,6 +33,6 @@
 - (void)setPlaceholderString:(NSString *)placeholderString;
 - (void)disableDropShadow;
 - (void)resignKeyboard;
-- (void)setBubbleColor:(BubbleColor *)color selectedColor:(BubbleColor *)selectedColor;
-
+- (void)setBubbleColor:(THBubbleColor *)color selectedColor:(THBubbleColor *)selectedColor;
+    
 @end

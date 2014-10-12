@@ -1,15 +1,14 @@
 //
 //  Contact.m
-//  OurMaps
+//  upsi
 //
-//  Created by Jiangchuan Huang on 9/29/14.
-//  Copyright (c) 2014 OurMaps. All rights reserved.
+//  Created by Mac on 3/24/14.
+//  Copyright (c) 2014 Laith. All rights reserved.
 //
 
+#import "THContact.h"
 
-#import "Contact.h"
-
-@implementation Contact
+@implementation THContact
 
 #pragma mark - NSObject - Creating, Copying, and Deallocating Objects
 

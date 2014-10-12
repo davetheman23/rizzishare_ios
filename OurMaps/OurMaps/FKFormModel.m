@@ -17,7 +17,7 @@
 #import "FKFields.h"
 #import "NSObject+FKFormAttributeMapping.h"
 //#import "SelectViewController.h"
-#import "ContactPickerViewController.h"
+#import "THContactPickerViewController.h"
 #import "UIView+FormKit.h"
 #import "LongTextViewController.h"
 #import "FKTitleHeaderView.h"
@@ -82,7 +82,7 @@
     self = [super init];
     if (self) {
 //        self.selectControllerClass = [SelectViewController class];
-        self.selectControllerClass = [ContactPickerViewController class];
+        self.selectControllerClass = [THContactPickerViewController class];
         self.longTextControllerClass = [LongTextViewController class];
         self.validationErrorColor = [UIColor colorWithRed:216/255.0f green:98/255.0f blue:98/255.0f alpha:1];
         self.validationErrorCellBackgroundColor = [UIColor colorWithRed:255/255.0f green:235/255.0f blue:235/255.0f alpha:1];
@@ -520,7 +520,7 @@
 - (void)showSelectWithAttributeMapping:(FKFormAttributeMapping *)attributeMapping {
     NSInteger selectedIndex = 0;
 //    SelectViewController *vc = [[self.selectControllerClass alloc] init];
-    ContactPickerViewController *vc = [[self.selectControllerClass alloc] init];
+    THContactPickerViewController *vc = [[self.selectControllerClass alloc] init];
 //    vc.items = attributeMapping.selectValuesBlock(nil, self.object, &selectedIndex);
 //    vc.title = attributeMapping.title;
 //    vc.formAttributeMapping = attributeMapping;

@@ -1,14 +1,14 @@
 //
-//  BubbleColor.m
-//  OurMaps
+//  THBubbleColor.m
+//  ContactPicker
 //
-//  Created by Jiangchuan Huang on 9/29/14.
-//  Copyright (c) 2014 OurMaps. All rights reserved.
+//  Created by Dmitry Vorobjov on 12/6/12.
+//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
 //
 
-#import "BubbleColor.h"
+#import "THBubbleColor.h"
 
-@implementation BubbleColor
+@implementation THBubbleColor
 
 - (id)initWithGradientTop:(UIColor *)gradientTop gradientBottom:(UIColor *)gradientBottom border:(UIColor *)border {
     if (self = [super init]) {
