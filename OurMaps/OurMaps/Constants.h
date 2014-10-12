@@ -31,3 +31,9 @@ extern NSString *const kEventTypeKey;
 
 // Event Activity attribute keys
 extern NSString *const kEventActivityEventKey;
+
+// User attribute keys
+extern NSString *const kUserDisplayNameKey;
+
+// Installation attribute keys
+extern NSString *const kInstallationUserKey;

@@ -625,6 +625,8 @@
 			isa = PBXGroup;
 			children = (
 				726FBDE519D8C4E500906BCC /* Main.storyboard */,
+				A772F67719A01F60003DA103 /* AppDelegate.h */,
+				A772F67819A01F60003DA103 /* AppDelegate.m */,
 				A7F9890519DA23AB0031E279 /* ContactPicker */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
@@ -646,8 +648,6 @@
 				A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */,
 				72FB5C5C19A8029D00D4FCB7 /* Constants.h */,
 				72FB5C5D19A8029D00D4FCB7 /* Constants.m */,
-				A772F67719A01F60003DA103 /* AppDelegate.h */,
-				A772F67819A01F60003DA103 /* AppDelegate.m */,
 				A735E9EA19A98B2900500BF5 /* Utilities.h */,
 				A735E9EB19A98B2900500BF5 /* Utilities.m */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
@@ -805,7 +805,11 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = OurMaps;
 				TargetAttributes = {
+					A772F66419A01F60003DA103 = {
+						DevelopmentTeam = 4P545QJ4T9;
+					};
 					A772F68519A01F60003DA103 = {
+						DevelopmentTeam = 4P545QJ4T9;
 						TestTargetID = A772F66419A01F60003DA103;
 					};
 				};
@@ -1003,7 +1007,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: ourmaps.OurMaps";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: ourmaps.OurMaps";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1041,7 +1046,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: ourmaps.OurMaps";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: ourmaps.OurMaps";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1062,6 +1068,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/",
@@ -1075,6 +1083,7 @@
 				INFOPLIST_FILE = "OurMaps/OurMaps-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1084,6 +1093,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/",
@@ -1097,6 +1108,7 @@
 				INFOPLIST_FILE = "OurMaps/OurMaps-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1105,6 +1117,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OurMaps.app/OurMaps";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1118,6 +1132,7 @@
 				);
 				INFOPLIST_FILE = "OurMapsTests/OurMapsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1127,6 +1142,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OurMaps.app/OurMaps";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1136,6 +1153,7 @@
 				GCC_PREFIX_HEADER = "OurMaps/OurMaps-Prefix.pch";
 				INFOPLIST_FILE = "OurMapsTests/OurMapsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
