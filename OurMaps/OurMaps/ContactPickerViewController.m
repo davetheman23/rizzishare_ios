@@ -57,7 +57,7 @@ UIBarButtonItem *barButton;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"THContactPickerTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ContactPickerTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactCell"];
     
     [self.view insertSubview:self.tableView belowSubview:self.contactPickerView];
     
@@ -339,7 +339,7 @@ UIBarButtonItem *barButton;
         // Set checkbox to "unselected"
         image = [UIImage imageNamed:@"icon-checkbox-unselected-25x25"];
     } else {
-        // Contact has not been selected, add it to THContactPickerView
+        // Contact has not been selected, add it to ContactPickerView
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.selectedContacts addObject:user];
         [self.contactPickerView addContact:user withName:user.fullName];
@@ -367,7 +367,7 @@ UIBarButtonItem *barButton;
     [self.tableView reloadData];
 }
 
-#pragma mark - THContactPickerTextViewDelegate
+#pragma mark - ContactPickerTextViewDelegate
 
 - (void)contactPickerTextViewDidChange:(NSString *)textViewText {
     if ([textViewText isEqualToString:@""]){
@@ -425,7 +425,7 @@ UIBarButtonItem *barButton;
 
 
 // This opens the apple contact details view: ABPersonViewController
-//TODO: make a THContactPickerDetailViewController
+//TODO: make a ContactPickerDetailViewController
 - (IBAction)viewContactDetail:(UIButton*)sender {
     ABRecordID personId = (ABRecordID)sender.tag;
     ABPersonViewController *view = [[ABPersonViewController alloc] init];
