@@ -397,47 +397,57 @@ static NSString *const showEventsSegueID = @"showEventsAtAPlace";
     
     for (PFObject *event in events) {
         
-        
+        //Event *rzEvent = [Event eventFromPFObject:event];
         
         PFObject *parsePlace = event[kEventVenueKey];
         Place *place = [Place placeFromParseObject:parsePlace];
         
-        PlaceMarker *marker = [[PlaceMarker alloc] init];
-        
-        marker.place_id = place.place_id;
-        marker.position = place.coordinate;
-        
-        //        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
-        //        [query whereKey:kPlaceIdKey equalTo:place.place_id];
-        //        PFObject *parsePlace = [query getFirstObject];
-        
-        marker.title = place.name;
-        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %ld",place.rating, place.price_level];
-        marker.appearAnimation = kGMSMarkerAnimationPop;
-        
-        //NSArray *eventArray = [[NSArray alloc] init];
-        
-        [place.eventArray addObject:event];
-        
-        NSInteger eventCount = 0;
-        
-        //        if (parsePlace) {
-        //             eventCount = [eventQuery queryEventForPlace:parsePlace];
-        //        }
-        
-        if (eventCount>0) {
-            marker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
-        } else {
-            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+        for (PlaceMarker *marker in mutableMarkerSet) {
+            if ([marker.place_id isEqualToString:place.place_id]) {
+                //[marker.place.eventArray addObject:rzEvent];
+                [marker.place.eventArray addObject:event];
+            }
         }
         
-        marker.map = nil;
-        
-        place.placeMarker = marker;
-        
-        marker.place = place;
-        
-        [mutableMarkerSet addObject:marker];
+//        PFObject *parsePlace = event[kEventVenueKey];
+//        Place *place = [Place placeFromParseObject:parsePlace];
+//        
+//        PlaceMarker *marker = [[PlaceMarker alloc] init];
+//        
+//        marker.place_id = place.place_id;
+//        marker.position = place.coordinate;
+//        
+//        //        PFQuery *query = [PFQuery queryWithClassName:kPlaceClassKey];
+//        //        [query whereKey:kPlaceIdKey equalTo:place.place_id];
+//        //        PFObject *parsePlace = [query getFirstObject];
+//        
+//        marker.title = place.name;
+//        marker.snippet = [NSString stringWithFormat:@"Rating: %f, Price level: %ld",place.rating, place.price_level];
+//        marker.appearAnimation = kGMSMarkerAnimationPop;
+//        
+//        //NSArray *eventArray = [[NSArray alloc] init];
+//        
+//        [place.eventArray addObject:event];
+//        
+//        NSInteger eventCount = 0;
+//        
+//        //        if (parsePlace) {
+//        //             eventCount = [eventQuery queryEventForPlace:parsePlace];
+//        //        }
+//        
+//        if (eventCount>0) {
+//            marker.icon = [UIImage imageNamed:@"fig_Coffee_true.png"];
+//        } else {
+//            marker.icon = [UIImage imageNamed:@"fig_Coffee.png"];
+//        }
+//        
+//        marker.map = nil;
+//        
+//        place.placeMarker = marker;
+//        
+//        marker.place = place;
+//        
+//        [mutableMarkerSet addObject:marker];
     }
     self.markers = [mutableMarkerSet copy];
 }

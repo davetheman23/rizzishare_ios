@@ -7,12 +7,16 @@
 //
 
 #import "EventListTableViewController.h"
+#import "EventListTableViewCell.h"
 
 @interface EventListTableViewController ()
 
 @end
 
 @implementation EventListTableViewController
+
+@synthesize eventArray = _eventArray;
+@synthesize place;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _eventArray = place.eventArray;
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -46,28 +52,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return _eventArray.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    EventListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventListCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.event = [_eventArray objectAtIndex:indexPath.row];
+    
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

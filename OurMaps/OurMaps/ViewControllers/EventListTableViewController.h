@@ -12,5 +12,6 @@
 @interface EventListTableViewController : UITableViewController
 
 @property (strong, nonatomic) Place* place;
+@property (strong, nonatomic) NSArray *eventArray;
 
 @end

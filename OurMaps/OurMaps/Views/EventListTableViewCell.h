@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import <Parse/Parse.h>
 
 @interface EventListTableViewCell : UITableViewCell
 
@@ -17,7 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 
-@property (strong, nonatomic) Event *event;
+//@property (strong, nonatomic) Event *event;
+@property (strong, nonatomic) PFObject *event;
 
 @property (nonatomic) NSInteger peopleCount;
 

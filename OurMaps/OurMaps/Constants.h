@@ -10,6 +10,7 @@
 extern NSString *const kActivityClassKey;
 extern NSString *const kPlaceClassKey;
 extern NSString *const kEventClassKey;
+extern NSString *const kEventActivityClassKey;
 
 // Place attribute keys
 extern NSString *const kPlaceGooglePlaceIDKey;
@@ -27,3 +28,6 @@ extern NSString *const kEventVenueKey;
 extern NSString *const kEventTimeKey;
 extern NSString *const kEventTitleKey;
 extern NSString *const kEventTypeKey;
+
+// Event Activity attribute keys
+extern NSString *const kEventActivityEventKey;

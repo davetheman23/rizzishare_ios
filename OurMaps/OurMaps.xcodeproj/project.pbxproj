@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		723E3ACE19CDED4E00F2B3DE /* EventListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 723E3ACD19CDED4E00F2B3DE /* EventListTableViewController.m */; };
 		723E3AD119CE2E0C00F2B3DE /* EventListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */; };
+		726FBDE719D8C4E500906BCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 726FBDE519D8C4E500906BCC /* Main.storyboard */; };
 		7273683519C2A48200E7A15B /* mapView_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7273683419C2A48200E7A15B /* mapView_background.png */; };
 		7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */; };
 		7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */; };
@@ -19,7 +20,6 @@
 		7293C29719A902180000F456 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29619A902180000F456 /* Security.framework */; };
 		7293C29919A9021F0000F456 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29819A9021F0000F456 /* Social.framework */; };
 		7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7293C29A19A902260000F456 /* StoreKit.framework */; };
-		72A7233019ABDB0E00293167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A7232E19ABDB0E00293167 /* Main.storyboard */; };
 		72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0719AC3329004AC9A0 /* LoginViewController.m */; };
 		72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0A19AC335B004AC9A0 /* SignUpViewController.m */; };
 		72D5AF0E19AC410A004AC9A0 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D5AF0D19AC410A004AC9A0 /* WelcomeViewController.m */; };
@@ -124,6 +124,7 @@
 		723E3ACD19CDED4E00F2B3DE /* EventListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventListTableViewController.m; path = ViewControllers/EventListTableViewController.m; sourceTree = "<group>"; };
 		723E3ACF19CE2E0C00F2B3DE /* EventListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventListTableViewCell.h; path = Views/EventListTableViewCell.h; sourceTree = "<group>"; };
 		723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventListTableViewCell.m; path = Views/EventListTableViewCell.m; sourceTree = "<group>"; };
+		726FBDE619D8C4E500906BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7273683419C2A48200E7A15B /* mapView_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapView_background.png; path = Assets/mapView_background.png; sourceTree = "<group>"; };
 		7273683619C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoricalNearbyEventTableViewController.h; path = ViewControllers/CategoricalNearbyEventTableViewController.h; sourceTree = "<group>"; };
 		7273683719C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoricalNearbyEventTableViewController.m; path = ViewControllers/CategoricalNearbyEventTableViewController.m; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		7293C29619A902180000F456 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7293C29819A9021F0000F456 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7293C29A19A902260000F456 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		72A7232F19ABDB0E00293167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72D5AF0619AC3329004AC9A0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		72D5AF0719AC3329004AC9A0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		72D5AF0919AC335B004AC9A0 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -576,13 +576,10 @@
 		A772F66E19A01F60003DA103 /* OurMaps */ = {
 			isa = PBXGroup;
 			children = (
-				72A7232E19ABDB0E00293167 /* Main.storyboard */,
-
-
+				726FBDE519D8C4E500906BCC /* Main.storyboard */,
 				A772F67D19A01F60003DA103 /* ViewController.h */,
 				A772F67E19A01F60003DA103 /* ViewController.m */,
 				A75D33C419D71D6800D0F5F1 /* EventPost */,
-
 				A7F9974B19CF33FD0002836C /* FormKitDemo */,
 				A7248C8719CF2AE900CAB393 /* SelectViewController */,
 				A7248C8319CF2A7500CAB393 /* LongTextViewController */,
@@ -761,11 +758,11 @@
 				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
 				7273683519C2A48200E7A15B /* mapView_background.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
+				726FBDE719D8C4E500906BCC /* Main.storyboard in Resources */,
 				72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */,
 				72D5AF1319AC5120004AC9A0 /* splashscreenIPHONE-01.png in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
-				72A7233019ABDB0E00293167 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,10 +864,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		72A7232E19ABDB0E00293167 /* Main.storyboard */ = {
+		726FBDE519D8C4E500906BCC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				72A7232F19ABDB0E00293167 /* Base */,
+				726FBDE619D8C4E500906BCC /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

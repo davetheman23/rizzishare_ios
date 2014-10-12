@@ -37,11 +37,16 @@
     // Configure the view for the selected state
 }
 
-- (void)setEvent:(Event *)anEvent
+- (void)setEvent:(PFObject *)anEvent
 {
+    PFQuery *activityQuery = [PFQuery queryWithClassName:kEventActivityClassKey];
+    [activityQuery whereKey:kEventActivityEventKey equalTo:anEvent];
     event = anEvent;
     if (event) {
-        _titleLabel.text = event.title;
+        _titleLabel.text = event[kEventTitleKey];
+        [activityQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+            self.peopleCount = number;
+        }];
     }
 }
 

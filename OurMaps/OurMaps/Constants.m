@@ -12,6 +12,7 @@
 NSString *const kActivityClassKey = @"Activity";
 NSString *const kPlaceClassKey = @"Place";
 NSString *const kEventClassKey = @"Event";
+NSString *const kEventActivityClassKey = @"Event_Activity";
 
 // Place attribute keys
 NSString *const kPlaceGooglePlaceIDKey = @"googlePlaceId";
@@ -29,3 +30,6 @@ NSString *const kEventVenueKey = @"venue";
 NSString *const kEventTimeKey = @"eventTime";
 NSString *const kEventTitleKey = @"title";
 NSString *const kEventTypeKey = @"type";
+
+// Event Activity attribute keys
+NSString *const kEventActivityEventKey = @"toEvent";
