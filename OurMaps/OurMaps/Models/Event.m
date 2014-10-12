@@ -27,6 +27,15 @@
     return event;
 }
 
++ (PFObject *)eventToPFObject:(Event *)anEvent {
+    PFObject *PFEvent = [[PFObject alloc] init];
+    PFEvent[kEventTitleKey] = anEvent.title;
+    PFEvent[kEventTimeKey] = anEvent.eventTime;
+    
+    return PFEvent;
+}
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:
             @"title = %@, eventTime = %@, eventPlace = %@, participants = %@",

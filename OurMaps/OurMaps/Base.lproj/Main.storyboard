@@ -402,7 +402,13 @@
                             <outlet property="delegate" destination="Ia2-fH-Shi" id="l1t-MO-ZOl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="90W-TA-Zxd"/>
+                    <navigationItem key="navigationItem" id="90W-TA-Zxd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dBL-MB-oUE">
+                            <connections>
+                                <action selector="eventDidSave:" destination="Ia2-fH-Shi" id="uzn-95-po8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfw-em-iIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

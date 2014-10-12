@@ -21,5 +21,6 @@
 
 // Builder class methods
 + (Event *)eventFromPFObject:(PFObject *)anObject;
++ (PFObject *)eventToPFObject:(Event *)anEvent;
 
 @end
