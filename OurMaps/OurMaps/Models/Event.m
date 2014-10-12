@@ -28,7 +28,7 @@
 }
 
 + (PFObject *)eventToPFObject:(Event *)anEvent {
-    PFObject *PFEvent = [[PFObject alloc] init];
+    PFObject *PFEvent = [PFObject objectWithClassName:kEventClassKey];
     PFEvent[kEventTitleKey] = anEvent.title;
     PFEvent[kEventTimeKey] = anEvent.eventTime;
     
