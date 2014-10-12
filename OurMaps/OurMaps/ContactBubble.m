@@ -1,14 +1,14 @@
 //
-//  THContactBubble.m
-//  ContactPicker
+//  ContactBubble.m
+//  OurMaps
 //
-//  Created by Tristan Himmelman on 11/2/12.
-//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "THContactBubble.h"
+#import "ContactBubble.h"
 
-@implementation THContactBubble
+@implementation ContactBubble
 
 #define kHorizontalPadding 10
 #define kVerticalPadding 2
@@ -23,18 +23,18 @@
     return self;
 }
 
-- (id)initWithName:(NSString *)name color:(THBubbleColor *)color selectedColor:(THBubbleColor *)selectedColor {
+- (id)initWithName:(NSString *)name color:(BubbleColor *)color selectedColor:(BubbleColor *)selectedColor {
     self = [super init];
     if (self){
         self.name = name;
         self.isSelected = NO;
 
         if (color == nil){
-            color = [[THBubbleColor alloc] initWithGradientTop:kBubbleColor gradientBottom:kBubbleColor border:kBubbleColor];
+            color = [[BubbleColor alloc] initWithGradientTop:kBubbleColor gradientBottom:kBubbleColor border:kBubbleColor];
         }
 
         if (selectedColor == nil){
-            selectedColor = [[THBubbleColor alloc] initWithGradientTop:kBubbleColorSelected gradientBottom:kBubbleColorSelected border:kBubbleColorSelected];
+            selectedColor = [[BubbleColor alloc] initWithGradientTop:kBubbleColorSelected gradientBottom:kBubbleColorSelected border:kBubbleColorSelected];
         }
         
         self.color = color;

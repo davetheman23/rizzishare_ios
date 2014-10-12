@@ -1,18 +1,18 @@
 //
 //  ContactPickerViewController.m
-//  ContactPicker
+//  OurMaps
 //
-//  Created by Tristan Himmelman on 11/2/12.
-//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "THContactPickerViewController.h"
+#import "ContactPickerViewController.h"
 #import <AddressBook/AddressBook.h>
-#import "THContact.h"
+#import "Contact.h"
 
 UIBarButtonItem *barButton;
 
-@interface THContactPickerViewController ()
+@interface ContactPickerViewController ()
 
 @property (nonatomic, assign) ABAddressBookRef addressBookRef;
 
@@ -21,7 +21,7 @@ UIBarButtonItem *barButton;
 //#define kKeyboardHeight 216.0
 #define kKeyboardHeight 0.0
 
-@implementation THContactPickerViewController
+@implementation ContactPickerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +47,7 @@ UIBarButtonItem *barButton;
     self.navigationItem.rightBarButtonItem = barButton;
     
     // Initialize and add Contact Picker View
-    self.contactPickerView = [[THContactPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    self.contactPickerView = [[ContactPickerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     self.contactPickerView.delegate = self;
     [self.contactPickerView setPlaceholderString:@"Type contact name"];
     [self.view addSubview:self.contactPickerView];
@@ -85,7 +85,7 @@ UIBarButtonItem *barButton;
         NSUInteger i = 0;
         for (i = 0; i<[allContacts count]; i++)
         {
-            THContact *contact = [[THContact alloc] init];
+            Contact *contact = [[Contact alloc] init];
             ABRecordRef contactPerson = (__bridge ABRecordRef)allContacts[i];
             contact.recordId = ABRecordGetRecordID(contactPerson);
 
@@ -133,14 +133,14 @@ UIBarButtonItem *barButton;
 
 - (void) refreshContacts
 {
-    for (THContact* contact in self.contacts)
+    for (Contact* contact in self.contacts)
     {
         [self refreshContact: contact];
     }
     [self.tableView reloadData];
 }
 
-- (void) refreshContact:(THContact*)contact
+- (void) refreshContact:(Contact*)contact
 {
     
     ABRecordRef contactPerson = ABAddressBookGetPersonWithRecordID(self.addressBookRef, (ABRecordID)contact.recordId);
@@ -261,7 +261,7 @@ UIBarButtonItem *barButton;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Get the desired contact from the filteredContacts array
-    THContact *contact = [self.filteredContacts objectAtIndex:indexPath.row];
+    Contact *contact = [self.filteredContacts objectAtIndex:indexPath.row];
     
     // Initialize the table view cell
     NSString *cellIdentifier = @"ContactCell";
@@ -328,7 +328,7 @@ UIBarButtonItem *barButton;
     
     // This uses the custom cellView
     // Set the custom imageView
-    THContact *user = [self.filteredContacts objectAtIndex:indexPath.row];
+    Contact *user = [self.filteredContacts objectAtIndex:indexPath.row];
     UIImageView *checkboxImageView = (UIImageView *)[cell viewWithTag:104];
     UIImage *image;
     
@@ -379,7 +379,7 @@ UIBarButtonItem *barButton;
     [self.tableView reloadData];
 }
 
-- (void)contactPickerDidResize:(THContactPickerView *)contactPickerView {
+- (void)contactPickerDidResize:(ContactPickerView *)contactPickerView {
     [self adjustTableViewFrame:YES];
 }
 

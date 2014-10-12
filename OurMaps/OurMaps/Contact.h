@@ -1,14 +1,14 @@
 //
 //  Contact.h
-//  upsi
+//  OurMaps
 //
-//  Created by Mac on 3/24/14.
-//  Copyright (c) 2014 Laith. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface THContact : NSObject
+@interface Contact : NSObject
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
 - (NSString *)fullName;

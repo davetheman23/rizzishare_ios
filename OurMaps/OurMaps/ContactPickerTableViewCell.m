@@ -1,14 +1,14 @@
 //
-//  THContactPickerTableViewCell.m
-//  ContactPicker
+//  ContactPickerTableViewCell.m
+//  OurMaps
 //
-//  Created by Mac on 3/27/14.
-//  Copyright (c) 2014 Tristan Himmelman. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "THContactPickerTableViewCell.h"
+#import "ContactPickerTableViewCell.h"
 
-@implementation THContactPickerTableViewCell
+@implementation ContactPickerTableViewCell
 
 - (void)awakeFromNib
 {

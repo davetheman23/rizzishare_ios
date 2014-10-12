@@ -1,14 +1,14 @@
 //
-//  THBubbleColor.h
-//  ContactPicker
+//  BubbleColor.h
+//  OurMaps
 //
-//  Created by Dmitry Vorobjov on 12/6/12.
-//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface THBubbleColor : NSObject
+@interface BubbleColor : NSObject
 
 @property (nonatomic, strong) UIColor *gradientTop;
 @property (nonatomic, strong) UIColor *gradientBottom;

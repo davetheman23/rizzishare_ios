@@ -1,15 +1,15 @@
 //
-//  ContactPickerTextView.m
-//  ContactPicker
+//  ContactPickerView.m
+//  OurMaps
 //
-//  Created by Tristan Himmelman on 11/2/12.
-//  Copyright (c) 2012 Tristan Himmelman. All rights reserved.
+//  Created by Jiangchuan Huang on 9/29/14.
+//  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
-#import "THContactPickerView.h"
-#import "THContactBubble.h"
+#import "ContactPickerView.h"
+#import "ContactBubble.h"
 
-@interface THContactPickerView (){
+@interface ContactPickerView (){
     BOOL _shouldSelectTextView;
 }
 
@@ -20,12 +20,12 @@
 @property (nonatomic, assign) CGFloat lineHeight;
 @property (nonatomic, strong) UITextView *textView;
 
-@property (nonatomic, strong) THBubbleColor *bubbleColor;
-@property (nonatomic, strong) THBubbleColor *bubbleSelectedColor;
+@property (nonatomic, strong) BubbleColor *bubbleColor;
+@property (nonatomic, strong) BubbleColor *bubbleSelectedColor;
 
 @end
 
-@implementation THContactPickerView
+@implementation ContactPickerView
 
 #define kViewPadding 5 // the amount of padding on top and bottom of the view
 #define kHorizontalPadding 2 // the amount of padding to the left and right of each contact bubble
@@ -57,7 +57,7 @@
     self.contactKeys = [NSMutableArray array];
     
     // Create a contact bubble to determine the height of a line
-    THContactBubble *contactBubble = [[THContactBubble alloc] initWithName:@"Sample"];
+    ContactBubble *contactBubble = [[ContactBubble alloc] initWithName:@"Sample"];
     self.lineHeight = contactBubble.frame.size.height + 2 * kVerticalPadding;
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
@@ -110,7 +110,7 @@
 - (void)setFont:(UIFont *)font {
     _font = font;
     // Create a contact bubble to determine the height of a line
-    THContactBubble *contactBubble = [[THContactBubble alloc] initWithName:@"Sample"];
+    ContactBubble *contactBubble = [[ContactBubble alloc] initWithName:@"Sample"];
     [contactBubble setFont:font];
     self.lineHeight = contactBubble.frame.size.height + 2 * kVerticalPadding;
     
@@ -130,7 +130,7 @@
     
     self.textView.text = @"";
     
-    THContactBubble *contactBubble = [[THContactBubble alloc] initWithName:name color:self.bubbleColor selectedColor:self.bubbleSelectedColor];
+    ContactBubble *contactBubble = [[ContactBubble alloc] initWithName:name color:self.bubbleColor selectedColor:self.bubbleSelectedColor];
     if (self.font != nil){
         [contactBubble setFont:self.font];
     }
@@ -155,7 +155,7 @@
 - (void)removeAllContacts
 {
     for(id contact in [self.contacts allKeys]){
-        THContactBubble *contactBubble = [self.contacts objectForKey:contact];
+        ContactBubble *contactBubble = [self.contacts objectForKey:contact];
         [contactBubble removeFromSuperview];
     }
     [self.contacts removeAllObjects];
@@ -172,7 +172,7 @@
 - (void)removeContact:(id)contact {
     id contactKey = [NSValue valueWithNonretainedObject:contact];
     // Remove contactBubble from view
-    THContactBubble *contactBubble = [self.contacts objectForKey:contactKey];
+    ContactBubble *contactBubble = [self.contacts objectForKey:contactKey];
     [contactBubble removeFromSuperview];
     
     // Remove contact from memory
@@ -205,12 +205,12 @@
     [self layoutView];
 }
 
-- (void)setBubbleColor:(THBubbleColor *)color selectedColor:(THBubbleColor *)selectedColor {
+- (void)setBubbleColor:(BubbleColor *)color selectedColor:(BubbleColor *)selectedColor {
     self.bubbleColor = color;
     self.bubbleSelectedColor = selectedColor;
     
     for (id contactKey in self.contactKeys){
-        THContactBubble *contactBubble = (THContactBubble *)[self.contacts objectForKey:contactKey];
+        ContactBubble *contactBubble = (ContactBubble *)[self.contacts objectForKey:contactKey];
         
         contactBubble.color = color;
         contactBubble.selectedColor = selectedColor;
@@ -240,7 +240,7 @@
     }
 }
 
-- (void)removeContactBubble:(THContactBubble *)contactBubble {
+- (void)removeContactBubble:(ContactBubble *)contactBubble {
     id contact = [self contactForContactBubble:contactBubble];
     if (contact == nil){
         return;
@@ -255,7 +255,7 @@
 
 - (void)removeContactByKey:(id)contactKey {
     // Remove contactBubble from view
-    THContactBubble *contactBubble = [self.contacts objectForKey:contactKey];
+    ContactBubble *contactBubble = [self.contacts objectForKey:contactKey];
     [contactBubble removeFromSuperview];
     
     // Remove contact from memory
@@ -272,7 +272,7 @@
     [self scrollToBottomWithAnimation:NO];
 }
 
-- (id)contactForContactBubble:(THContactBubble *)contactBubble {
+- (id)contactForContactBubble:(ContactBubble *)contactBubble {
     NSArray *keys = [self.contacts allKeys];
     
     for (id contact in keys){
@@ -289,7 +289,7 @@
     
     // Loop through selectedContacts and position/add them to the view
     for (id contactKey in self.contactKeys){
-        THContactBubble *contactBubble = (THContactBubble *)[self.contacts objectForKey:contactKey];
+        ContactBubble *contactBubble = (ContactBubble *)[self.contacts objectForKey:contactKey];
         CGRect bubbleFrame = contactBubble.frame;
         
         if (CGRectIsNull(frameOfLastBubble)){ // first line
@@ -413,7 +413,7 @@
 
 #pragma mark - THContactBubbleDelegate Functions
 
-- (void)contactBubbleWasSelected:(THContactBubble *)contactBubble {
+- (void)contactBubbleWasSelected:(ContactBubble *)contactBubble {
     if (self.selectedContactBubble != nil){
         [self.selectedContactBubble unSelect];
     }
@@ -424,7 +424,7 @@
     self.textView.hidden = YES;
 }
 
-- (void)contactBubbleWasUnSelected:(THContactBubble *)contactBubble {
+- (void)contactBubbleWasUnSelected:(ContactBubble *)contactBubble {
     if (self.selectedContactBubble != nil){
         
     }
@@ -433,7 +433,7 @@
     self.textView.hidden = NO;
 }
 
-- (void)contactBubbleShouldBeRemoved:(THContactBubble *)contactBubble {
+- (void)contactBubbleShouldBeRemoved:(ContactBubble *)contactBubble {
     [self removeContactBubble:contactBubble];
 }
 
