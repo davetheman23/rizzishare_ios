@@ -16,6 +16,8 @@
 #import "Genre.h"
 #import "LongTextViewController.h"
 
+UIBarButtonItem *joinButton;
+
 @implementation EventPostViewController
 
 @synthesize formModel;
@@ -36,6 +38,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Prepare for navigation bar
+    joinButton = [[UIBarButtonItem alloc] initWithTitle:@"Join" style:UIBarButtonItemStyleDone target:self action:@selector(prepareForJoinRequest)];
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.saveButton, joinButton, nil];
     
     self.formModel = [FKFormModel formTableModelForTableView:self.tableView
                                         navigationController:self.navigationController];
@@ -135,6 +142,51 @@
     PFObject *PFEvent = [Event eventToPFObject:self.event];
     [PFEvent saveInBackground];
     
+}
+
+# pragma mark - prepare for join request
+- (BOOL)shouldSendJoinRequest {
+    if ([PFUser currentUser] != _event.owner) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)prepareForJoinRequest {
+    if ([self shouldSendJoinRequest]) {
+        
+        // Find corresponding event owner
+        // Build the push notification target query
+        PFQuery *pushQuery = [PFInstallation query];
+        NSLog(@"owner: %@", _event.owner[@"displayName"]);
+        [pushQuery whereKey:kInstallationUserKey equalTo:_event.owner];
+        
+        // Set push data
+        NSString *message = [[NSString alloc] initWithFormat:@"%@ sent you a request to join %@",[[[PFUser currentUser] username] uppercaseString], _event.title];
+        NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                              message, @"alert",
+                              nil];
+        // Send push
+        PFPush *push = [[PFPush alloc] init];
+        [push setQuery:pushQuery];
+        [push setData:data];
+        [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+            if (succeeded) {
+                NSLog(@"request done");
+                [self done:nil];
+            }
+        }];
+    }
+}
+
+- (void)done:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Request Sent!"
+                                                        message:@"Now do whatevet you want!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [alertView show];
 }
 
 @end

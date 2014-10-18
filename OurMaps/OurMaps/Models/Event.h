@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSString *eventPlace;
 //@property (nonatomic, strong) NSSet *participants;
 @property (nonatomic, strong) NSArray *participants;
+@property (nonatomic, strong) PFUser *owner;
+@property (nonatomic, strong) PFObject *venue;
 
 + (id)eventWithTitle:(NSString *)title;
 

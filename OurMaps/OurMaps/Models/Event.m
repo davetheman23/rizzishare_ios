@@ -23,7 +23,8 @@
     Event *event = [[self alloc] init];
     event.title = [anObject objectForKey:kEventTitleKey];
     event.eventTime = [anObject objectForKey:kEventTimeKey];
-    
+    event.owner = [anObject objectForKey:kEventOwnerKey];
+    event.venue = [anObject objectForKey:kEventVenueKey];
     return event;
 }
 
@@ -31,7 +32,8 @@
     PFObject *PFEvent = [PFObject objectWithClassName:kEventClassKey];
     PFEvent[kEventTitleKey] = anEvent.title;
     PFEvent[kEventTimeKey] = anEvent.eventTime;
-    
+    PFEvent[kEventOwnerKey] = anEvent.owner;
+    PFEvent[kEventVenueKey] = anEvent.venue;
     return PFEvent;
 }
 

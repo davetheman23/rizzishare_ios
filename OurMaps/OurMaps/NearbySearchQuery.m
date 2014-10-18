@@ -111,6 +111,7 @@
     PFQuery *eventQuery = [PFQuery queryWithClassName:kEventClassKey];
     [eventQuery whereKey:kEventVenueKey matchesQuery:nearbyPlaceQuery];
     [eventQuery includeKey:kEventVenueKey];
+    [eventQuery includeKey:kEventOwnerKey];
 //    [eventQuery findObjectsInBackgroundWithBlock:^(NSArray *events, NSError *error) {
 //        if (!error) {
 //            NSLog(@"successfully fetched %lu nearby events", events.count);

@@ -16,4 +16,7 @@
 @property (nonatomic, strong) FKFormModel *formModel;
 @property (nonatomic, strong) Event *event;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+
+
 @end

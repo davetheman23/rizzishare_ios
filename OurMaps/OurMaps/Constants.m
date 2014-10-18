@@ -30,6 +30,7 @@ NSString *const kEventVenueKey = @"venue";
 NSString *const kEventTimeKey = @"eventTime";
 NSString *const kEventTitleKey = @"title";
 NSString *const kEventTypeKey = @"type";
+NSString *const kEventOwnerKey = @"owner";
 
 // Event Activity attribute keys
 NSString *const kEventActivityEventKey = @"toEvent";

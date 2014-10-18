@@ -670,6 +670,7 @@ didTapInfoWindowOfMarker:(GMSMarker *)marker{
         //PlaceMarker *marker = (PlaceMarker *)sender;
         destVC.place = [sender valueForKey:@"place"];
         NSLog(@"test event count == %lu", destVC.place.eventArray.count);
+        NSLog(@"event info %@", destVC.place.eventArray.firstObject);
     }
 }
 
