@@ -131,6 +131,7 @@
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];
         PFObject *PFEvent = [_eventArray objectAtIndex:index.row];
         event = [Event eventFromPFObject:PFEvent];
+        event.eventPlace = place.name;
     }
     EventPostViewController *vc = [segue destinationViewController];
     vc.event = event;
