@@ -449,7 +449,7 @@ UIBarButtonItem *barButton;
         [pushQuery whereKey:kInstallationUserKey matchesQuery:userQuery];
      
         // Set push data
-        NSString *message = [[NSString alloc] initWithFormat:@"Invitation From %@",[[[PFUser currentUser] username] uppercaseString]];
+        NSString *message = [[NSString alloc] initWithFormat:@"%@ sent you an invitation",[[[PFUser currentUser] username] uppercaseString]];
         NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                               message, @"alert",
                               nil];
