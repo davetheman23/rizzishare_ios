@@ -141,7 +141,6 @@ UIBarButtonItem *joinButton;
 - (IBAction)eventDidSave:(id)sender {
     PFObject *PFEvent = [Event eventToPFObject:self.event];
     [PFEvent saveInBackground];
-    
 }
 
 # pragma mark - prepare for join request

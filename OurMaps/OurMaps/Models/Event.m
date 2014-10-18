@@ -30,10 +30,15 @@
 
 + (PFObject *)eventToPFObject:(Event *)anEvent {
     PFObject *PFEvent = [PFObject objectWithClassName:kEventClassKey];
-    PFEvent[kEventTitleKey] = anEvent.title;
-    PFEvent[kEventTimeKey] = anEvent.eventTime;
     PFEvent[kEventOwnerKey] = anEvent.owner;
     PFEvent[kEventVenueKey] = anEvent.venue;
+    if(anEvent.title != nil) {
+        PFEvent[kEventTitleKey] = anEvent.title;
+    }
+    if (anEvent.eventTime != nil) {
+        PFEvent[kEventTimeKey] = anEvent.eventTime;
+    }
+//    PFEvent[kEventVenueKey] = anEvent.eventVenue;
     return PFEvent;
 }
 
