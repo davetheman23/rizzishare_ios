@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class FKFormModel;
-@class Movie;
 @class Event;
 
 @interface EventPostViewController : UITableViewController
 
 @property (nonatomic, strong) FKFormModel *formModel;
-@property (nonatomic, strong) Movie *movie;
 @property (nonatomic, strong) Event *event;
 
 @end

@@ -125,7 +125,7 @@
     if([segue.identifier isEqualToString:@"eventPostSegue"]) {
         event = [Event eventWithTitle:@"Type event title"];
         event.eventTime = [NSDate date];
-        event.eventPlace = @"SWEVI";
+        event.eventPlace = place.name;
         event.participants = nil;
     } else if([segue.identifier isEqualToString:@"eventQuerySegue"]) {
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];

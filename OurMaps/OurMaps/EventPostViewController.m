@@ -11,7 +11,6 @@
 
 #import "FormKit.h"
 
-#import "Movie.h"
 #import "Event.h"
 #import "Comment.h"
 #import "Genre.h"
@@ -20,7 +19,6 @@
 @implementation EventPostViewController
 
 @synthesize formModel;
-@synthesize movie = _movie;
 @synthesize event = _event;
 
 #pragma mark - View lifecycle
@@ -55,18 +53,19 @@
    
     
     [FKFormMapping mappingForClass:[Event class] block:^(FKFormMapping *formMapping) {
-        [formMapping sectionWithTitle:@"Header" footer:@"Footer" identifier:@"info"];
+        [formMapping sectionWithTitle:@"Event Details" footer:nil identifier:@"info"];
         [formMapping mapAttribute:@"title" title:@"Title" type:FKFormAttributeMappingTypeText];
 
  
         [formMapping mappingForAttribute:@"eventTime"
-                                   title:@"Event time"
-                                    type:FKFormAttributeMappingTypeDate
+                                   title:@"Time"
+                                    type:FKFormAttributeMappingTypeDateTime
                         attributeMapping:^(FKFormAttributeMapping *mapping) {
-                            mapping.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//                            mapping.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                            mapping.dateFormat = @"yyyy-MM-dd HH:mm";
                         }];
 
-        [formMapping mapAttribute:@"eventPlace" title:@"Event place" type:FKFormAttributeMappingTypeText];
+        [formMapping mapAttribute:@"eventPlace" title:@"Place" type:FKFormAttributeMappingTypeText];
         
         [formMapping mapAttribute:@"participants"
                             title:@"Participants"
@@ -84,32 +83,6 @@
                     
                 }];
         
-//        [formMapping sectionWithTitle:@"Custom cells" identifier:@"customCells"];
-//        
-//        [formMapping mapCustomCell:[FKDisclosureIndicatorAccessoryField class]
-//                        identifier:@"custom"
-//                         rowHeight:70
-//                         blockData:@(1)
-//              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
-//                  cell.textLabel.text = [NSString stringWithFormat:@"I am a custom cell ! With blockData %@", [blockData description]];
-//                  cell.textLabel.numberOfLines = 0;
-//                  
-//              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath, id blockData) {
-//                  NSLog(@"You pressed me");
-//                  
-//              }];
-//        
-//        [formMapping mapCustomCell:[UITableViewCell class]
-//                        identifier:@"custom2"
-//              willDisplayCellBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-//                  cell.textLabel.text = @"I am a custom cell too !";
-//                  
-//              }     didSelectBlock:^(UITableViewCell *cell, id object, NSIndexPath *indexPath) {
-//                  NSLog(@"You pressed me");
-//                  
-//              }];
-        
-        [formMapping sectionWithTitle:@"Buttons" identifier:@"saveButton"];
         
         [formMapping buttonSave:@"Save" handler:^{
             NSLog(@"save pressed");
@@ -117,20 +90,15 @@
             [self.formModel save];
         }];
         
-//        [formMapping validationForAttribute:@"custom" validBlock:^BOOL(id value, id object) {
-//            return NO;
-//        } errorMessageBlock:^NSString *(id value, id object) {
-//            return @"Error";
-//        }];
         
         [formMapping validationForAttribute:@"title" validBlock:^BOOL(NSString *value, id object) {
-            return value.length < 10;
+            return value.length < 100;
             
         } errorMessageBlock:^NSString *(id value, id object) {
             return @"Text is too long.";
         }];
         
-        [formMapping validationForAttribute:@"releaseDate" validBlock:^BOOL(id value, id object) {
+        [formMapping validationForAttribute:@"eventTime" validBlock:^BOOL(id value, id object) {
             return NO;
         }];
         
@@ -141,7 +109,6 @@
         NSLog(@"did change model value");
     }];
     
-//    [self.formModel loadFieldsWithObject:movie];
     [self.formModel loadFieldsWithObject:self.event];
 }
 
@@ -151,7 +118,6 @@
     [super viewDidUnload];
     
     self.formModel = nil;
-    self.movie = nil;
     self.event = nil;
 }
 
