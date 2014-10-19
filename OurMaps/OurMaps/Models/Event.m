@@ -30,15 +30,23 @@
 
 + (PFObject *)eventToPFObject:(Event *)anEvent {
     PFObject *PFEvent = [PFObject objectWithClassName:kEventClassKey];
-    PFEvent[kEventOwnerKey] = anEvent.owner;
-    PFEvent[kEventVenueKey] = anEvent.venue;
-    if(anEvent.title != nil) {
+    if(anEvent.title) {
         PFEvent[kEventTitleKey] = anEvent.title;
     }
-    if (anEvent.eventTime != nil) {
+    if (anEvent.eventTime) {
         PFEvent[kEventTimeKey] = anEvent.eventTime;
     }
-//    PFEvent[kEventVenueKey] = anEvent.eventVenue;
+    if (anEvent.owner) {
+        PFEvent[kEventOwnerKey] = anEvent.owner;
+    }
+    if (anEvent.venue) {
+        PFEvent[kEventVenueKey] = anEvent.venue;
+    }
+    
+    PFACL *eventACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    [eventACL setPublicReadAccess:YES];
+    PFEvent.ACL = eventACL;
+    
     return PFEvent;
 }
 
