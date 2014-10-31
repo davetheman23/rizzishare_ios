@@ -28,9 +28,7 @@
 		72E3C61F19BBE88600538233 /* fig_Coffee_true.png in Resources */ = {isa = PBXBuildFile; fileRef = 72E3C61E19BBE88600538233 /* fig_Coffee_true.png */; };
 		72E3C62219BBEA6700538233 /* EventQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E3C62119BBEA6700538233 /* EventQuery.m */; };
 		72E3C62619BCC10100538233 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E3C62519BCC10100538233 /* Event.m */; };
-		72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */; };
 		72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42519A959500036FCBB /* FacebookSDK.framework */; };
-		72EAD42819A95FE90036FCBB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAD42719A95FE90036FCBB /* Parse.framework */; };
 		72FB5C5919A8016100D4FCB7 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FB5C5819A8016100D4FCB7 /* GoogleMaps.framework */; };
 		72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */; };
 		72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FB5C5D19A8029D00D4FCB7 /* Constants.m */; };
@@ -80,6 +78,9 @@
 		A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9EE19A98D3B00500BF5 /* AutocompleteQuery.m */; };
 		A735E9F219AA35EE00500BF5 /* PlaceDetailQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */; };
 		A735E9F519AA371100500BF5 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A735E9F419AA371100500BF5 /* Place.m */; };
+		A74EB3E91A0419EC00F3449B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74EB3E61A0419EC00F3449B /* Bolts.framework */; };
+		A74EB3EA1A0419EC00F3449B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74EB3E71A0419EC00F3449B /* Parse.framework */; };
+		A74EB3EB1A0419EC00F3449B /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74EB3E81A0419EC00F3449B /* ParseFacebookUtils.framework */; };
 		A75D33CA19D71F9000D0F5F1 /* EventPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A75D33C919D71F9000D0F5F1 /* EventPostViewController.m */; };
 		A75D33CD19D86D8500D0F5F1 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A75D33CC19D86D8500D0F5F1 /* SWActionSheet.m */; };
 		A75D33D019D86DCA00D0F5F1 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A75D33CF19D86DCA00D0F5F1 /* ActionSheetLocalePicker.m */; };
@@ -110,7 +111,33 @@
 		A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A772F6B919A023D2003DA103 /* SystemConfiguration.framework */; };
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
+		A7C3DBF81A00554000C2BA83 /* PAPPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBF71A00554000C2BA83 /* PAPPhotoDetailsViewController.m */; };
+		A7C3DBFB1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBFA1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m */; };
+		A7C3DBFE1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBFD1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m */; };
+		A7C3DC011A0059B400C2BA83 /* PAPProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC001A0059B400C2BA83 /* PAPProfileImageView.m */; };
+		A7C3DC041A005A9500C2BA83 /* PAPUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC031A005A9500C2BA83 /* PAPUtility.m */; };
+		A7C3DC0D1A005D5700C2BA83 /* UIImage+AlphaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC081A005D5700C2BA83 /* UIImage+AlphaAdditions.m */; };
+		A7C3DC0E1A005D5700C2BA83 /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC0A1A005D5700C2BA83 /* UIImage+ResizeAdditions.m */; };
+		A7C3DC0F1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC0C1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.m */; };
+		A7C3DC121A005E7200C2BA83 /* PAPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC111A005E7200C2BA83 /* PAPConstants.m */; };
+		A7C3DC151A005F8200C2BA83 /* PAPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC141A005F8200C2BA83 /* PAPCache.m */; };
+		A7C3DC191A0060A300C2BA83 /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC181A0060A300C2BA83 /* TTTTimeIntervalFormatter.m */; };
+		A7C3DC1F1A00624000C2BA83 /* PAPBaseTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC1E1A00624000C2BA83 /* PAPBaseTextCell.m */; };
+		A7C3DC221A00630600C2BA83 /* PAPActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC211A00630600C2BA83 /* PAPActivityCell.m */; };
+		A7C3DC261A0063EB00C2BA83 /* PAPActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC251A0063EB00C2BA83 /* PAPActivityFeedViewController.m */; };
+		A7C3DC291A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC281A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.m */; };
+		A7C3DC2C1A00659000C2BA83 /* PAPAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC2B1A00659000C2BA83 /* PAPAccountViewController.m */; };
+		A7C3DC2F1A00660400C2BA83 /* PAPPhotoTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC2E1A00660400C2BA83 /* PAPPhotoTimelineViewController.m */; };
+		A7C3DC321A00667700C2BA83 /* PAPPhotoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC311A00667700C2BA83 /* PAPPhotoHeaderView.m */; };
+		A7C3DC351A00678700C2BA83 /* PAPFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC341A00678700C2BA83 /* PAPFindFriendsViewController.m */; };
+		A7C3DC381A00682700C2BA83 /* PAPFindFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC371A00682700C2BA83 /* PAPFindFriendsCell.m */; };
+		A7C3DC3B1A0069D800C2BA83 /* PAPPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC3A1A0069D800C2BA83 /* PAPPhotoCell.m */; };
+		A7C3DC3E1A006AA100C2BA83 /* PAPLoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC3D1A006AA100C2BA83 /* PAPLoadMoreCell.m */; };
+		A7C3DC411A026B3E00C2BA83 /* PAPSettingsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC401A026B3E00C2BA83 /* PAPSettingsButtonItem.m */; };
+		A7C3DC451A026B6D00C2BA83 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DC441A026B6D00C2BA83 /* MBProgressHUD.m */; };
 		A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */; };
+		A7E1F8391A0431DE00EE245B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E1F8381A0431DE00EE245B /* MessageUI.framework */; };
+		A7E1F83B1A04326600EE245B /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E1F83A1A04326600EE245B /* libz.1.1.3.dylib */; };
 		A7F9892119DA26D90031E279 /* icon-avatar-60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891819DA26D90031E279 /* icon-avatar-60x60.png */; };
 		A7F9892219DA26D90031E279 /* icon-avatar-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891919DA26D90031E279 /* icon-avatar-60x60@2x.png */; };
 		A7F9892319DA26D90031E279 /* icon-checkbox-selected-green-25x25.png in Resources */ = {isa = PBXBuildFile; fileRef = A7F9891A19DA26D90031E279 /* icon-checkbox-selected-green-25x25.png */; };
@@ -126,6 +153,7 @@
 		A7F9975119CF34610002836C /* FormTableViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975019CF34610002836C /* FormTableViewExampleController.m */; };
 		A7F9975419CF349F0002836C /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975319CF349F0002836C /* Genre.m */; };
 		A7F9975719CF34E10002836C /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = A7F9975619CF34E10002836C /* Movie.m */; };
+		A7FD681E1A043CAB0002BF9E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD681D1A043CAB0002BF9E /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,9 +197,7 @@
 		72E3C62119BBEA6700538233 /* EventQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventQuery.m; path = Models/EventQuery.m; sourceTree = "<group>"; };
 		72E3C62419BCC10100538233 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Event.h; path = Models/Event.h; sourceTree = "<group>"; };
 		72E3C62519BCC10100538233 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Event.m; path = Models/Event.m; sourceTree = "<group>"; };
-		72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.2.21/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		72EAD42519A959500036FCBB /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		72EAD42719A95FE90036FCBB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.2.21/Parse.framework"; sourceTree = "<group>"; };
 		72FB5C5819A8016100D4FCB7 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework"; sourceTree = "<group>"; };
 		72FB5C5A19A801A100D4FCB7 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "GoogleMaps-iOS-1.8.1/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		72FB5C5C19A8029D00D4FCB7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -275,6 +301,9 @@
 		A735E9F119AA35EE00500BF5 /* PlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetailQuery.m; sourceTree = "<group>"; };
 		A735E9F319AA371100500BF5 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		A735E9F419AA371100500BF5 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		A74EB3E61A0419EC00F3449B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "parse-library-1.4.2/Bolts.framework"; sourceTree = "<group>"; };
+		A74EB3E71A0419EC00F3449B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "parse-library-1.4.2/Parse.framework"; sourceTree = "<group>"; };
+		A74EB3E81A0419EC00F3449B /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = "parse-library-1.4.2/ParseFacebookUtils.framework"; sourceTree = "<group>"; };
 		A75D33C819D71F9000D0F5F1 /* EventPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPostViewController.h; sourceTree = "<group>"; };
 		A75D33C919D71F9000D0F5F1 /* EventPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPostViewController.m; sourceTree = "<group>"; };
 		A75D33CB19D86D8500D0F5F1 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
@@ -315,8 +344,58 @@
 		A772F6BD19A6E0E2003DA103 /* PlaceMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceMarker.h; sourceTree = "<group>"; };
 		A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceMarker.m; sourceTree = "<group>"; };
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A7C3DBF61A00554000C2BA83 /* PAPPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoDetailsViewController.h; sourceTree = "<group>"; };
+		A7C3DBF71A00554000C2BA83 /* PAPPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoDetailsViewController.m; sourceTree = "<group>"; };
+		A7C3DBF91A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoDetailsHeaderView.h; sourceTree = "<group>"; };
+		A7C3DBFA1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoDetailsHeaderView.m; sourceTree = "<group>"; };
+		A7C3DBFC1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoDetailsFooterView.h; sourceTree = "<group>"; };
+		A7C3DBFD1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoDetailsFooterView.m; sourceTree = "<group>"; };
+		A7C3DBFF1A0059B400C2BA83 /* PAPProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPProfileImageView.h; sourceTree = "<group>"; };
+		A7C3DC001A0059B400C2BA83 /* PAPProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPProfileImageView.m; sourceTree = "<group>"; };
+		A7C3DC021A005A9500C2BA83 /* PAPUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPUtility.h; sourceTree = "<group>"; };
+		A7C3DC031A005A9500C2BA83 /* PAPUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPUtility.m; sourceTree = "<group>"; };
+		A7C3DC071A005D5700C2BA83 /* UIImage+AlphaAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AlphaAdditions.h"; sourceTree = "<group>"; };
+		A7C3DC081A005D5700C2BA83 /* UIImage+AlphaAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AlphaAdditions.m"; sourceTree = "<group>"; };
+		A7C3DC091A005D5700C2BA83 /* UIImage+ResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeAdditions.h"; sourceTree = "<group>"; };
+		A7C3DC0A1A005D5700C2BA83 /* UIImage+ResizeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeAdditions.m"; sourceTree = "<group>"; };
+		A7C3DC0B1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCornerAdditions.h"; sourceTree = "<group>"; };
+		A7C3DC0C1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCornerAdditions.m"; sourceTree = "<group>"; };
+		A7C3DC101A005E7200C2BA83 /* PAPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPConstants.h; sourceTree = "<group>"; };
+		A7C3DC111A005E7200C2BA83 /* PAPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPConstants.m; sourceTree = "<group>"; };
+		A7C3DC131A005F8200C2BA83 /* PAPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PAPCache.h; path = ../PAPCache.h; sourceTree = "<group>"; };
+		A7C3DC141A005F8200C2BA83 /* PAPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PAPCache.m; path = ../PAPCache.m; sourceTree = "<group>"; };
+		A7C3DC171A0060A300C2BA83 /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		A7C3DC181A0060A300C2BA83 /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		A7C3DC1D1A00624000C2BA83 /* PAPBaseTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPBaseTextCell.h; sourceTree = "<group>"; };
+		A7C3DC1E1A00624000C2BA83 /* PAPBaseTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPBaseTextCell.m; sourceTree = "<group>"; };
+		A7C3DC201A00630600C2BA83 /* PAPActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPActivityCell.h; sourceTree = "<group>"; };
+		A7C3DC211A00630600C2BA83 /* PAPActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPActivityCell.m; sourceTree = "<group>"; };
+		A7C3DC241A0063EB00C2BA83 /* PAPActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPActivityFeedViewController.h; sourceTree = "<group>"; };
+		A7C3DC251A0063EB00C2BA83 /* PAPActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPActivityFeedViewController.m; sourceTree = "<group>"; };
+		A7C3DC271A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPSettingsActionSheetDelegate.h; sourceTree = "<group>"; };
+		A7C3DC281A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPSettingsActionSheetDelegate.m; sourceTree = "<group>"; };
+		A7C3DC2A1A00659000C2BA83 /* PAPAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPAccountViewController.h; sourceTree = "<group>"; };
+		A7C3DC2B1A00659000C2BA83 /* PAPAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPAccountViewController.m; sourceTree = "<group>"; };
+		A7C3DC2D1A00660400C2BA83 /* PAPPhotoTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoTimelineViewController.h; sourceTree = "<group>"; };
+		A7C3DC2E1A00660400C2BA83 /* PAPPhotoTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoTimelineViewController.m; sourceTree = "<group>"; };
+		A7C3DC301A00667700C2BA83 /* PAPPhotoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoHeaderView.h; sourceTree = "<group>"; };
+		A7C3DC311A00667700C2BA83 /* PAPPhotoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoHeaderView.m; sourceTree = "<group>"; };
+		A7C3DC331A00678700C2BA83 /* PAPFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPFindFriendsViewController.h; sourceTree = "<group>"; };
+		A7C3DC341A00678700C2BA83 /* PAPFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPFindFriendsViewController.m; sourceTree = "<group>"; };
+		A7C3DC361A00682700C2BA83 /* PAPFindFriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPFindFriendsCell.h; sourceTree = "<group>"; };
+		A7C3DC371A00682700C2BA83 /* PAPFindFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPFindFriendsCell.m; sourceTree = "<group>"; };
+		A7C3DC391A0069D800C2BA83 /* PAPPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoCell.h; sourceTree = "<group>"; };
+		A7C3DC3A1A0069D800C2BA83 /* PAPPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoCell.m; sourceTree = "<group>"; };
+		A7C3DC3C1A006AA100C2BA83 /* PAPLoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPLoadMoreCell.h; sourceTree = "<group>"; };
+		A7C3DC3D1A006AA100C2BA83 /* PAPLoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPLoadMoreCell.m; sourceTree = "<group>"; };
+		A7C3DC3F1A026B3E00C2BA83 /* PAPSettingsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPSettingsButtonItem.h; sourceTree = "<group>"; };
+		A7C3DC401A026B3E00C2BA83 /* PAPSettingsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPSettingsButtonItem.m; sourceTree = "<group>"; };
+		A7C3DC431A026B6D00C2BA83 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A7C3DC441A026B6D00C2BA83 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A7D1024D19BB4DDE00F1DEB8 /* NearbySearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbySearchQuery.h; sourceTree = "<group>"; };
 		A7D1024E19BB4DDE00F1DEB8 /* NearbySearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbySearchQuery.m; sourceTree = "<group>"; };
+		A7E1F8381A0431DE00EE245B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A7E1F83A1A04326600EE245B /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		A7F9891819DA26D90031E279 /* icon-avatar-60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60.png"; sourceTree = "<group>"; };
 		A7F9891919DA26D90031E279 /* icon-avatar-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-avatar-60x60@2x.png"; sourceTree = "<group>"; };
 		A7F9891A19DA26D90031E279 /* icon-checkbox-selected-green-25x25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-checkbox-selected-green-25x25.png"; sourceTree = "<group>"; };
@@ -336,6 +415,7 @@
 		A7F9975319CF349F0002836C /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Genre.m; sourceTree = "<group>"; };
 		A7F9975519CF34E10002836C /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		A7F9975619CF34E10002836C /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		A7FD681D1A043CAB0002BF9E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,23 +423,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7293C29719A902180000F456 /* Security.framework in Frameworks */,
+				A7E1F83B1A04326600EE245B /* libz.1.1.3.dylib in Frameworks */,
+				A772F6B819A023C2003DA103 /* QuartzCore.framework in Frameworks */,
+				A7E1F8391A0431DE00EE245B /* MessageUI.framework in Frameworks */,
 				A7F9892C19DA28D20031E279 /* AddressBook.framework in Frameworks */,
 				A7F9892D19DA28D20031E279 /* AddressBookUI.framework in Frameworks */,
 				A772F6BA19A023D2003DA103 /* SystemConfiguration.framework in Frameworks */,
 				7293C29B19A902260000F456 /* StoreKit.framework in Frameworks */,
-				72EAD42419A950A50036FCBB /* ParseFacebookUtils.framework in Frameworks */,
 				7293C29919A9021F0000F456 /* Social.framework in Frameworks */,
-				7293C29719A902180000F456 /* Security.framework in Frameworks */,
-				A772F6B819A023C2003DA103 /* QuartzCore.framework in Frameworks */,
-				72EAD42819A95FE90036FCBB /* Parse.framework in Frameworks */,
 				7293C29519A902050000F456 /* MobileCoreServices.framework in Frameworks */,
 				A772F6B419A0239A003DA103 /* libz.dylib in Frameworks */,
 				A772F6A819A02309003DA103 /* CoreLocation.framework in Frameworks */,
+				A74EB3EA1A0419EC00F3449B /* Parse.framework in Frameworks */,
+				A7FD681E1A043CAB0002BF9E /* FacebookSDK.framework in Frameworks */,
 				A772F66B19A01F60003DA103 /* CoreGraphics.framework in Frameworks */,
 				7293C29319A901AF0000F456 /* CFNetwork.framework in Frameworks */,
 				7293C29119A901A70000F456 /* AudioToolbox.framework in Frameworks */,
 				7293C28F19A9019E0000F456 /* Accounts.framework in Frameworks */,
 				A772F6B619A023B5003DA103 /* OpenGLES.framework in Frameworks */,
+				A74EB3E91A0419EC00F3449B /* Bolts.framework in Frameworks */,
 				A772F6B219A0237F003DA103 /* libicucore.dylib in Frameworks */,
 				A772F6B019A02358003DA103 /* libc++.dylib in Frameworks */,
 				A772F6AE19A0233C003DA103 /* ImageIO.framework in Frameworks */,
@@ -368,6 +451,7 @@
 				A772F6A619A02300003DA103 /* CoreData.framework in Frameworks */,
 				72EAD42619A959500036FCBB /* FacebookSDK.framework in Frameworks */,
 				A772F6A419A022F5003DA103 /* AVFoundation.framework in Frameworks */,
+				A74EB3EB1A0419EC00F3449B /* ParseFacebookUtils.framework in Frameworks */,
 				A772F66D19A01F60003DA103 /* UIKit.framework in Frameworks */,
 				72FB5C5919A8016100D4FCB7 /* GoogleMaps.framework in Frameworks */,
 				A772F66919A01F60003DA103 /* Foundation.framework in Frameworks */,
@@ -390,10 +474,30 @@
 		7273683919C2B10900E7A15B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7C3DC3F1A026B3E00C2BA83 /* PAPSettingsButtonItem.h */,
+				A7C3DC401A026B3E00C2BA83 /* PAPSettingsButtonItem.m */,
+				A7C3DC3C1A006AA100C2BA83 /* PAPLoadMoreCell.h */,
+				A7C3DC3D1A006AA100C2BA83 /* PAPLoadMoreCell.m */,
+				A7C3DC391A0069D800C2BA83 /* PAPPhotoCell.h */,
+				A7C3DC3A1A0069D800C2BA83 /* PAPPhotoCell.m */,
+				A7C3DC361A00682700C2BA83 /* PAPFindFriendsCell.h */,
+				A7C3DC371A00682700C2BA83 /* PAPFindFriendsCell.m */,
 				7273683A19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.h */,
 				7273683B19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m */,
 				723E3ACF19CE2E0C00F2B3DE /* EventListTableViewCell.h */,
 				723E3AD019CE2E0C00F2B3DE /* EventListTableViewCell.m */,
+				A7C3DBF91A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.h */,
+				A7C3DBFA1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m */,
+				A7C3DBFC1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.h */,
+				A7C3DBFD1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m */,
+				A7C3DBFF1A0059B400C2BA83 /* PAPProfileImageView.h */,
+				A7C3DC001A0059B400C2BA83 /* PAPProfileImageView.m */,
+				A7C3DC1D1A00624000C2BA83 /* PAPBaseTextCell.h */,
+				A7C3DC1E1A00624000C2BA83 /* PAPBaseTextCell.m */,
+				A7C3DC201A00630600C2BA83 /* PAPActivityCell.h */,
+				A7C3DC211A00630600C2BA83 /* PAPActivityCell.m */,
+				A7C3DC301A00667700C2BA83 /* PAPPhotoHeaderView.h */,
+				A7C3DC311A00667700C2BA83 /* PAPPhotoHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -559,8 +663,20 @@
 		A75D33C419D71D6800D0F5F1 /* EventPost */ = {
 			isa = PBXGroup;
 			children = (
+				A7C3DC2D1A00660400C2BA83 /* PAPPhotoTimelineViewController.h */,
+				A7C3DC2E1A00660400C2BA83 /* PAPPhotoTimelineViewController.m */,
+				A7C3DC271A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.h */,
+				A7C3DC281A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.m */,
 				A75D33C819D71F9000D0F5F1 /* EventPostViewController.h */,
 				A75D33C919D71F9000D0F5F1 /* EventPostViewController.m */,
+				A7C3DBF61A00554000C2BA83 /* PAPPhotoDetailsViewController.h */,
+				A7C3DBF71A00554000C2BA83 /* PAPPhotoDetailsViewController.m */,
+				A7C3DC241A0063EB00C2BA83 /* PAPActivityFeedViewController.h */,
+				A7C3DC251A0063EB00C2BA83 /* PAPActivityFeedViewController.m */,
+				A7C3DC2A1A00659000C2BA83 /* PAPAccountViewController.h */,
+				A7C3DC2B1A00659000C2BA83 /* PAPAccountViewController.m */,
+				A7C3DC331A00678700C2BA83 /* PAPFindFriendsViewController.h */,
+				A7C3DC341A00678700C2BA83 /* PAPFindFriendsViewController.m */,
 			);
 			name = EventPost;
 			sourceTree = "<group>";
@@ -568,6 +684,7 @@
 		A772F65C19A01F60003DA103 = {
 			isa = PBXGroup;
 			children = (
+				A7C3DC051A005BA600C2BA83 /* External */,
 				A772F66E19A01F60003DA103 /* OurMaps */,
 				A772F68D19A01F60003DA103 /* OurMapsTests */,
 				A772F66719A01F60003DA103 /* Frameworks */,
@@ -587,11 +704,15 @@
 		A772F66719A01F60003DA103 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7FD681D1A043CAB0002BF9E /* FacebookSDK.framework */,
+				A7E1F83A1A04326600EE245B /* libz.1.1.3.dylib */,
+				A7E1F8381A0431DE00EE245B /* MessageUI.framework */,
+				A74EB3E61A0419EC00F3449B /* Bolts.framework */,
+				A74EB3E71A0419EC00F3449B /* Parse.framework */,
+				A74EB3E81A0419EC00F3449B /* ParseFacebookUtils.framework */,
 				A7F9892A19DA28D20031E279 /* AddressBook.framework */,
 				A7F9892B19DA28D20031E279 /* AddressBookUI.framework */,
-				72EAD42719A95FE90036FCBB /* Parse.framework */,
 				72EAD42519A959500036FCBB /* FacebookSDK.framework */,
-				72EAD42319A950A50036FCBB /* ParseFacebookUtils.framework */,
 				A772F66819A01F60003DA103 /* Foundation.framework */,
 				A772F6B919A023D2003DA103 /* SystemConfiguration.framework */,
 				7293C29A19A902260000F456 /* StoreKit.framework */,
@@ -650,6 +771,12 @@
 				72FB5C5D19A8029D00D4FCB7 /* Constants.m */,
 				A735E9EA19A98B2900500BF5 /* Utilities.h */,
 				A735E9EB19A98B2900500BF5 /* Utilities.m */,
+				A7C3DC021A005A9500C2BA83 /* PAPUtility.h */,
+				A7C3DC031A005A9500C2BA83 /* PAPUtility.m */,
+				A7C3DC101A005E7200C2BA83 /* PAPConstants.h */,
+				A7C3DC111A005E7200C2BA83 /* PAPConstants.m */,
+				A7C3DC131A005F8200C2BA83 /* PAPCache.h */,
+				A7C3DC141A005F8200C2BA83 /* PAPCache.m */,
 				A78F04B319A7FA4A005BCF6B /* Images.xcassets */,
 			);
 			path = OurMaps;
@@ -691,6 +818,47 @@
 				A772F69019A01F60003DA103 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A7C3DC051A005BA600C2BA83 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				A7C3DC421A026B6D00C2BA83 /* MBProgressHUD */,
+				A7C3DC161A0060A300C2BA83 /* TTTTimeIntervalFormatter */,
+				A7C3DC061A005D0B00C2BA83 /* UIImage_Categories */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		A7C3DC061A005D0B00C2BA83 /* UIImage_Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A7C3DC071A005D5700C2BA83 /* UIImage+AlphaAdditions.h */,
+				A7C3DC081A005D5700C2BA83 /* UIImage+AlphaAdditions.m */,
+				A7C3DC091A005D5700C2BA83 /* UIImage+ResizeAdditions.h */,
+				A7C3DC0A1A005D5700C2BA83 /* UIImage+ResizeAdditions.m */,
+				A7C3DC0B1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.h */,
+				A7C3DC0C1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.m */,
+			);
+			name = UIImage_Categories;
+			sourceTree = "<group>";
+		};
+		A7C3DC161A0060A300C2BA83 /* TTTTimeIntervalFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				A7C3DC171A0060A300C2BA83 /* TTTTimeIntervalFormatter.h */,
+				A7C3DC181A0060A300C2BA83 /* TTTTimeIntervalFormatter.m */,
+			);
+			path = TTTTimeIntervalFormatter;
+			sourceTree = "<group>";
+		};
+		A7C3DC421A026B6D00C2BA83 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A7C3DC431A026B6D00C2BA83 /* MBProgressHUD.h */,
+				A7C3DC441A026B6D00C2BA83 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		A7D1024C19BB4C1500F1DEB8 /* NearbySearch */ = {
@@ -878,13 +1046,23 @@
 				A723BEC219EA278E008B636D /* ContactBubble.m in Sources */,
 				A7248C0B19CF1B8E00CAB393 /* UITableViewCell+FormKit.m in Sources */,
 				A7248C8219CF2A3C00CAB393 /* DistancePickerView.m in Sources */,
+				A7C3DC151A005F8200C2BA83 /* PAPCache.m in Sources */,
 				A7F9975719CF34E10002836C /* Movie.m in Sources */,
 				A723BEC319EA278E008B636D /* ContactPickerView.m in Sources */,
+				A7C3DC1F1A00624000C2BA83 /* PAPBaseTextCell.m in Sources */,
+				A7C3DC0D1A005D5700C2BA83 /* UIImage+AlphaAdditions.m in Sources */,
+				A7C3DC261A0063EB00C2BA83 /* PAPActivityFeedViewController.m in Sources */,
+				A7C3DC411A026B3E00C2BA83 /* PAPSettingsButtonItem.m in Sources */,
+				A7C3DC381A00682700C2BA83 /* PAPFindFriendsCell.m in Sources */,
+				A7C3DBFE1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m in Sources */,
 				A7248C6919CF23CB00CAB393 /* FKSeparatorField.m in Sources */,
 				A7F9974E19CF341F0002836C /* Comment.m in Sources */,
 				A7248C4219CF20EE00CAB393 /* FKImageField.m in Sources */,
 				A7248C2F19CF1F6D00CAB393 /* FKTitleHeaderView.m in Sources */,
 				72FB5C5E19A8029D00D4FCB7 /* Constants.m in Sources */,
+				A7C3DC191A0060A300C2BA83 /* TTTTimeIntervalFormatter.m in Sources */,
+				A7C3DC2F1A00660400C2BA83 /* PAPPhotoTimelineViewController.m in Sources */,
+				A7C3DC321A00667700C2BA83 /* PAPPhotoHeaderView.m in Sources */,
 				A7248C4819CF215900CAB393 /* FKLabelField.m in Sources */,
 				A7248C7C19CF29C100CAB393 /* ActionSheetDistancePicker.m in Sources */,
 				72E3C62219BBEA6700538233 /* EventQuery.m in Sources */,
@@ -897,17 +1075,23 @@
 				A7248C4519CF212600CAB393 /* FKIntegerField.m in Sources */,
 				723E3ACE19CDED4E00F2B3DE /* EventListTableViewController.m in Sources */,
 				A735E9EF19A98D3B00500BF5 /* AutocompleteQuery.m in Sources */,
+				A7C3DC291A0064AF00C2BA83 /* PAPSettingsActionSheetDelegate.m in Sources */,
 				A723BEC919EA278E008B636D /* Contact.m in Sources */,
 				A723BEC719EA278E008B636D /* ContactPickerTableViewCell.m in Sources */,
 				72D5AF0819AC3329004AC9A0 /* LoginViewController.m in Sources */,
 				A7248C7319CF290400CAB393 /* ActionSheetCustomPicker.m in Sources */,
 				A7D1024F19BB4DDE00F1DEB8 /* NearbySearchQuery.m in Sources */,
 				A75D33CA19D71F9000D0F5F1 /* EventPostViewController.m in Sources */,
+				A7C3DC0F1A005D5700C2BA83 /* UIImage+RoundedCornerAdditions.m in Sources */,
 				A7248C2619CF1EBF00CAB393 /* NSObject+FKFormAttributeMapping.m in Sources */,
+				A7C3DBFB1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m in Sources */,
 				A7248C0819CF1B1900CAB393 /* UIView+FormKit.m in Sources */,
+				A7C3DC351A00678700C2BA83 /* PAPFindFriendsViewController.m in Sources */,
 				A7248C3C19CF206900CAB393 /* FKFloatField.m in Sources */,
 				A7248C5119CF21F400CAB393 /* FKSimpleField.m in Sources */,
 				A7248C5A19CF228900CAB393 /* FKTextField.m in Sources */,
+				A7C3DC2C1A00659000C2BA83 /* PAPAccountViewController.m in Sources */,
+				A7C3DC451A026B6D00C2BA83 /* MBProgressHUD.m in Sources */,
 				A7248C3619CF1FF500CAB393 /* FKBadgeField.m in Sources */,
 				A723BEC619EA278E008B636D /* BubbleColor.m in Sources */,
 				A7248C8619CF2AC400CAB393 /* LongTextViewController.m in Sources */,
@@ -919,26 +1103,34 @@
 				A75D33CD19D86D8500D0F5F1 /* SWActionSheet.m in Sources */,
 				A7F9975419CF349F0002836C /* Genre.m in Sources */,
 				A735E9EC19A98B2900500BF5 /* Utilities.m in Sources */,
+				A7C3DC011A0059B400C2BA83 /* PAPProfileImageView.m in Sources */,
 				A7248C1A19CF1D5000CAB393 /* FKFormMapping.m in Sources */,
 				A75FA53319CDD2620034368B /* TimePickerViewController.m in Sources */,
 				A7248C6319CF233800CAB393 /* FKDisclosureIndicatorAccessoryField.m in Sources */,
 				A772F67519A01F60003DA103 /* main.m in Sources */,
 				A7248C8A19CF2B1C00CAB393 /* SelectViewController.m in Sources */,
+				A7C3DC041A005A9500C2BA83 /* PAPUtility.m in Sources */,
 				72E3C62619BCC10100538233 /* Event.m in Sources */,
 				A7248C1719CF1CD600CAB393 /* FKFormMapper.m in Sources */,
 				A7248C7919CF297600CAB393 /* ActionSheetDatePicker.m in Sources */,
 				A7248C5D19CF22C000CAB393 /* FKTextViewField.m in Sources */,
+				A7C3DC3E1A006AA100C2BA83 /* PAPLoadMoreCell.m in Sources */,
 				A7248C5419CF222700CAB393 /* FKSliderField.m in Sources */,
 				72D5AF0B19AC335B004AC9A0 /* SignUpViewController.m in Sources */,
 				A7248C7F19CF2A0600CAB393 /* ActionSheetStringPicker.m in Sources */,
 				A7248C7019CF28A800CAB393 /* AbstractActionSheetPicker.m in Sources */,
+				A7C3DC121A005E7200C2BA83 /* PAPConstants.m in Sources */,
 				A7248C3919CF203200CAB393 /* FKButtonField.m in Sources */,
+				A7C3DBF81A00554000C2BA83 /* PAPPhotoDetailsViewController.m in Sources */,
 				723E3AD119CE2E0C00F2B3DE /* EventListTableViewCell.m in Sources */,
+				A7C3DC221A00630600C2BA83 /* PAPActivityCell.m in Sources */,
+				A7C3DC0E1A005D5700C2BA83 /* UIImage+ResizeAdditions.m in Sources */,
 				7273683C19C2B1AE00E7A15B /* CategoricalNearbyEventTableViewCell.m in Sources */,
 				A7248C6019CF22F700CAB393 /* FKValueViewField.m in Sources */,
 				7273683819C2AFD800E7A15B /* CategoricalNearbyEventTableViewController.m in Sources */,
 				A7248C2019CF1E2000CAB393 /* FKFormModel.m in Sources */,
 				A7248C4E19CF21C200CAB393 /* FKSaveButtonField.m in Sources */,
+				A7C3DC3B1A0069D800C2BA83 /* PAPPhotoCell.m in Sources */,
 				A7248C5719CF225E00CAB393 /* FKSwitchField.m in Sources */,
 				A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */,
 				A723BEC419EA278E008B636D /* ContactPickerViewController.m in Sources */,
@@ -1077,6 +1269,8 @@
 					"$(PROJECT_DIR)/parse-library-1.2.21",
 					"$(PROJECT_DIR)/FacebookSDK",
 					/Users/weilu/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/parse-library-1.4.2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurMaps/OurMaps-Prefix.pch";
@@ -1102,6 +1296,8 @@
 					"$(PROJECT_DIR)/parse-library-1.2.21",
 					"$(PROJECT_DIR)/FacebookSDK",
 					/Users/weilu/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/parse-library-1.4.2",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurMaps/OurMaps-Prefix.pch";
