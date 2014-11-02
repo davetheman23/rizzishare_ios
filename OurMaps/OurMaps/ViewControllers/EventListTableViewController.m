@@ -9,6 +9,7 @@
 #import "EventListTableViewController.h"
 #import "EventListTableViewCell.h"
 #import "EventPostViewController.h"
+#import "EventDetailsViewController.h"
 
 @interface EventListTableViewController ()
 
@@ -121,20 +122,41 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    Event *event = nil;
+//    if([segue.identifier isEqualToString:@"eventPostSegue"]) {
+//        event = [Event eventWithTitle:@"Type event title"];
+//        event.eventTime = [NSDate date];
+//        event.eventPlace = place.name;
+//        event.participants = nil;
+//    } else if([segue.identifier isEqualToString:@"eventQuerySegue"]) {
+//        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+//        PFObject *PFEvent = [_eventArray objectAtIndex:index.row];
+//        event = [Event eventFromPFObject:PFEvent];
+//        event.eventPlace = place.name;
+//    }
+//    EventPostViewController *vc = [segue destinationViewController];
+//    vc.event = event;
+//}
+ 
     Event *event = nil;
     if([segue.identifier isEqualToString:@"eventPostSegue"]) {
         event = [Event eventWithTitle:@"Type event title"];
         event.eventTime = [NSDate date];
         event.eventPlace = place.name;
         event.participants = nil;
+        EventPostViewController *vc = [segue destinationViewController];
+        vc.event = event;
     } else if([segue.identifier isEqualToString:@"eventQuerySegue"]) {
+        
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];
         PFObject *PFEvent = [_eventArray objectAtIndex:index.row];
-        event = [Event eventFromPFObject:PFEvent];
-        event.eventPlace = place.name;
+        
+        if (PFEvent) {
+            EventDetailsViewController *eventDetailsVC = [segue destinationViewController];
+            eventDetailsVC = [[EventDetailsViewController alloc] initWithEvent:PFEvent];
+        }
+        
     }
-    EventPostViewController *vc = [segue destinationViewController];
-    vc.event = event;
 }
 
 
