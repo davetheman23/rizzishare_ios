@@ -37,7 +37,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
         // Customize the table
         
         // The className to query on
-        self.parseClassName = kPAPActivityClassKey;
+        self.parseClassName = @"Event_Activity";
         
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"text";
@@ -116,25 +116,25 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 
 #pragma mark - PFQueryTableViewController
 
-- (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:kPAPActivityPhotoKey equalTo:self.event];
-    [query includeKey:kPAPActivityFromUserKey];
-    [query whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeComment];
-    [query orderByAscending:@"createdAt"];
-    
-    [query setCachePolicy:kPFCachePolicyNetworkOnly];
-    
-    // If no objects are loaded in memory, we look to the cache first to fill the table
-    // and then subsequently do a query against the network.
-    //
-    // If there is no network connection, we will hit the cache first.
-    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
-    }
-    
-    return query;
-}
+//- (PFQuery *)queryForTable {
+//    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+//    [query whereKey:kPAPActivityPhotoKey equalTo:self.event];
+//    [query includeKey:kPAPActivityFromUserKey];
+//    [query whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeComment];
+//    [query orderByAscending:@"createdAt"];
+//    
+//    [query setCachePolicy:kPFCachePolicyNetworkOnly];
+//    
+//    // If no objects are loaded in memory, we look to the cache first to fill the table
+//    // and then subsequently do a query against the network.
+//    //
+//    // If there is no network connection, we will hit the cache first.
+//    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
+//        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+//    }
+//    
+//    return query;
+//}
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
