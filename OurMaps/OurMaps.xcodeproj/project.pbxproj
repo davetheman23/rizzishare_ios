@@ -1264,9 +1264,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/",
 					"$(PROJECT_DIR)/GoogleMaps-iOS-1.8.1",
-					"$(PROJECT_DIR)/parse-library-1.2.21",
 					"$(PROJECT_DIR)/FacebookSDK",
-					/Users/weilu/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1.4.2",
 				);
@@ -1291,9 +1289,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/",
 					"$(PROJECT_DIR)/GoogleMaps-iOS-1.8.1",
-					"$(PROJECT_DIR)/parse-library-1.2.21",
 					"$(PROJECT_DIR)/FacebookSDK",
-					/Users/weilu/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/parse-library-1.4.2",
 				);
