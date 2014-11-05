@@ -12,6 +12,4 @@
 
 @property (nonatomic, strong) PFObject *event;
 
-- (id)initWithEvent:(PFObject*)anEvent;
-
 @end

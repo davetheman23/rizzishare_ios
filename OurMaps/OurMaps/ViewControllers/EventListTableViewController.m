@@ -152,8 +152,9 @@
         PFObject *PFEvent = [_eventArray objectAtIndex:index.row];
         
         if (PFEvent) {
+            NSLog(@"PFEvent: %@", PFEvent);
             EventDetailsViewController *eventDetailsVC = [segue destinationViewController];
-            eventDetailsVC = [[EventDetailsViewController alloc] initWithEvent:PFEvent];
+            eventDetailsVC.event = PFEvent;
         }
         
     }

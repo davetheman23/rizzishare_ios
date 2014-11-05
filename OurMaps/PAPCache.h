@@ -15,9 +15,15 @@
 
 - (void)clear;
 - (void)setAttributesForPhoto:(PFObject *)photo likers:(NSArray *)likers commenters:(NSArray *)commenters likedByCurrentUser:(BOOL)likedByCurrentUser;
+
 - (NSDictionary *)attributesForPhoto:(PFObject *)photo;
+- (NSDictionary *)attributesForEvent:(PFObject *)event;
+
 - (NSNumber *)likeCountForPhoto:(PFObject *)photo;
 - (NSNumber *)commentCountForPhoto:(PFObject *)photo;
+- (NSNumber *)commentCountForEvent:(PFObject *)event;
+
+
 - (NSArray *)likersForPhoto:(PFObject *)photo;
 - (NSArray *)commentersForPhoto:(PFObject *)photo;
 - (void)setPhotoIsLikedByCurrentUser:(PFObject *)photo liked:(BOOL)liked;
@@ -26,6 +32,9 @@
 - (void)decrementLikerCountForPhoto:(PFObject *)photo;
 - (void)incrementCommentCountForPhoto:(PFObject *)photo;
 - (void)decrementCommentCountForPhoto:(PFObject *)photo;
+
+- (void)incrementCommentCountForEvent:(PFObject *)event;
+- (void)decrementCommentCountForEvent:(PFObject *)event;
 
 - (NSDictionary *)attributesForUser:(PFUser *)user;
 - (NSNumber *)photoCountForUser:(PFUser *)user;

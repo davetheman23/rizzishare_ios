@@ -2,7 +2,7 @@
 //  Constants.m
 //  OurMaps
 //
-//  Created by Wei Lu on 8/19/14.
+//  Created by Wei Lu and Jiangchuan Huang on 8/19/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
@@ -25,6 +25,16 @@ NSString *const kPlaceOverallRatingKey = @"overallRating";
 NSString *const kPlaceDescriptionKey = @"description";
 NSString *const kPlaceIdKey = @"place_id";
 
+#pragma mark - User Class
+// User attribute keys
+NSString *const kUserDisplayNameKey                          = @"displayName";
+NSString *const kUserFacebookIDKey                           = @"facebookId";
+NSString *const kUserPhotoIDKey                              = @"photoId";
+NSString *const kUserProfilePicSmallKey                      = @"profilePictureSmall";
+NSString *const kUserProfilePicMediumKey                     = @"profilePictureMedium";
+NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAutoFollowedFacebookFriends";
+NSString *const kUserPrivateChannelKey                       = @"channel";
+
 // Event attribute keys
 NSString *const kEventVenueKey = @"venue";
 NSString *const kEventTimeKey = @"eventTime";
@@ -33,10 +43,43 @@ NSString *const kEventTypeKey = @"type";
 NSString *const kEventOwnerKey = @"owner";
 
 // Event Activity attribute keys
-NSString *const kEventActivityEventKey = @"toEvent";
+NSString *const kEventActivityContentKey = @"content";
+NSString *const kEventActivityFromUserKey = @"fromUser";
+NSString *const kEventActivityEventKey = @"event";
+NSString *const kEventActivityToUserKey = @"toUser";
+NSString *const kEventActivityTypeKey = @"type";
 
-// User attribute keys
-NSString *const kUserDisplayNameKey = @"displayName";
+// Event Activity Type values
+NSString *const kEventActivityTypeLike       = @"like";
+NSString *const kEventActivityTypeFollow     = @"follow";
+NSString *const kEventActivityTypeComment    = @"comment";
+NSString *const kEventActivityTypeJoined     = @"joined";
+
 
 // Installation attribute keys
 NSString *const kInstallationUserKey = @"user";
+
+
+//#pragma mark - Push Notification Payload Keys
+//
+//NSString *const kAPNSAlertKey = @"alert";
+//NSString *const kAPNSBadgeKey = @"badge";
+//NSString *const kAPNSSoundKey = @"sound";
+//
+//// the following keys are intentionally kept short, APNS has a maximum payload limit
+//NSString *const kPAPPushPayloadPayloadTypeKey          = @"p";
+//NSString *const kPAPPushPayloadPayloadTypeActivityKey  = @"a";
+//
+//NSString *const kPAPPushPayloadActivityTypeKey     = @"t";
+//NSString *const kPAPPushPayloadActivityLikeKey     = @"l";
+//NSString *const kPAPPushPayloadActivityCommentKey  = @"c";
+//NSString *const kPAPPushPayloadActivityFollowKey   = @"f";
+//
+//NSString *const kPAPPushPayloadFromUserObjectIdKey = @"fu";
+//NSString *const kPAPPushPayloadToUserObjectIdKey   = @"tu";
+NSString *const kPAPPushPayloadEventObjectIdKey    = @"eid";
+
+
+
+
+

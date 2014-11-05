@@ -7,10 +7,15 @@
 //
 
 #import "EventDetailsViewController.h"
-#import "PAPConstants.h"
+#import "Constants.h"
 #import "PAPPhotoDetailsHeaderView.h"
 #import "PAPPhotoDetailsFooterView.h"
 #import "PAPActivityCell.h"
+#import "PAPConstants.h"
+#import "PAPLoadMoreCell.h"
+#import "PAPCache.h"
+#import "MBProgressHUD.h"
+#import "PAPUtility.h"
 
 @interface EventDetailsViewController ()
 @property (nonatomic, strong) UITextField *commentTextField;
@@ -28,7 +33,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:self.event];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UtilityUserLikedUnlikedEventCallbackFinishedNotification" object:self.event];
 }
 
 - (id)initWithCoder:(NSCoder *)aCoder {
@@ -37,7 +42,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"Event_Activity";
+        self.parseClassName = kEventActivityClassKey;
         
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"text";
@@ -57,13 +62,13 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
     return self;
 }
 
-- (id)initWithEvent:(PFObject *)anEvent {
+//- (id)initWithEvent:(PFObject *)anEvent {
 //    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        self.event = anEvent;
-    }
-    return self;
-}
+//    if (self) {
+//        self.event = anEvent;
+//    }
+//    return self;
+//}
 
 
 - (void)viewDidLoad {
@@ -80,7 +85,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
     // Register to be notified when the keyboard will be shown to scroll the view
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLikedOrUnlikedPhoto:) name:PAPUtilityUserLikedUnlikedPhotoCallbackFinishedNotification object:self.event];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLikedOrUnlikedPhoto:) name:@"UtilityUserLikedUnlikedEventCallbackFinishedNotification" object:self.event];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -95,18 +100,18 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < self.objects.count) { // A comment row
         
-        BOOL hasActivityImage = NO;
+        BOOL hasActivityEvent = NO;
         
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
-        if ([[object objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeFollow] || [[object objectForKey:kPAPActivityTypeKey] isEqualToString:kPAPActivityTypeJoined]) {
-            hasActivityImage = NO;
+        if ([[object objectForKey:kEventActivityTypeKey] isEqualToString:kEventActivityTypeFollow] || [[object objectForKey:kEventActivityTypeKey] isEqualToString:kEventActivityTypeJoined]) {
+            hasActivityEvent = NO;
         } else {
-            hasActivityImage = YES;
+            hasActivityEvent = YES;
         }
         
-        NSString *commentString  = [[self.objects objectAtIndex:indexPath.row] objectForKey:kPAPActivityContentKey];
-        NSString *nameString = [(PFUser*)[object objectForKey:kPAPActivityFromUserKey] objectForKey:kPAPUserDisplayNameKey];
+        NSString *commentString  = [[self.objects objectAtIndex:indexPath.row] objectForKey:kEventActivityContentKey];
+        NSString *nameString = [(PFUser*)[object objectForKey:kEventActivityFromUserKey] objectForKey:kUserDisplayNameKey];
         
         return [PAPActivityCell heightForCellWithName:nameString contentString:commentString cellInsetWidth:kPAPCellInsetWidth];
     } else { // The pagination row
@@ -116,31 +121,171 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 
 #pragma mark - PFQueryTableViewController
 
-//- (PFQuery *)queryForTable {
-//    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-//    [query whereKey:kPAPActivityPhotoKey equalTo:self.event];
-//    [query includeKey:kPAPActivityFromUserKey];
-//    [query whereKey:kPAPActivityTypeKey equalTo:kPAPActivityTypeComment];
-//    [query orderByAscending:@"createdAt"];
-//    
-//    [query setCachePolicy:kPFCachePolicyNetworkOnly];
-//    
-//    // If no objects are loaded in memory, we look to the cache first to fill the table
-//    // and then subsequently do a query against the network.
-//    //
-//    // If there is no network connection, we will hit the cache first.
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    [query whereKey:kEventActivityEventKey equalTo:self.event];
+
+    [query includeKey:kEventActivityFromUserKey];
+    [query whereKey:kEventActivityTypeKey equalTo:kEventActivityTypeComment];
+    [query orderByAscending:@"createdAt"];
+    [query setCachePolicy:kPFCachePolicyNetworkOnly];
+
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    //
+    // If there is no network connection, we will hit the cache first.
 //    if (self.objects.count == 0 || ![[UIApplication sharedApplication].delegate performSelector:@selector(isParseReachable)]) {
 //        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
 //    }
-//    
-//    return query;
-//}
+    return query;
+}
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     NSLog(@"Objects did load");
     [self.headerView reloadLikeBar];
 }
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *cellID = @"commentCell";
+    
+    // Try to dequeue a cell and create one if necessary
+    PAPBaseTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[PAPBaseTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        [cell setCellInsetWidth:kPAPCellInsetWidth];
+        [cell setDelegate:self];
+    }
+    [cell setUser:[object objectForKey:kEventActivityFromUserKey]];
+    [cell setContentText:[object objectForKey:kEventActivityContentKey]];
+    [cell setDate:[object createdAt]];
+    
+    return cell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"NextPage";
+    
+    PAPLoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[PAPLoadMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.cellInsetWidth = kPAPCellInsetWidth;
+        cell.hideSeparatorTop = YES;
+    }
+    
+    return cell;
+}
+
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSString *trimmedComment = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (trimmedComment.length != 0 && [self.event objectForKey:kEventOwnerKey]) {
+        PFObject *comment = [PFObject objectWithClassName:kEventActivityClassKey];
+        [comment setValue:trimmedComment forKey:kEventActivityContentKey]; // Set comment text
+        [comment setValue:[self.event objectForKey:kEventOwnerKey] forKey:kEventActivityToUserKey]; // Set toUser
+        [comment setValue:[PFUser currentUser] forKey:kEventActivityFromUserKey]; // Set fromUser
+        [comment setValue:kEventActivityTypeComment forKey:kEventActivityTypeKey];
+        [comment setValue:self.event forKey:kEventActivityEventKey];
+        
+        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        [ACL setPublicReadAccess:YES];
+        comment.ACL = ACL;
+        
+        [[PAPCache sharedCache] incrementCommentCountForEvent:self.event];
+        
+        // Show HUD view
+        [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+        
+        // If more than 5 seconds pass since we post a comment, stop waiting for the server to respond
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(handleCommentTimeout:) userInfo:[NSDictionary dictionaryWithObject:comment forKey:@"comment"] repeats:NO];
+        
+        [comment saveEventually:^(BOOL succeeded, NSError *error) {
+            [timer invalidate];
+            
+            if (error && [error code] == kPFErrorObjectNotFound) {
+                [[PAPCache sharedCache] decrementCommentCountForEvent:self.event];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Could not post comment" message:@"This event was deleted by its owner" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alert show];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                // refresh cache
+                
+                NSMutableSet *channelSet = [NSMutableSet setWithCapacity:self.objects.count];
+                
+                // set up this push notification to be sent to all commenters, excluding the current  user
+                for (PFObject *comment in self.objects) {
+                    PFUser *author = [comment objectForKey:kEventActivityFromUserKey];
+                    NSString *privateChannelName = [author objectForKey:kUserPrivateChannelKey];
+                    if (privateChannelName && privateChannelName.length != 0 && ![[author objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                        [channelSet addObject:privateChannelName];
+                    }
+                }
+                [channelSet addObject:[self.event objectForKey:kEventOwnerKey]];
+                
+                if (channelSet.count > 0) {
+                    NSString *alert = [NSString stringWithFormat:@"%@: %@", [PAPUtility firstNameForDisplayName:[[PFUser currentUser] objectForKey:kUserDisplayNameKey]], trimmedComment];
+                    
+                    // make sure to leave enough space for payload overhead
+                    if (alert.length > 100) {
+                        alert = [alert substringToIndex:99];
+                        alert = [alert stringByAppendingString:@"…"];
+                    }
+                    
+                    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          alert, kAPNSAlertKey,
+                                          kPAPPushPayloadPayloadTypeActivityKey, kPAPPushPayloadPayloadTypeKey,
+                                          kPAPPushPayloadActivityCommentKey, kPAPPushPayloadActivityTypeKey,
+                                          [[PFUser currentUser] objectId], kPAPPushPayloadFromUserObjectIdKey,
+                                          [self.event objectId], kPAPPushPayloadEventObjectIdKey,
+                                          @"Increment",kAPNSBadgeKey,
+                                          nil];
+                    PFPush *push = [[PFPush alloc] init];
+                    [push setChannels:[channelSet allObjects]];
+                    [push setData:data];
+                    [push sendPushInBackground];
+                }
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:PAPPhotoDetailsViewControllerUserCommentedOnPhotoNotification object:self.event userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:self.objects.count + 1] forKey:@"comments"]];
+            
+            [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+            [self loadObjects];
+        }];
+    }
+    [textField setText:@""];
+    return [textField resignFirstResponder];
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [commentTextField resignFirstResponder];
+}
+
+
+
+#pragma mark - ()
+
+- (void)handleCommentTimeout:(NSTimer *)aTimer {
+    [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Comment" message:@"Your comment will be posted next time there is an Internet connection."  delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+    [alert show];
+}
+
+
+- (void)keyboardWillShow:(NSNotification*)note {
+    // Scroll the view to the comment text box
+    NSDictionary* info = [note userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height-kbSize.height) animated:YES];
+}
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -60,6 +60,12 @@
     return [self.cache objectForKey:key];
 }
 
+- (NSDictionary *)attributesForEvent:(PFObject *)event {
+    NSString *key = [self keyForPhoto:event];
+    return [self.cache objectForKey:key];
+}
+
+
 - (NSNumber *)likeCountForPhoto:(PFObject *)photo {
     NSDictionary *attributes = [self attributesForPhoto:photo];
     if (attributes) {
@@ -77,6 +83,16 @@
     
     return [NSNumber numberWithInt:0];
 }
+
+- (NSNumber *)commentCountForEvent:(PFObject *)event {
+    NSDictionary *attributes = [self attributesForPhoto:event];
+    if (attributes) {
+        return [attributes objectForKey:kPAPPhotoAttributesCommentCountKey];
+    }
+    
+    return [NSNumber numberWithInt:0];
+}
+
 
 - (NSArray *)likersForPhoto:(PFObject *)photo {
     NSDictionary *attributes = [self attributesForPhoto:photo];
@@ -135,6 +151,14 @@
     [self setAttributes:attributes forPhoto:photo];
 }
 
+- (void)incrementCommentCountForEvent:(PFObject *)event {
+    NSNumber *commentCount = [NSNumber numberWithInt:[[self commentCountForEvent:event] intValue] + 1];
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForEvent:event]];
+    [attributes setObject:commentCount forKey:kPAPPhotoAttributesCommentCountKey];
+    [self setAttributes:attributes forPhoto:event];
+}
+
+
 - (void)decrementCommentCountForPhoto:(PFObject *)photo {
     NSNumber *commentCount = [NSNumber numberWithInt:[[self commentCountForPhoto:photo] intValue] - 1];
     if ([commentCount intValue] < 0) {
@@ -144,6 +168,17 @@
     [attributes setObject:commentCount forKey:kPAPPhotoAttributesCommentCountKey];
     [self setAttributes:attributes forPhoto:photo];
 }
+
+- (void)decrementCommentCountForEvent:(PFObject *)event {
+    NSNumber *commentCount = [NSNumber numberWithInt:[[self commentCountForPhoto:event] intValue] - 1];
+    if ([commentCount intValue] < 0) {
+        return;
+    }
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:[self attributesForPhoto:event]];
+    [attributes setObject:commentCount forKey:kPAPPhotoAttributesCommentCountKey];
+    [self setAttributes:attributes forEvent:event];
+}
+
 
 - (void)setAttributesForUser:(PFUser *)user photoCount:(NSNumber *)count followedByCurrentUser:(BOOL)following {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -224,6 +259,11 @@
     [self.cache setObject:attributes forKey:key];
 }
 
+- (void)setAttributes:(NSDictionary *)attributes forEvent:(PFObject *)event {
+    NSString *key = [self keyForEvent:event];
+    [self.cache setObject:attributes forKey:key];
+}
+
 - (void)setAttributes:(NSDictionary *)attributes forUser:(PFUser *)user {
     NSString *key = [self keyForUser:user];
     [self.cache setObject:attributes forKey:key];
@@ -233,8 +273,18 @@
     return [NSString stringWithFormat:@"photo_%@", [photo objectId]];
 }
 
+- (NSString *)keyForEvent:(PFObject *)event {
+    return [NSString stringWithFormat:@"event_%@", [event objectId]];
+}
+
+
 - (NSString *)keyForUser:(PFUser *)user {
     return [NSString stringWithFormat:@"user_%@", [user objectId]];
 }
 
 @end
+
+
+
+
+
