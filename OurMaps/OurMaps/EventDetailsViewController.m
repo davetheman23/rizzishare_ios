@@ -17,6 +17,11 @@
 #import "MBProgressHUD.h"
 #import "PAPUtility.h"
 
+enum ActionSheetTags {
+    MainActionSheetTag = 0,
+    ConfirmDeleteActionSheetTag = 1
+};
+
 @interface EventDetailsViewController ()
 @property (nonatomic, strong) UITextField *commentTextField;
 @property (nonatomic, strong) PAPPhotoDetailsHeaderView *headerView;
@@ -62,19 +67,27 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
     return self;
 }
 
-//- (id)initWithEvent:(PFObject *)anEvent {
-//    self = [super initWithStyle:UITableViewStylePlain];
-//    if (self) {
-//        self.event = anEvent;
-//    }
-//    return self;
-//}
 
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
     [super viewDidLoad];
+    
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"LogoNavigationBar.png"]];
+
+    // Set table view properties
+    UIView *texturedBackgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [texturedBackgroundView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundLeather.png"]]];
+    self.tableView.backgroundView = texturedBackgroundView;
+
+//    // Set table header
+//    self.headerView = [[PAPPhotoDetailsHeaderView alloc] initWithFrame:[PAPPhotoDetailsHeaderView rectForView] photo:self.photo];
+//    [self.headerView setDelegate:self];
+//    
+//    self.tableView.tableHeaderView = self.headerView;
+
     
     // Set table footer
     PAPPhotoDetailsFooterView *footerView = [[PAPPhotoDetailsFooterView alloc] initWithFrame:[PAPPhotoDetailsFooterView rectForView]];
@@ -82,6 +95,11 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
     [commentTextField setDelegate:self];
     self.tableView.tableFooterView = footerView;
     
+    if ([[[self.event objectForKey:kEventOwnerKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonAction:)];
+    }
+    
+
     // Register to be notified when the keyboard will be shown to scroll the view
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     

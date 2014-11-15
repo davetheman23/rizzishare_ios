@@ -284,7 +284,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == MainActionSheetTag) {
         if ([actionSheet destructiveButtonIndex] == buttonIndex) {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this photo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes, delete photo" otherButtonTitles:nil];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to delete this event?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes, delete event" otherButtonTitles:nil];
             actionSheet.tag = ConfirmDeleteActionSheetTag;
             [actionSheet showFromTabBar:self.tabBarController.tabBar];
         }
@@ -332,7 +332,7 @@ static const CGFloat kPAPCellInsetWidth = 20.0f;
 }
 
 - (void)actionButtonAction:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Event" otherButtonTitles:nil];
     actionSheet.tag = MainActionSheetTag;
     [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }

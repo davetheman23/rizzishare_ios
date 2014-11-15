@@ -108,6 +108,10 @@
 		A772F6BF19A6E0E2003DA103 /* PlaceMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = A772F6BE19A6E0E2003DA103 /* PlaceMarker.m */; };
 		A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A78F04B319A7FA4A005BCF6B /* Images.xcassets */; };
 		A796C0EC1A090AF0004DC785 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A796C0EB1A090AF0004DC785 /* EventDetailsViewController.m */; };
+		A7B510B71A0C5B6200726BED /* backgroundLeather.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B510B31A0C5B6200726BED /* backgroundLeather.png */; };
+		A7B510B81A0C5B6200726BED /* backgroundLeather@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B510B41A0C5B6200726BED /* backgroundLeather@2x.png */; };
+		A7B510B91A0C5B6200726BED /* logoNavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B510B51A0C5B6200726BED /* logoNavigationBar.png */; };
+		A7B510BA1A0C5B6200726BED /* logoNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B510B61A0C5B6200726BED /* logoNavigationBar@2x.png */; };
 		A7C3DBF81A00554000C2BA83 /* PAPPhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBF71A00554000C2BA83 /* PAPPhotoDetailsViewController.m */; };
 		A7C3DBFB1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBFA1A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.m */; };
 		A7C3DBFE1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C3DBFD1A0058B600C2BA83 /* PAPPhotoDetailsFooterView.m */; };
@@ -341,6 +345,10 @@
 		A78F04B319A7FA4A005BCF6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A796C0EA1A090AF0004DC785 /* EventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailsViewController.h; sourceTree = "<group>"; };
 		A796C0EB1A090AF0004DC785 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
+		A7B510B31A0C5B6200726BED /* backgroundLeather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundLeather.png; path = Assets/backgroundLeather.png; sourceTree = "<group>"; };
+		A7B510B41A0C5B6200726BED /* backgroundLeather@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroundLeather@2x.png"; path = "Assets/backgroundLeather@2x.png"; sourceTree = "<group>"; };
+		A7B510B51A0C5B6200726BED /* logoNavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoNavigationBar.png; path = Assets/logoNavigationBar.png; sourceTree = "<group>"; };
+		A7B510B61A0C5B6200726BED /* logoNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logoNavigationBar@2x.png"; path = "Assets/logoNavigationBar@2x.png"; sourceTree = "<group>"; };
 		A7C3DBF61A00554000C2BA83 /* PAPPhotoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoDetailsViewController.h; sourceTree = "<group>"; };
 		A7C3DBF71A00554000C2BA83 /* PAPPhotoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPPhotoDetailsViewController.m; sourceTree = "<group>"; };
 		A7C3DBF91A0057B800C2BA83 /* PAPPhotoDetailsHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPPhotoDetailsHeaderView.h; sourceTree = "<group>"; };
@@ -521,6 +529,10 @@
 		72D5AF0F19AC5102004AC9A0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A7B510B31A0C5B6200726BED /* backgroundLeather.png */,
+				A7B510B41A0C5B6200726BED /* backgroundLeather@2x.png */,
+				A7B510B51A0C5B6200726BED /* logoNavigationBar.png */,
+				A7B510B61A0C5B6200726BED /* logoNavigationBar@2x.png */,
 				7273683419C2A48200E7A15B /* mapView_background.png */,
 				72E3C61E19BBE88600538233 /* fig_Coffee_true.png */,
 				72D5AF1019AC5120004AC9A0 /* rizzilogo-01.png */,
@@ -1007,8 +1019,11 @@
 				A723BEC519EA278E008B636D /* ContactPickerViewController.xib in Resources */,
 				72D5AF1219AC5120004AC9A0 /* rizzilogo-01.png in Resources */,
 				7273683519C2A48200E7A15B /* mapView_background.png in Resources */,
+				A7B510B81A0C5B6200726BED /* backgroundLeather@2x.png in Resources */,
 				A7F9892419DA26D90031E279 /* icon-checkbox-selected-green-25x25@2x.png in Resources */,
+				A7B510B71A0C5B6200726BED /* backgroundLeather.png in Resources */,
 				A723BEC819EA278E008B636D /* ContactPickerTableViewCell.xib in Resources */,
+				A7B510B91A0C5B6200726BED /* logoNavigationBar.png in Resources */,
 				A78F04B419A7FA4A005BCF6B /* Images.xcassets in Resources */,
 				726FBDE719D8C4E500906BCC /* Main.storyboard in Resources */,
 				A7F9892719DA26D90031E279 /* Default.png in Resources */,
@@ -1020,6 +1035,7 @@
 				A7F9892319DA26D90031E279 /* icon-checkbox-selected-green-25x25.png in Resources */,
 				A7F9892119DA26D90031E279 /* icon-avatar-60x60.png in Resources */,
 				A772F67319A01F60003DA103 /* InfoPlist.strings in Resources */,
+				A7B510BA1A0C5B6200726BED /* logoNavigationBar@2x.png in Resources */,
 				A7F9892619DA26D90031E279 /* icon-checkbox-unselected-25x25@2x.png in Resources */,
 				72FB5C5B19A801A100D4FCB7 /* GoogleMaps.bundle in Resources */,
 			);

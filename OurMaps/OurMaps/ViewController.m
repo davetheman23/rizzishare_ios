@@ -2,7 +2,7 @@
 //  ViewController.m
 //  OurMaps
 //
-//  Created by Jiangchuan Huang, Wei Lu on 8/16/14.
+//  Created by Jiangchuan Huang and Wei Lu on 8/16/14.
 //  Copyright (c) 2014 OurMaps. All rights reserved.
 //
 
